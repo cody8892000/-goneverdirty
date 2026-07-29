@@ -12,21 +12,22 @@
 
   <meta
     name="description"
-    content="View Never Dirty membership pricing, one-time vehicle cleanings, full-detail packages, weekend detailing services, and optional add-ons."
+    content="View Never Dirty mobile detailing memberships, one-time maintenance cleanings, full-detail packages, premium services, and add-ons."
   >
 
   <style>
     :root {
       --black: #070707;
-      --dark: #111111;
-      --card: #181818;
+      --dark: #101010;
+      --card: #171717;
       --card-light: #202020;
       --white: #ffffff;
-      --gray: #b9b9b9;
-      --muted: #888888;
-      --line: #2b2b2b;
-      --accent: #dfff3f;
-      --max-width: 1150px;
+      --gray: #b6b6b6;
+      --muted: #858585;
+      --border: #303030;
+      --green: #dfff3f;
+      --green-dark: #252c0d;
+      --max-width: 1180px;
     }
 
     * {
@@ -51,9 +52,46 @@
       text-decoration: none;
     }
 
+    ul {
+      list-style: none;
+    }
+
     .container {
       width: min(92%, var(--max-width));
       margin: 0 auto;
+    }
+
+    .section {
+      padding: 90px 0;
+      border-top: 1px solid var(--border);
+      scroll-margin-top: 80px;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      margin-bottom: 14px;
+      color: var(--green);
+      font-size: 0.78rem;
+      font-weight: 900;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    .section-heading {
+      max-width: 850px;
+      margin-bottom: 42px;
+    }
+
+    .section-heading h2 {
+      margin-bottom: 14px;
+      font-size: clamp(2.4rem, 6vw, 4.4rem);
+      line-height: 1;
+      letter-spacing: -0.05em;
+    }
+
+    .section-heading p {
+      color: var(--gray);
+      font-size: 1.05rem;
     }
 
     .button {
@@ -62,13 +100,12 @@
       justify-content: center;
       min-height: 50px;
       padding: 0 24px;
-      border: 1px solid var(--accent);
+      border: 1px solid var(--green);
       border-radius: 999px;
-      background: var(--accent);
+      background: var(--green);
       color: #000;
-      font-weight: 800;
+      font-weight: 900;
       text-align: center;
-      cursor: pointer;
       transition:
         transform 0.2s ease,
         filter 0.2s ease;
@@ -76,29 +113,37 @@
 
     .button:hover {
       transform: translateY(-2px);
-      filter: brightness(1.05);
+      filter: brightness(1.08);
     }
 
     .button-outline {
+      border-color: #555;
       background: transparent;
       color: var(--white);
-      border-color: #555;
     }
+
+    .button-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    /* HEADER */
 
     header {
       position: sticky;
       top: 0;
-      z-index: 100;
-      background: rgba(7, 7, 7, 0.94);
-      border-bottom: 1px solid var(--line);
+      z-index: 1000;
+      border-bottom: 1px solid var(--border);
+      background: rgba(7, 7, 7, 0.96);
       backdrop-filter: blur(12px);
     }
 
     nav {
       min-height: 72px;
       display: flex;
-      justify-content: space-between;
       align-items: center;
+      justify-content: space-between;
       gap: 20px;
     }
 
@@ -110,7 +155,7 @@
     }
 
     .logo span {
-      color: var(--accent);
+      color: var(--green);
     }
 
     .nav-links {
@@ -118,10 +163,10 @@
       align-items: center;
       gap: 20px;
       color: var(--gray);
-      font-size: 0.94rem;
+      font-size: 0.9rem;
     }
 
-    .nav-links a:hover {
+    .nav-links > a:hover {
       color: var(--white);
     }
 
@@ -129,34 +174,33 @@
       color: #000;
     }
 
+    /* HERO */
+
     .hero {
-      padding: 110px 0 90px;
+      min-height: 690px;
+      display: flex;
+      align-items: center;
+      padding: 110px 0;
       background:
         radial-gradient(
-          circle at 80% 15%,
-          rgba(223, 255, 63, 0.15),
-          transparent 30%
+          circle at 82% 18%,
+          rgba(223, 255, 63, 0.17),
+          transparent 31%
         ),
         linear-gradient(
           145deg,
           #070707 0%,
-          #111111 58%,
+          #121212 58%,
           #070707 100%
         );
     }
 
-    .eyebrow {
-      display: inline-block;
-      margin-bottom: 20px;
-      color: var(--accent);
-      font-size: 0.8rem;
-      font-weight: 800;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
+    .hero-content {
+      max-width: 950px;
     }
 
-    h1 {
-      max-width: 950px;
+    .hero h1 {
+      max-width: 900px;
       margin-bottom: 24px;
       font-size: clamp(3.5rem, 10vw, 7.5rem);
       line-height: 0.9;
@@ -165,92 +209,83 @@
     }
 
     .hero-text {
-      max-width: 720px;
-      margin-bottom: 28px;
+      max-width: 760px;
+      margin-bottom: 24px;
       color: var(--gray);
-      font-size: clamp(1.08rem, 2vw, 1.3rem);
+      font-size: clamp(1.05rem, 2vw, 1.3rem);
     }
 
-    .hero-price {
+    .hero-badge {
       display: inline-block;
-      margin-bottom: 32px;
+      margin-bottom: 30px;
       padding: 10px 16px;
       border: 1px solid rgba(223, 255, 63, 0.35);
       border-radius: 999px;
       background: rgba(223, 255, 63, 0.08);
-      color: var(--accent);
-      font-weight: 800;
+      color: var(--green);
+      font-weight: 900;
     }
 
-    .hero-buttons {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-    }
+    /* GRIDS AND CARDS */
 
-    section {
-      padding: 90px 0;
-      border-top: 1px solid var(--line);
-      scroll-margin-top: 72px;
-    }
-
-    .section-heading {
-      max-width: 800px;
-      margin-bottom: 42px;
-    }
-
-    .section-heading h2 {
-      margin-bottom: 16px;
-      font-size: clamp(2.3rem, 6vw, 4.6rem);
-      line-height: 1;
-      letter-spacing: -0.05em;
-    }
-
-    .section-heading p {
-      color: var(--gray);
-      font-size: 1.05rem;
-    }
-
-    .pricing-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 18px;
-    }
-
-    .service-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 18px;
-    }
-
-    .add-on-grid {
+    .two-column {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
+      gap: 22px;
+    }
+
+    .three-column {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
       gap: 18px;
     }
 
     .card {
       position: relative;
       overflow: hidden;
-      background: var(--card);
-      border: 1px solid var(--line);
+      padding: 30px;
+      border: 1px solid var(--border);
       border-radius: 22px;
-      padding: 28px;
+      background: var(--card);
     }
 
-    .card-featured {
-      border-color: var(--accent);
-      box-shadow: 0 0 0 1px rgba(223, 255, 63, 0.12);
+    .card.featured {
+      border-color: var(--green);
+      box-shadow:
+        0 0 0 1px rgba(223, 255, 63, 0.12),
+        0 25px 70px rgba(0, 0, 0, 0.28);
     }
 
-    .card-featured::before {
-      content: "MOST FLEXIBLE";
+    .card h3 {
+      margin-bottom: 8px;
+      font-size: 1.6rem;
+      line-height: 1.15;
+    }
+
+    .card p {
+      color: var(--gray);
+    }
+
+    .tier-label {
+      display: inline-block;
+      margin-bottom: 16px;
+      padding: 7px 12px;
+      border-radius: 999px;
+      background: var(--card-light);
+      color: var(--green);
+      font-size: 0.74rem;
+      font-weight: 900;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .popular-ribbon {
       position: absolute;
-      top: 18px;
-      right: -38px;
-      width: 150px;
-      padding: 6px 0;
-      background: var(--accent);
+      top: 23px;
+      right: -43px;
+      width: 175px;
+      padding: 7px 0;
+      background: var(--green);
       color: #000;
       font-size: 0.68rem;
       font-weight: 900;
@@ -259,49 +294,68 @@
       transform: rotate(38deg);
     }
 
-    .plan-label {
-      margin-bottom: 12px;
-      color: var(--accent);
-      font-size: 0.78rem;
-      font-weight: 800;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
+    .best-for {
+      margin-top: 18px;
+      padding: 15px;
+      border-left: 3px solid var(--green);
+      background: var(--card-light);
+      color: var(--gray);
+      font-size: 0.94rem;
     }
 
-    .card h3 {
-      margin-bottom: 8px;
-      font-size: 1.45rem;
+    .best-for strong {
+      color: var(--white);
     }
 
-    .price {
-      margin-bottom: 18px;
-      font-size: 2.75rem;
+    /* PRICING TABLE */
+
+    .price-list {
+      width: 100%;
+      margin-top: 22px;
+      border-collapse: collapse;
+    }
+
+    .price-list tr {
+      border-top: 1px solid var(--border);
+    }
+
+    .price-list td {
+      padding: 14px 0;
+    }
+
+    .price-list td:first-child {
+      padding-right: 18px;
+      color: var(--gray);
+    }
+
+    .price-list td:last-child {
+      color: var(--white);
       font-weight: 900;
-      line-height: 1;
-      letter-spacing: -0.05em;
+      text-align: right;
+      white-space: nowrap;
     }
 
-    .price span {
-      color: var(--gray);
-      font-size: 0.95rem;
-      font-weight: 500;
-      letter-spacing: 0;
+    .visit-time {
+      margin-top: 18px;
+      color: var(--muted);
+      font-size: 0.9rem;
     }
 
-    .card p {
-      color: var(--gray);
+    .visit-time strong {
+      color: var(--white);
     }
+
+    /* FEATURE LIST */
 
     .feature-list {
       display: grid;
-      gap: 11px;
-      margin-top: 22px;
-      list-style: none;
+      gap: 10px;
+      margin-top: 24px;
     }
 
     .feature-list li {
       position: relative;
-      padding-left: 25px;
+      padding-left: 26px;
       color: var(--gray);
     }
 
@@ -309,120 +363,211 @@
       content: "✓";
       position: absolute;
       left: 0;
-      color: var(--accent);
+      color: var(--green);
       font-weight: 900;
     }
 
-    .price-table {
-      width: 100%;
-      margin-top: 22px;
-      border-collapse: collapse;
-    }
-
-    .price-table tr {
-      border-top: 1px solid var(--line);
-    }
-
-    .price-table td {
-      padding: 14px 0;
-      vertical-align: top;
-    }
-
-    .price-table td:first-child {
-      padding-right: 18px;
-      color: var(--gray);
-    }
-
-    .price-table td:last-child {
-      color: var(--white);
-      font-weight: 800;
-      text-align: right;
-      white-space: nowrap;
-    }
+    /* MEMBERSHIP NOTICE */
 
     .notice {
-      margin-top: 26px;
-      padding: 22px;
-      border: 1px solid rgba(223, 255, 63, 0.3);
+      margin-top: 28px;
+      padding: 24px;
+      border: 1px solid rgba(223, 255, 63, 0.32);
       border-radius: 18px;
       background: rgba(223, 255, 63, 0.06);
     }
 
     .notice strong {
       display: block;
-      margin-bottom: 5px;
-      color: var(--accent);
+      margin-bottom: 6px;
+      color: var(--green);
     }
 
     .notice p {
       color: var(--gray);
     }
 
-    .detail-card .starting-at {
-      margin-bottom: 14px;
-      color: var(--muted);
-      font-size: 0.84rem;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
+    /* COMPARISON TABLE */
+
+    .comparison-wrapper {
+      overflow-x: auto;
+      border-radius: 18px;
     }
 
-    .detail-card .price {
-      margin-bottom: 18px;
+    .comparison-table {
+      width: 100%;
+      min-width: 760px;
+      border-collapse: collapse;
+      border: 1px solid var(--border);
+      background: var(--card);
     }
 
-    .vehicle-sizes {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 12px;
-      margin-top: 24px;
+    .comparison-table th,
+    .comparison-table td {
+      padding: 15px 17px;
+      border-bottom: 1px solid var(--border);
     }
 
-    .vehicle-size {
-      padding: 18px;
-      border: 1px solid var(--line);
-      border-radius: 16px;
+    .comparison-table th {
       background: var(--card-light);
+      color: var(--white);
+      text-align: center;
     }
 
-    .vehicle-size strong {
-      display: block;
-      margin-bottom: 8px;
-      color: var(--accent);
+    .comparison-table th:first-child,
+    .comparison-table td:first-child {
+      text-align: left;
     }
 
-    .vehicle-size p {
+    .comparison-table td {
       color: var(--gray);
-      font-size: 0.92rem;
+      text-align: center;
     }
 
-    .service-name {
-      margin-bottom: 5px;
-      font-size: 1.08rem;
-      font-weight: 800;
-    }
-
-    .service-price {
-      margin-bottom: 10px;
-      color: var(--accent);
-      font-size: 1.3rem;
+    .check {
+      color: var(--green);
       font-weight: 900;
     }
 
-    .service-card p {
-      font-size: 0.94rem;
+    /* BENEFITS */
+
+    .benefit-card {
+      min-height: 150px;
     }
+
+    .benefit-icon {
+      margin-bottom: 14px;
+      color: var(--green);
+      font-size: 1.6rem;
+      font-weight: 900;
+    }
+
+    /* SERVICE CARDS */
+
+    .service-price {
+      margin: 9px 0 12px;
+      color: var(--green);
+      font-size: 1.35rem;
+      font-weight: 900;
+    }
+
+    .service-note {
+      margin-top: 18px;
+      color: var(--muted);
+      font-size: 0.88rem;
+    }
+
+    .vehicle-label {
+      margin-bottom: 8px;
+      color: var(--muted);
+      font-size: 0.76rem;
+      font-weight: 900;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .large-price {
+      margin-bottom: 18px;
+      color: var(--white);
+      font-size: 2.7rem;
+      font-weight: 900;
+      letter-spacing: -0.04em;
+      line-height: 1;
+    }
+
+    .large-price span {
+      color: var(--gray);
+      font-size: 0.9rem;
+      font-weight: 500;
+      letter-spacing: 0;
+    }
+
+    /* PACKAGE TABLES */
+
+    .package-title {
+      margin-top: 34px;
+      margin-bottom: 18px;
+      font-size: 1.65rem;
+    }
+
+    .pricing-table-wrapper {
+      overflow-x: auto;
+      border-radius: 18px;
+    }
+
+    .pricing-table {
+      width: 100%;
+      min-width: 650px;
+      border-collapse: collapse;
+      border: 1px solid var(--border);
+      background: var(--card);
+    }
+
+    .pricing-table th,
+    .pricing-table td {
+      padding: 16px 18px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .pricing-table th {
+      background: var(--card-light);
+      color: var(--white);
+      text-align: left;
+    }
+
+    .pricing-table td {
+      color: var(--gray);
+    }
+
+    .pricing-table td:not(:first-child),
+    .pricing-table th:not(:first-child) {
+      text-align: center;
+    }
+
+    .pricing-table strong {
+      color: var(--white);
+    }
+
+    /* PREMIUM SERVICES */
+
+    .service-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+    }
+
+    .service-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 18px;
+      border: 1px solid var(--border);
+      border-radius: 15px;
+      background: var(--card);
+    }
+
+    .service-row span:first-child {
+      color: var(--gray);
+    }
+
+    .service-row span:last-child {
+      color: var(--white);
+      font-weight: 900;
+      white-space: nowrap;
+    }
+
+    /* POLICIES */
 
     .policy-list {
       display: grid;
       gap: 14px;
-      list-style: none;
     }
 
     .policy-list li {
       padding: 18px;
-      border: 1px solid var(--line);
-      border-radius: 16px;
+      border: 1px solid var(--border);
+      border-radius: 15px;
       background: var(--card);
       color: var(--gray);
     }
@@ -431,86 +576,104 @@
       color: var(--white);
     }
 
+    /* FAQ */
+
+    .faq-list {
+      display: grid;
+      gap: 14px;
+    }
+
+    details {
+      padding: 20px;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      background: var(--card);
+    }
+
+    summary {
+      color: var(--white);
+      font-weight: 900;
+      cursor: pointer;
+    }
+
+    details p {
+      margin-top: 12px;
+      color: var(--gray);
+    }
+
+    /* CTA */
+
     .cta {
       text-align: center;
       background:
         radial-gradient(
           circle at center,
           rgba(223, 255, 63, 0.15),
-          transparent 48%
+          transparent 49%
         );
     }
 
     .cta h2 {
-      margin-bottom: 16px;
+      margin-bottom: 18px;
       font-size: clamp(2.8rem, 7vw, 5.5rem);
       line-height: 1;
-      letter-spacing: -0.05em;
+      letter-spacing: -0.055em;
     }
 
     .cta p {
       max-width: 700px;
       margin: 0 auto 28px;
       color: var(--gray);
-      font-size: 1.1rem;
+      font-size: 1.08rem;
     }
 
-    .cta-buttons {
-      display: flex;
+    .cta .button-row {
       justify-content: center;
-      flex-wrap: wrap;
-      gap: 12px;
     }
+
+    /* FOOTER */
 
     footer {
-      padding: 36px 0;
-      border-top: 1px solid var(--line);
-      color: #888;
+      padding: 38px 0;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
     }
 
-    .footer-row {
+    .footer-content {
       display: flex;
-      justify-content: space-between;
       align-items: center;
+      justify-content: space-between;
       gap: 20px;
       flex-wrap: wrap;
     }
 
-    .footer-contact {
+    .footer-content a {
       color: var(--gray);
     }
 
-    .footer-contact:hover {
-      color: var(--accent);
+    .footer-content a:hover {
+      color: var(--green);
     }
 
-    @media (max-width: 950px) {
-      .nav-links a:not(.button) {
+    /* MOBILE */
+
+    @media (max-width: 980px) {
+      .nav-links > a:not(.button) {
         display: none;
       }
 
-      .pricing-grid,
-      .service-grid,
-      .vehicle-sizes {
+      .two-column,
+      .three-column,
+      .service-grid {
         grid-template-columns: 1fr;
-      }
-    }
-
-    @media (max-width: 750px) {
-      .add-on-grid {
-        grid-template-columns: 1fr;
-      }
-
-      section {
-        padding: 72px 0;
       }
 
       .hero {
-        padding: 90px 0 75px;
+        min-height: auto;
       }
     }
 
-    @media (max-width: 480px) {
+    @media (max-width: 600px) {
       nav {
         min-height: 68px;
       }
@@ -520,33 +683,49 @@
       }
 
       .nav-links .button {
-        min-height: 44px;
-        padding: 0 15px;
-        font-size: 0.8rem;
+        min-height: 43px;
+        padding: 0 14px;
+        font-size: 0.78rem;
       }
 
-      .hero-buttons,
-      .cta-buttons {
+      .hero {
+        padding: 88px 0 72px;
+      }
+
+      .section {
+        padding: 70px 0;
+      }
+
+      .button-row {
         flex-direction: column;
       }
 
-      .hero-buttons .button,
-      .cta-buttons .button {
+      .button-row .button {
         width: 100%;
       }
 
-      .price-table td {
+      .card {
+        padding: 24px;
+      }
+
+      .price-list td {
         display: block;
         width: 100%;
       }
 
-      .price-table td:first-child {
+      .price-list td:first-child {
         padding-bottom: 2px;
       }
 
-      .price-table td:last-child {
+      .price-list td:last-child {
         padding-top: 2px;
         text-align: left;
+      }
+
+      .service-row {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 6px;
       }
     }
   </style>
@@ -562,13 +741,14 @@
       </a>
 
       <div class="nav-links">
-        <a href="#membership">Membership</a>
-        <a href="#one-time">One-Time Cleaning</a>
-        <a href="#details">Full Details</a>
-        <a href="#extras">Add-Ons</a>
+        <a href="#memberships">Memberships</a>
+        <a href="#comparison">Compare</a>
+        <a href="#one-time">One-Time</a>
+        <a href="#full-details">Full Details</a>
+        <a href="#premium-services">Services</a>
 
         <a
-          href="mailto:goneverdirty@gmail.com?subject=Never%20Dirty%20Membership%20Request&amp;body=Hi%20Never%20Dirty%2C%0D%0A%0D%0AI%20would%20like%20to%20request%20a%20vehicle%20maintenance%20membership.%0D%0A%0D%0AName%3A%20%0D%0APhone%3A%20%0D%0AService%20Address%3A%20%0D%0A%0D%0AVehicle%20Year%3A%20%0D%0AVehicle%20Make%3A%20%0D%0AVehicle%20Model%3A%20%0D%0AVehicle%20Color%3A%20%0D%0A%0D%0APreferred%20Schedule%3A%20Weekly%20%2F%20Every%20Two%20Weeks%20%2F%20Monthly%0D%0A%0D%0APreferred%20Days%20or%20Times%3A%20%0D%0A%0D%0AQuestions%20or%20Additional%20Vehicles%3A%20"
+          href="mailto:goneverdirty@gmail.com?subject=Never%20Dirty%20Membership%20Request&body=Hi%20Never%20Dirty%2C%0D%0A%0D%0AI%20would%20like%20to%20request%20a%20membership.%0D%0A%0D%0AName%3A%20%0D%0APhone%3A%20%0D%0AService%20Address%3A%20%0D%0A%0D%0AVehicle%20Year%3A%20%0D%0AVehicle%20Make%3A%20%0D%0AVehicle%20Model%3A%20%0D%0AVehicle%20Color%3A%20%0D%0A%0D%0AMembership%3A%20Essential%20or%20Deluxe%0D%0ASchedule%3A%20Weekly%2C%20Every%20Two%20Weeks%2C%20or%20Monthly%0D%0A%0D%0AAdditional%20Vehicles%3A%20%0D%0AQuestions%3A%20"
           class="button"
         >
           Request Membership
@@ -580,154 +760,198 @@
 
   <main>
 
+    <!-- HERO -->
+
     <section class="hero">
-      <div class="container">
+      <div class="container hero-content">
 
         <span class="eyebrow">
-          Never Dirty pricing and services
+          Never Dirty Pricing & Services
         </span>
 
         <h1>
-          Simple pricing.<br>
-          A cleaner vehicle.
+          Never wash your car again.
         </h1>
 
         <p class="hero-text">
-          Choose recurring maintenance, book a one-time cleaning,
-          or schedule a more extensive weekend detail. Every option
-          is designed around convenience and straightforward pricing.
+          Whether you need routine maintenance, a one-time cleaning,
+          or a complete detail, Never Dirty brings professional mobile
+          vehicle care directly to you.
         </p>
 
-        <div class="hero-price">
-          Maintenance memberships starting at $30 per month
+        <div class="hero-badge">
+          Memberships starting at $20 per scheduled visit
         </div>
 
-        <div class="hero-buttons">
-
-          <a href="#membership" class="button">
-            View Membership Pricing
+        <div class="button-row">
+          <a href="#memberships" class="button">
+            Compare Memberships
           </a>
 
-          <a href="#details" class="button button-outline">
+          <a href="#full-details" class="button button-outline">
             View Full Details
           </a>
 
           <a href="index.html" class="button button-outline">
             Return Home
           </a>
-
         </div>
 
       </div>
     </section>
 
-    <section id="membership">
+    <!-- MEMBERSHIPS -->
+
+    <section class="section" id="memberships">
       <div class="container">
 
         <div class="section-heading">
-
-          <span class="eyebrow">
-            Maintenance membership
-          </span>
+          <span class="eyebrow">Maintenance Memberships</span>
 
           <h2>
-            Choose your maintenance schedule.
+            Choose how clean you want to stay.
           </h2>
 
           <p>
-            Membership includes recurring mobile service, priority
-            scheduling, and consistent vehicle care. Each scheduled
-            visit includes one vehicle.
+            Every membership begins with a required Initial Full Detail
+            at 50% off regular pricing. This brings the vehicle to our
+            maintenance standard before recurring service begins.
           </p>
-
         </div>
 
-        <div class="pricing-grid">
+        <div class="two-column">
+
+          <!-- ESSENTIAL -->
 
           <article class="card">
 
-            <div class="plan-label">
-              Highest frequency
-            </div>
+            <span class="tier-label">Tier 1</span>
 
-            <h3>
-              Weekly Maintenance
-            </h3>
-
-            <div class="price">
-              $20
-              <span>/ scheduled visit</span>
-            </div>
+            <h3>Essential Maintenance</h3>
 
             <p>
-              Best for daily drivers, work vehicles, families,
-              and customers who want their vehicle maintained
-              every week.
+              Routine upkeep for customers who want a consistently clean
+              vehicle at the lowest recurring price.
+            </p>
+
+            <div class="best-for">
+              <strong>Best for:</strong>
+              Lightly used vehicles, daily commuters, budget-minded
+              customers, and anyone wanting reliable basic upkeep.
+            </div>
+
+            <table class="price-list">
+              <tbody>
+                <tr>
+                  <td>Weekly</td>
+                  <td>$20 per visit</td>
+                </tr>
+
+                <tr>
+                  <td>Every Two Weeks</td>
+                  <td>$25 per visit</td>
+                </tr>
+
+                <tr>
+                  <td>Monthly</td>
+                  <td>$30 per visit</td>
+                </tr>
+
+                <tr>
+                  <td>Additional Standard Vehicle</td>
+                  <td>+$10</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <p class="visit-time">
+              Estimated visit time:
+              <strong>45–60 minutes</strong>
             </p>
 
             <ul class="feature-list">
-              <li>One vehicle included</li>
-              <li>Additional vehicles are $5 each</li>
-              <li>Recurring route scheduling</li>
-              <li>Priority appointment access</li>
+              <li>Exterior maintenance wash</li>
+              <li>Wheel faces cleaned</li>
+              <li>Tire shine applied</li>
+              <li>Exterior windows cleaned</li>
+              <li>Interior windows cleaned</li>
+              <li>Light interior vacuum</li>
+              <li>Dash wiped down</li>
+              <li>Center console wiped down</li>
+              <li>Accessible interior surfaces refreshed</li>
+              <li>Light undercarriage rinse</li>
+              <li>Final inspection</li>
             </ul>
 
           </article>
 
-          <article class="card">
+          <!-- DELUXE -->
 
-            <div class="plan-label">
-              Most popular
+          <article class="card featured">
+
+            <div class="popular-ribbon">
+              MOST POPULAR
             </div>
 
-            <h3>
-              Every Two Weeks
-            </h3>
+            <span class="tier-label">Tier 2</span>
 
-            <div class="price">
-              $25
-              <span>/ scheduled visit</span>
-            </div>
+            <h3>Deluxe Maintenance</h3>
 
             <p>
-              A balanced option for customers who want regular care
-              without scheduling service every week.
+              A more thorough recurring visit for customers who want their
+              vehicle to stay closer to freshly detailed.
+            </p>
+
+            <div class="best-for">
+              <strong>Best for:</strong>
+              Families, pet owners, work vehicles, rideshare vehicles,
+              and customers wanting more interior attention.
+            </div>
+
+            <table class="price-list">
+              <tbody>
+                <tr>
+                  <td>Weekly</td>
+                  <td>$35 per visit</td>
+                </tr>
+
+                <tr>
+                  <td>Every Two Weeks</td>
+                  <td>$40 per visit</td>
+                </tr>
+
+                <tr>
+                  <td>Monthly</td>
+                  <td>$45 per visit</td>
+                </tr>
+
+                <tr>
+                  <td>Additional Standard Vehicle</td>
+                  <td>+$15</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <p class="visit-time">
+              Estimated visit time:
+              <strong>75–90 minutes</strong>
             </p>
 
             <ul class="feature-list">
-              <li>One vehicle included</li>
-              <li>Additional vehicles are $5 each</li>
-              <li>Recurring route scheduling</li>
-              <li>Priority appointment access</li>
-            </ul>
-
-          </article>
-
-          <article class="card card-featured">
-
-            <div class="plan-label">
-              Lowest monthly commitment
-            </div>
-
-            <h3>
-              Monthly Maintenance
-            </h3>
-
-            <div class="price">
-              $30
-              <span>/ scheduled visit</span>
-            </div>
-
-            <p>
-              An affordable way to keep your vehicle from falling
-              behind between deeper details.
-            </p>
-
-            <ul class="feature-list">
-              <li>One vehicle included</li>
-              <li>Additional vehicles are $5 each</li>
-              <li>Recurring route scheduling</li>
-              <li>Priority appointment access</li>
+              <li>Everything included in Essential</li>
+              <li>More thorough interior vacuum</li>
+              <li>Seats vacuumed</li>
+              <li>Seat edges and crevices vacuumed</li>
+              <li>Floor mats removed and cleaned</li>
+              <li>Cup holders cleaned thoroughly</li>
+              <li>Air vents brushed</li>
+              <li>Door panels cleaned</li>
+              <li>Door jambs cleaned</li>
+              <li>Interior UV protectant applied</li>
+              <li>More thorough wheel cleaning</li>
+              <li>Bug-spot treatment</li>
+              <li>Spray sealant applied</li>
+              <li>More thorough undercarriage rinse</li>
             </ul>
 
           </article>
@@ -735,833 +959,774 @@
         </div>
 
         <div class="notice">
-
           <strong>
-            Required Initial Full Detail
+            Deluxe Maintenance is not a Full Detail.
           </strong>
 
           <p>
-            Every membership vehicle must begin with an Initial Full
-            Detail. New members receive the required initial detail
-            for 50% off the vehicle’s regular full-detail package price.
+            Extraction, heavy stain removal, excessive pet hair, mold,
+            biohazards, paint correction, and other restorative services
+            require separate pricing.
           </p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- MEMBERSHIP BENEFITS -->
+
+    <section class="section">
+      <div class="container">
+
+        <div class="section-heading">
+          <span class="eyebrow">Membership Benefits</span>
+
+          <h2>
+            More than just a wash.
+          </h2>
+
+          <p>
+            Membership is designed to make vehicle care predictable,
+            convenient, and easy to maintain.
+          </p>
+        </div>
+
+        <div class="three-column">
+
+          <article class="card benefit-card">
+            <div class="benefit-icon">01</div>
+            <h3>Mobile Service</h3>
+            <p>
+              We come directly to your home or approved workplace.
+            </p>
+          </article>
+
+          <article class="card benefit-card">
+            <div class="benefit-icon">02</div>
+            <h3>Priority Scheduling</h3>
+            <p>
+              Members receive priority access to available appointment times.
+            </p>
+          </article>
+
+          <article class="card benefit-card">
+            <div class="benefit-icon">03</div>
+            <h3>Reminder Texts</h3>
+            <p>
+              Receive appointment reminders and weather-related updates.
+            </p>
+          </article>
+
+          <article class="card benefit-card">
+            <div class="benefit-icon">04</div>
+            <h3>Locked-In Pricing</h3>
+            <p>
+              Keep your membership pricing while the membership remains active.
+            </p>
+          </article>
+
+          <article class="card benefit-card">
+            <div class="benefit-icon">05</div>
+            <h3>Initial Detail Discount</h3>
+            <p>
+              Receive 50% off the required Initial Full Detail.
+            </p>
+          </article>
+
+          <article class="card benefit-card">
+            <div class="benefit-icon">06</div>
+            <h3>Less Work for You</h3>
+            <p>
+              No car-wash line and no spending your free time cleaning.
+            </p>
+          </article>
 
         </div>
 
       </div>
     </section>
 
-    <section id="included">
+    <!-- COMPARISON -->
+
+    <section class="section" id="comparison">
       <div class="container">
 
         <div class="section-heading">
-
-          <span class="eyebrow">
-            Included every visit
-          </span>
+          <span class="eyebrow">Compare Memberships</span>
 
           <h2>
-            Routine care without the hassle.
+            Essential vs. Deluxe
           </h2>
 
           <p>
-            Maintenance service is intended to preserve an already
-            detailed vehicle. It is not a substitute for deep cleaning
-            when excessive buildup, stains, trash, or pet hair are present.
+            Both plans keep your vehicle consistently clean. Deluxe adds
+            more interior attention and longer-lasting exterior protection.
           </p>
+        </div>
+
+        <div class="comparison-wrapper">
+
+          <table class="comparison-table">
+            <thead>
+              <tr>
+                <th>Service</th>
+                <th>Essential</th>
+                <th>Deluxe</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td>Exterior Maintenance Wash</td>
+                <td class="check">✓</td>
+                <td class="check">✓</td>
+              </tr>
+
+              <tr>
+                <td>Wheel Faces Cleaned</td>
+                <td class="check">✓</td>
+                <td class="check">✓</td>
+              </tr>
+
+              <tr>
+                <td>Tire Shine</td>
+                <td class="check">✓</td>
+                <td class="check">✓</td>
+              </tr>
+
+              <tr>
+                <td>Interior and Exterior Windows</td>
+                <td class="check">✓</td>
+                <td class="check">✓</td>
+              </tr>
+
+              <tr>
+                <td>Light Vacuum</td>
+                <td class="check">✓</td>
+                <td class="check">✓</td>
+              </tr>
+
+              <tr>
+                <td>Thorough Vacuum</td>
+                <td>—</td>
+                <td class="check">✓</td>
+              </tr>
+
+              <tr>
+                <td>Seats, Edges, and Crevices</td>
+                <td>—</td>
+                <td class="check">✓</td>
+              </tr>
+
+              <tr>
+                <td>Floor Mats Removed and Cleaned</td>
+                <td>—</td>
+                <td class="check">✓</td>
+              </tr>
+
+              <tr>
+                <td>Door Jambs</td>
+                <td>—</td>
+                <td class="check">✓</td>
+              </tr>
+
+              <tr>
+                <td>Interior UV Protectant</td>
+                <td>—</td>
+                <td class="check">✓</td>
+              </tr>
+
+              <tr>
+                <td>Spray Sealant</td>
+                <td>—</td>
+                <td class="check">✓</td>
+              </tr>
+
+              <tr>
+                <td>Estimated Visit Time</td>
+                <td>45–60 Minutes</td>
+                <td>75–90 Minutes</td>
+              </tr>
+            </tbody>
+          </table>
 
         </div>
 
-        <div class="service-grid">
+      </div>
+    </section>
+
+    <!-- ONE-TIME CLEANING -->
+
+    <section class="section" id="one-time">
+      <div class="container">
+
+        <div class="section-heading">
+          <span class="eyebrow">No Membership Required</span>
+
+          <h2>
+            One-Time Maintenance Cleaning
+          </h2>
+
+          <p>
+            A convenient refresh for customers who are not enrolled in
+            recurring service.
+          </p>
+        </div>
+
+        <div class="two-column">
+
+          <article class="card featured">
+
+            <span class="tier-label">One-Time Service</span>
+
+            <h3>Maintenance Cleaning</h3>
+
+            <div class="large-price">
+              $40
+              <span>total</span>
+            </div>
+
+            <table class="price-list">
+              <tbody>
+                <tr>
+                  <td>Monthly Maintenance Price</td>
+                  <td>$30</td>
+                </tr>
+
+                <tr>
+                  <td>Non-Member Booking Fee</td>
+                  <td>+$10</td>
+                </tr>
+
+                <tr>
+                  <td>Total</td>
+                  <td>$40</td>
+                </tr>
+              </tbody>
+            </table>
+
+          </article>
 
           <article class="card">
-            <h3>Exterior Maintenance</h3>
+            <h3>Perfect for a Quick Refresh</h3>
+
+            <p>
+              This service is designed for vehicles already in reasonably
+              maintained condition.
+            </p>
 
             <ul class="feature-list">
               <li>Exterior maintenance wash</li>
+              <li>Wheel-face cleaning</li>
+              <li>Tire shine</li>
+              <li>Interior and exterior windows</li>
+              <li>Light vacuum</li>
+              <li>Dash and console wipe-down</li>
+              <li>Light undercarriage rinse</li>
+            </ul>
+
+            <p class="service-note">
+              Heavy soil, excessive trash, pet hair, stains, mud,
+              and oversized vehicles may require additional pricing.
+            </p>
+          </article>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- FULL DETAILS -->
+
+    <section class="section" id="full-details">
+      <div class="container">
+
+        <div class="section-heading">
+          <span class="eyebrow">Full Detail Packages</span>
+
+          <h2>
+            Bring your vehicle back to clean.
+          </h2>
+
+          <p>
+            Full details are more involved than recurring maintenance
+            and are preferably scheduled on weekends.
+          </p>
+        </div>
+
+        <h3 class="package-title">
+          Full-Detail Pricing
+        </h3>
+
+        <div class="pricing-table-wrapper">
+
+          <table class="pricing-table">
+            <thead>
+              <tr>
+                <th>Vehicle Size</th>
+                <th>Interior Detail</th>
+                <th>Exterior Detail</th>
+                <th>Complete Detail</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td>
+                  <strong>Small Vehicle</strong><br>
+                  Cars and small hatchbacks
+                </td>
+
+                <td><strong>$90</strong></td>
+                <td><strong>$70</strong></td>
+                <td><strong>$150</strong></td>
+              </tr>
+
+              <tr>
+                <td>
+                  <strong>Mid-Size Vehicle</strong><br>
+                  Crossovers, smaller SUVs, and smaller trucks
+                </td>
+
+                <td><strong>$110</strong></td>
+                <td><strong>$80</strong></td>
+                <td><strong>$170</strong></td>
+              </tr>
+
+              <tr>
+                <td>
+                  <strong>Large Vehicle</strong><br>
+                  Large SUVs, full-size trucks, and vans
+                </td>
+
+                <td><strong>$130</strong></td>
+                <td><strong>$90</strong></td>
+                <td><strong>$190</strong></td>
+              </tr>
+            </tbody>
+          </table>
+
+        </div>
+
+        <div class="three-column" style="margin-top: 24px;">
+
+          <article class="card">
+            <span class="tier-label">Interior</span>
+
+            <h3>Interior Detail</h3>
+
+            <ul class="feature-list">
+              <li>Thorough vacuum</li>
+              <li>Dash cleaned</li>
+              <li>Center console cleaned</li>
+              <li>Door panels cleaned</li>
+              <li>Cup holders cleaned</li>
+              <li>Interior windows cleaned</li>
+              <li>Light spot cleaning</li>
+              <li>Interior protectant applied</li>
+            </ul>
+          </article>
+
+          <article class="card">
+            <span class="tier-label">Exterior</span>
+
+            <h3>Exterior Detail</h3>
+
+            <ul class="feature-list">
+              <li>Thorough exterior wash</li>
               <li>Wheels cleaned</li>
-              <li>Tire shine applied</li>
-              <li>Exterior windows cleaned</li>
+              <li>Tires cleaned</li>
+              <li>Tire dressing applied</li>
+              <li>Door jambs cleaned</li>
+              <li>Bug removal</li>
+              <li>Spray sealant applied</li>
               <li>Final exterior inspection</li>
             </ul>
           </article>
 
-          <article class="card">
-            <h3>Interior Touch-Up</h3>
+          <article class="card featured">
+            <span class="tier-label">Best Value</span>
 
-            <ul class="feature-list">
-              <li>Light vacuuming</li>
-              <li>Dash and console wipe-down</li>
-              <li>Interior windows cleaned</li>
-              <li>Accessible surfaces refreshed</li>
-              <li>Final interior inspection</li>
-            </ul>
-          </article>
-
-          <article class="card">
-            <h3>Mobile Convenience</h3>
-
-            <ul class="feature-list">
-              <li>Travel to an approved location</li>
-              <li>Equipment setup and teardown</li>
-              <li>Recurring appointment reminders</li>
-              <li>Weather and arrival updates</li>
-              <li>No waiting at a car wash</li>
-            </ul>
-          </article>
-
-        </div>
-
-      </div>
-    </section>
-
-    <section id="one-time">
-      <div class="container">
-
-        <div class="section-heading">
-
-          <span class="eyebrow">
-            No membership required
-          </span>
-
-          <h2>
-            One-time maintenance cleaning.
-          </h2>
-
-          <p>
-            Customers who do not want recurring service may book the
-            same basic maintenance cleaning at the regular monthly
-            service rate plus the non-member booking fee.
-          </p>
-
-        </div>
-
-        <div class="pricing-grid">
-
-          <article class="card">
-
-            <div class="plan-label">
-              One vehicle
-            </div>
-
-            <h3>
-              Maintenance Cleaning
-            </h3>
-
-            <div class="price">
-              $30
-              <span>base service</span>
-            </div>
-
-            <p>
-              Includes the same routine exterior wash and interior
-              touch-up provided during a monthly maintenance visit.
-            </p>
-
-          </article>
-
-          <article class="card">
-
-            <div class="plan-label">
-              Non-member charge
-            </div>
-
-            <h3>
-              Booking Fee
-            </h3>
-
-            <div class="price">
-              +$10
-            </div>
-
-            <p>
-              Added to each one-time cleaning for customers who are
-              not enrolled in recurring maintenance.
-            </p>
-
-          </article>
-
-          <article class="card">
-
-            <div class="plan-label">
-              Standard total
-            </div>
-
-            <h3>
-              One-Time Cleaning Total
-            </h3>
-
-            <div class="price">
-              $40
-              <span>for one vehicle</span>
-            </div>
-
-            <p>
-              Vehicle condition or requested add-on services may
-              increase the final price.
-            </p>
-
-          </article>
-
-        </div>
-
-        <div class="notice">
-
-          <strong>
-            Maintenance-level condition required
-          </strong>
-
-          <p>
-            Vehicles needing deep vacuuming, extraction, stain removal,
-            excessive pet-hair removal, heavy trash removal, or extensive
-            exterior correction may require a full-detail package instead.
-          </p>
-
-        </div>
-
-      </div>
-    </section>
-
-    <section id="details">
-      <div class="container">
-
-        <div class="section-heading">
-
-          <span class="eyebrow">
-            Full-service detailing
-          </span>
-
-          <h2>
-            Deeper cleaning for vehicles that need more.
-          </h2>
-
-          <p>
-            Full details and extensive services are primarily scheduled
-            on weekends. Package prices are based on vehicle size and
-            assume average condition.
-          </p>
-
-        </div>
-
-        <div class="service-grid">
-
-          <article class="card detail-card">
-
-            <div class="starting-at">
-              Interior-only package
-            </div>
-
-            <h3>
-              Interior Detail
-            </h3>
-
-            <div class="price">
-              $100
-              <span>starting price</span>
-            </div>
-
-            <ul class="feature-list">
-              <li>Thorough interior vacuum</li>
-              <li>Dash, console, and panel cleaning</li>
-              <li>Door panels and cup holders</li>
-              <li>Interior windows and mirrors</li>
-              <li>Light spot cleaning</li>
-              <li>Interior protectant</li>
-              <li>Final inspection</li>
-            </ul>
-
-            <table class="price-table">
-              <tr>
-                <td>Small car</td>
-                <td>$100</td>
-              </tr>
-
-              <tr>
-                <td>Mid-size vehicle or SUV</td>
-                <td>$120</td>
-              </tr>
-
-              <tr>
-                <td>Large SUV, truck, or van</td>
-                <td>$140</td>
-              </tr>
-            </table>
-
-          </article>
-
-          <article class="card detail-card">
-
-            <div class="starting-at">
-              Exterior-only package
-            </div>
-
-            <h3>
-              Exterior Detail
-            </h3>
-
-            <div class="price">
-              $80
-              <span>starting price</span>
-            </div>
-
-            <ul class="feature-list">
-              <li>Thorough exterior wash</li>
-              <li>Wheels and tires cleaned</li>
-              <li>Bug removal</li>
-              <li>Door jamb wipe-down</li>
-              <li>Tire dressing</li>
-              <li>Spray sealant protection</li>
-              <li>Final inspection</li>
-            </ul>
-
-            <table class="price-table">
-              <tr>
-                <td>Small car</td>
-                <td>$80</td>
-              </tr>
-
-              <tr>
-                <td>Mid-size vehicle or SUV</td>
-                <td>$90</td>
-              </tr>
-
-              <tr>
-                <td>Large SUV, truck, or van</td>
-                <td>$100</td>
-              </tr>
-            </table>
-
-          </article>
-
-          <article class="card detail-card card-featured">
-
-            <div class="starting-at">
-              Interior and exterior
-            </div>
-
-            <h3>
-              Complete Detail
-            </h3>
-
-            <div class="price">
-              $160
-              <span>starting price</span>
-            </div>
+            <h3>Complete Detail</h3>
 
             <ul class="feature-list">
               <li>Complete Interior Detail</li>
               <li>Complete Exterior Detail</li>
-              <li>Exterior protection applied</li>
-              <li>Interior surfaces refreshed</li>
-              <li>Wheels, tires, and windows</li>
-              <li>Door jambs cleaned</li>
-              <li>Final quality inspection</li>
+              <li>Interior protectant</li>
+              <li>Exterior protection</li>
+              <li>Final inspection</li>
             </ul>
-
-            <table class="price-table">
-              <tr>
-                <td>Small car</td>
-                <td>$160</td>
-              </tr>
-
-              <tr>
-                <td>Mid-size vehicle or SUV</td>
-                <td>$180</td>
-              </tr>
-
-              <tr>
-                <td>Large SUV, truck, or van</td>
-                <td>$200</td>
-              </tr>
-            </table>
-
           </article>
-
-        </div>
-
-        <div class="vehicle-sizes">
-
-          <div class="vehicle-size">
-            <strong>
-              Small Vehicle
-            </strong>
-
-            <p>
-              Compact car, coupe, small sedan, or similarly sized vehicle.
-            </p>
-          </div>
-
-          <div class="vehicle-size">
-            <strong>
-              Mid-Size Vehicle
-            </strong>
-
-            <p>
-              Standard sedan, crossover, two-row SUV, or similar vehicle.
-            </p>
-          </div>
-
-          <div class="vehicle-size">
-            <strong>
-              Large Vehicle
-            </strong>
-
-            <p>
-              Full-size truck, three-row SUV, minivan, cargo van,
-              or oversized vehicle.
-            </p>
-          </div>
 
         </div>
 
         <div class="notice">
-
-          <strong>
-            Member initial-detail discount
-          </strong>
+          <strong>Membership Initial Detail</strong>
 
           <p>
-            The required Initial Full Detail is 50% off the applicable
-            Complete Detail price. For example, a small car normally
-            priced at $160 would begin membership with an $80 initial detail.
+            Customers beginning a maintenance membership receive
+            50% off the required Initial Full Detail.
           </p>
-
         </div>
 
       </div>
     </section>
 
-    <section id="weekend-services">
+    <!-- PREMIUM SERVICES -->
+
+    <section class="section" id="premium-services">
       <div class="container">
 
         <div class="section-heading">
-
-          <span class="eyebrow">
-            Weekend and premium services
-          </span>
+          <span class="eyebrow">Premium Services</span>
 
           <h2>
-            Additional services when routine cleaning is not enough.
+            Extra attention where you need it.
           </h2>
 
           <p>
-            These services may be added to a detail or scheduled
-            separately when appropriate. Prices shown are starting
-            prices and may increase based on vehicle size and condition.
+            Premium services may be added to eligible appointments
+            or scheduled separately.
           </p>
-
         </div>
 
         <div class="service-grid">
 
-          <article class="card service-card">
-            <div class="service-name">
-              Seat Shampoo and Extraction
-            </div>
+          <div class="service-row">
+            <span>Seat Shampoo</span>
+            <span>Starting at $40</span>
+          </div>
 
-            <div class="service-price">
-              Starting at $40
-            </div>
+          <div class="service-row">
+            <span>Carpet Extraction</span>
+            <span>Starting at $50</span>
+          </div>
 
-            <p>
-              Deep extraction cleaning for fabric seats.
-            </p>
-          </article>
+          <div class="service-row">
+            <span>Complete Interior Extraction</span>
+            <span>Starting at $90</span>
+          </div>
 
-          <article class="card service-card">
-            <div class="service-name">
-              Carpet Extraction
-            </div>
+          <div class="service-row">
+            <span>Pet Hair Removal</span>
+            <span>Starting at $30</span>
+          </div>
 
-            <div class="service-price">
-              Starting at $50
-            </div>
+          <div class="service-row">
+            <span>Heavy Pet Hair Removal</span>
+            <span>Starting at $60</span>
+          </div>
 
-            <p>
-              Deep cleaning for vehicle carpeting and floor areas.
-            </p>
-          </article>
+          <div class="service-row">
+            <span>Odor Treatment</span>
+            <span>Starting at $30</span>
+          </div>
 
-          <article class="card service-card">
-            <div class="service-name">
-              Complete Interior Extraction
-            </div>
+          <div class="service-row">
+            <span>Ozone Treatment</span>
+            <span>Starting at $50</span>
+          </div>
 
-            <div class="service-price">
-              Starting at $90
-            </div>
+          <div class="service-row">
+            <span>Engine Bay Detail</span>
+            <span>Starting at $30</span>
+          </div>
 
-            <p>
-              Extraction of fabric seating and carpeted interior surfaces.
-            </p>
-          </article>
+          <div class="service-row">
+            <span>Clay Bar Treatment</span>
+            <span>Starting at $40</span>
+          </div>
 
-          <article class="card service-card">
-            <div class="service-name">
-              Pet-Hair Removal
-            </div>
+          <div class="service-row">
+            <span>Spray Ceramic Sealant</span>
+            <span>Starting at $40</span>
+          </div>
 
-            <div class="service-price">
-              Starting at $30
-            </div>
+          <div class="service-row">
+            <span>Paste Wax</span>
+            <span>Starting at $30</span>
+          </div>
 
-            <p>
-              Additional labor for embedded pet hair throughout the vehicle.
-            </p>
-          </article>
+          <div class="service-row">
+            <span>Headlight Restoration</span>
+            <span>Starting at $50</span>
+          </div>
 
-          <article class="card service-card">
-            <div class="service-name">
-              Heavy Pet-Hair Removal
-            </div>
+          <div class="service-row">
+            <span>Exterior Trim Restoration</span>
+            <span>Starting at $40</span>
+          </div>
 
-            <div class="service-price">
-              Starting at $60
-            </div>
-
-            <p>
-              For severe or deeply embedded pet-hair accumulation.
-            </p>
-          </article>
-
-          <article class="card service-card">
-            <div class="service-name">
-              Odor Treatment
-            </div>
-
-            <div class="service-price">
-              Starting at $30
-            </div>
-
-            <p>
-              Surface cleaning and deodorizing for common interior odors.
-            </p>
-          </article>
-
-          <article class="card service-card">
-            <div class="service-name">
-              Ozone Treatment
-            </div>
-
-            <div class="service-price">
-              Starting at $50
-            </div>
-
-            <p>
-              Appointment-based odor treatment after required cleaning.
-            </p>
-          </article>
-
-          <article class="card service-card">
-            <div class="service-name">
-              Engine-Bay Detail
-            </div>
-
-            <div class="service-price">
-              Starting at $30
-            </div>
-
-            <p>
-              Careful cleaning and dressing of accessible engine-bay surfaces.
-            </p>
-          </article>
-
-          <article class="card service-card">
-            <div class="service-name">
-              Clay-Bar Treatment
-            </div>
-
-            <div class="service-price">
-              Starting at $40
-            </div>
-
-            <p>
-              Removes bonded surface contamination before protection.
-            </p>
-          </article>
-
-          <article class="card service-card">
-            <div class="service-name">
-              Spray Ceramic Sealant
-            </div>
-
-            <div class="service-price">
-              Starting at $40
-            </div>
-
-            <p>
-              Adds gloss, water behavior, and short-term exterior protection.
-            </p>
-          </article>
-
-          <article class="card service-card">
-            <div class="service-name">
-              Paste Wax
-            </div>
-
-            <div class="service-price">
-              Starting at $30
-            </div>
-
-            <p>
-              Traditional wax application for gloss and surface protection.
-            </p>
-          </article>
-
-          <article class="card service-card">
-            <div class="service-name">
-              Headlight Restoration
-            </div>
-
-            <div class="service-price">
-              Starting at $50
-            </div>
-
-            <p>
-              Improves clarity of faded or oxidized headlight lenses.
-            </p>
-          </article>
-
-          <article class="card service-card">
-            <div class="service-name">
-              Exterior Trim Restoration
-            </div>
-
-            <div class="service-price">
-              Starting at $40
-            </div>
-
-            <p>
-              Restores the appearance of faded exterior plastic trim.
-            </p>
-          </article>
-
-          <article class="card service-card">
-            <div class="service-name">
-              Bug and Tar Removal
-            </div>
-
-            <div class="service-price">
-              Starting at $25
-            </div>
-
-            <p>
-              Additional treatment for heavy bug residue or road tar.
-            </p>
-          </article>
-
-          <article class="card service-card">
-            <div class="service-name">
-              Child Safety Seat Cleaning
-            </div>
-
-            <div class="service-price">
-              $15 each
-            </div>
-
-            <p>
-              Surface cleaning and vacuuming while following manufacturer limitations.
-            </p>
-          </article>
+          <div class="service-row">
+            <span>Bug and Tar Removal</span>
+            <span>Starting at $25</span>
+          </div>
 
         </div>
 
       </div>
     </section>
 
-    <section id="extras">
+    <!-- ADD-ONS -->
+
+    <section class="section" id="add-ons">
       <div class="container">
 
         <div class="section-heading">
-
-          <span class="eyebrow">
-            Optional add-ons
-          </span>
+          <span class="eyebrow">Optional Add-Ons</span>
 
           <h2>
-            Customize your service.
+            Customize your appointment.
           </h2>
-
-          <p>
-            These smaller upgrades may be added to eligible maintenance
-            visits or detail appointments.
-          </p>
-
         </div>
 
-        <div class="add-on-grid">
+        <div class="service-grid">
 
-          <article class="card">
+          <div class="service-row">
+            <span>Premium Air Freshener</span>
+            <span>$1.50</span>
+          </div>
 
-            <h3>
-              Interior Add-Ons
-            </h3>
+          <div class="service-row">
+            <span>Interior UV Protectant</span>
+            <span>$10</span>
+          </div>
 
-            <table class="price-table">
-              <tr>
-                <td>Premium air freshener</td>
-                <td>$1.50</td>
-              </tr>
+          <div class="service-row">
+            <span>Leather Conditioner</span>
+            <span>$20</span>
+          </div>
 
-              <tr>
-                <td>Interior UV protectant</td>
-                <td>$10</td>
-              </tr>
+          <div class="service-row">
+            <span>Extra Vacuum: Heavy Sand or Hair</span>
+            <span>Starting at $20</span>
+          </div>
 
-              <tr>
-                <td>Leather conditioner</td>
-                <td>$20</td>
-              </tr>
-
-              <tr>
-                <td>Extra vacuuming for sand or hair</td>
-                <td>Starting at $20</td>
-              </tr>
-
-              <tr>
-                <td>Child safety seat cleaning</td>
-                <td>$15 each</td>
-              </tr>
-            </table>
-
-          </article>
-
-          <article class="card">
-
-            <h3>
-              Exterior Add-Ons
-            </h3>
-
-            <table class="price-table">
-              <tr>
-                <td>Tire-dressing upgrade</td>
-                <td>$5</td>
-              </tr>
-
-              <tr>
-                <td>Bug and tar removal</td>
-                <td>Starting at $25</td>
-              </tr>
-
-              <tr>
-                <td>Paste wax</td>
-                <td>Starting at $30</td>
-              </tr>
-
-              <tr>
-                <td>Spray ceramic sealant</td>
-                <td>Starting at $40</td>
-              </tr>
-
-              <tr>
-                <td>Clay-bar treatment</td>
-                <td>Starting at $40</td>
-              </tr>
-            </table>
-
-          </article>
+          <div class="service-row">
+            <span>Child Safety Seat Cleaning</span>
+            <span>$15 each</span>
+          </div>
 
         </div>
 
       </div>
     </section>
 
-    <section id="conditions">
+    <!-- CONDITION PRICING -->
+
+    <section class="section" id="condition-pricing">
       <div class="container">
 
         <div class="section-heading">
-
-          <span class="eyebrow">
-            Vehicle condition and pricing
-          </span>
+          <span class="eyebrow">Vehicle Condition Pricing</span>
 
           <h2>
-            Some vehicles require additional time.
+            Standard pricing assumes average condition.
           </h2>
 
           <p>
-            Standard package pricing assumes an average-condition vehicle.
-            Final pricing may be adjusted before work begins when extensive
-            labor or special treatment is required.
+            Additional time, products, and labor may require additional
+            pricing. Any adjustment will be discussed before work begins.
           </p>
-
         </div>
 
         <ul class="policy-list">
-
           <li>
-            <strong>Excessive mud:</strong>
-            starting at an additional $20.
+            <strong>Excessive Mud:</strong>
+            Starting at +$20
           </li>
 
           <li>
-            <strong>Excessive trash or personal items:</strong>
-            starting at an additional $20.
+            <strong>Excessive Trash:</strong>
+            Starting at +$20
           </li>
 
           <li>
-            <strong>Heavy stains, embedded pet hair, or excessive sand:</strong>
-            priced according to the labor and service required.
+            <strong>Heavy Sand:</strong>
+            Additional pricing may apply.
           </li>
 
           <li>
-            <strong>Biohazard contamination:</strong>
-            quote required and service may be declined.
+            <strong>Heavy Pet Hair:</strong>
+            Additional pricing may apply.
           </li>
 
           <li>
-            <strong>Mold or severe contamination:</strong>
-            quote required and service may be declined.
+            <strong>Heavy Staining:</strong>
+            Extraction or specialty treatment may be required.
           </li>
 
           <li>
-            <strong>Oversized or unusually configured vehicles:</strong>
-            may require custom pricing.
+            <strong>Oversized or Work-Use Vehicles:</strong>
+            May require additional pricing.
           </li>
 
+          <li>
+            <strong>Biohazards and Mold:</strong>
+            Quoted individually and may be declined.
+          </li>
         </ul>
 
       </div>
     </section>
 
-    <section class="cta">
+    <!-- FAQ -->
+
+    <section class="section" id="faq">
+      <div class="container">
+
+        <div class="section-heading">
+          <span class="eyebrow">Frequently Asked Questions</span>
+
+          <h2>
+            Before your first appointment.
+          </h2>
+        </div>
+
+        <div class="faq-list">
+
+          <details>
+            <summary>
+              Why is a Full Detail required before membership?
+            </summary>
+
+            <p>
+              We first bring the vehicle to our maintenance standard.
+              Future visits are then focused on keeping it consistently
+              clean instead of repeatedly restoring a heavily soiled vehicle.
+            </p>
+          </details>
+
+          <details>
+            <summary>
+              Do I have to be home?
+            </summary>
+
+            <p>
+              No. As long as we have access to the vehicle, permission
+              to perform the service, and payment has been arranged,
+              you do not need to be present.
+            </p>
+          </details>
+
+          <details>
+            <summary>
+              What happens if it rains?
+            </summary>
+
+            <p>
+              We will contact you if weather prevents us from safely
+              providing a quality service. Your appointment will be
+              rescheduled for the next reasonable opening.
+            </p>
+          </details>
+
+          <details>
+            <summary>
+              How do I pay?
+            </summary>
+
+            <p>
+              Payment is due before each scheduled appointment unless
+              another arrangement has been approved.
+            </p>
+          </details>
+
+          <details>
+            <summary>
+              Are memberships long-term contracts?
+            </summary>
+
+            <p>
+              No. Memberships are month-to-month and may be canceled.
+              Services already scheduled or completed remain payable.
+            </p>
+          </details>
+
+          <details>
+            <summary>
+              What does the customer need to provide?
+            </summary>
+
+            <p>
+              The vehicle must be parked in a safe and accessible service
+              area with adequate runoff. Paved driveways, gravel driveways,
+              or firm non-muddy grass areas may be acceptable.
+              Never Dirty brings its own water and detailing supplies.
+            </p>
+          </details>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- PROMISE -->
+
+    <section class="section">
+      <div class="container">
+
+        <div class="section-heading">
+          <span class="eyebrow">Our Promise</span>
+
+          <h2>
+            Dependable care without the hassle.
+          </h2>
+
+          <p>
+            Our goal is not simply to be the cheapest detailer. Our goal
+            is to provide reliable and convenient service that keeps your
+            vehicle looking great year-round while saving you the time
+            and effort of doing it yourself.
+          </p>
+        </div>
+
+        <div class="notice">
+          <strong>Satisfaction Promise</strong>
+
+          <p>
+            If you are not satisfied before we leave, tell us and we will
+            make a reasonable effort to correct the issue before the
+            appointment ends.
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- FINAL CTA -->
+
+    <section class="section cta">
       <div class="container">
 
         <span class="eyebrow">
-          Ready to book?
+          Ready to Stay Clean?
         </span>
 
         <h2>
-          Choose the service<br>
-          that fits your vehicle.
+          Join Never Dirty.
         </h2>
 
         <p>
-          Request a maintenance membership, ask about a one-time
-          cleaning, or contact Never Dirty for a full-detail appointment.
+          Tell us about your vehicle, preferred service tier,
+          and desired schedule. We will contact you to confirm pricing,
+          availability, and your Initial Full Detail.
         </p>
 
-        <div class="cta-buttons">
+        <div class="button-row">
 
           <a
-            href="mailto:goneverdirty@gmail.com?subject=Never%20Dirty%20Membership%20Request&amp;body=Hi%20Never%20Dirty%2C%0D%0A%0D%0AI%20would%20like%20to%20request%20a%20vehicle%20maintenance%20membership.%0D%0A%0D%0AName%3A%20%0D%0APhone%3A%20%0D%0AService%20Address%3A%20%0D%0A%0D%0AVehicle%20Year%3A%20%0D%0AVehicle%20Make%3A%20%0D%0AVehicle%20Model%3A%20%0D%0AVehicle%20Color%3A%20%0D%0A%0D%0APreferred%20Schedule%3A%20Weekly%20%2F%20Every%20Two%20Weeks%20%2F%20Monthly%0D%0A%0D%0APreferred%20Days%20or%20Times%3A%20%0D%0A%0D%0AQuestions%20or%20Additional%20Vehicles%3A%20"
+            href="mailto:goneverdirty@gmail.com?subject=Never%20Dirty%20Membership%20Request&body=Hi%20Never%20Dirty%2C%0D%0A%0D%0AI%20would%20like%20to%20request%20a%20membership.%0D%0A%0D%0AName%3A%20%0D%0APhone%3A%20%0D%0AService%20Address%3A%20%0D%0A%0D%0AVehicle%20Year%3A%20%0D%0AVehicle%20Make%3A%20%0D%0AVehicle%20Model%3A%20%0D%0AVehicle%20Color%3A%20%0D%0A%0D%0AMembership%3A%20Essential%20or%20Deluxe%0D%0ASchedule%3A%20Weekly%2C%20Every%20Two%20Weeks%2C%20or%20Monthly%0D%0A%0D%0AAdditional%20Vehicles%3A%20%0D%0AQuestions%3A%20"
             class="button"
           >
             Request Membership
           </a>
 
           <a
-            href="mailto:goneverdirty@gmail.com?subject=Never%20Dirty%20One-Time%20Cleaning%20Request&amp;body=Hi%20Never%20Dirty%2C%0D%0A%0D%0AI%20would%20like%20to%20request%20a%20one-time%20maintenance%20cleaning.%0D%0A%0D%0AName%3A%20%0D%0APhone%3A%20%0D%0AService%20Address%3A%20%0D%0A%0D%0AVehicle%20Year%3A%20%0D%0AVehicle%20Make%3A%20%0D%0AVehicle%20Model%3A%20%0D%0AVehicle%20Color%3A%20%0D%0A%0D%0APreferred%20Day%20or%20Time%3A%20%0D%0A%0D%0AVehicle%20Condition%20or%20Questions%3A%20"
+            href="mailto:goneverdirty@gmail.com?subject=Never%20Dirty%20Service%20Quote&body=Hi%20Never%20Dirty%2C%0D%0A%0D%0AI%20would%20like%20a%20quote.%0D%0A%0D%0AName%3A%20%0D%0APhone%3A%20%0D%0AService%20Address%3A%20%0D%0A%0D%0AVehicle%20Year%3A%20%0D%0AVehicle%20Make%3A%20%0D%0AVehicle%20Model%3A%20%0D%0A%0D%0ARequested%20Service%3A%20%0D%0AVehicle%20Condition%3A%20%0D%0AQuestions%3A%20"
             class="button button-outline"
           >
-            Request One-Time Cleaning
-          </a>
-
-          <a
-            href="mailto:goneverdirty@gmail.com?subject=Never%20Dirty%20Full%20Detail%20Request&amp;body=Hi%20Never%20Dirty%2C%0D%0A%0D%0AI%20would%20like%20to%20request%20a%20full-detail%20appointment.%0D%0A%0D%0AName%3A%20%0D%0APhone%3A%20%0D%0AService%20Address%3A%20%0D%0A%0D%0AVehicle%20Year%3A%20%0D%0AVehicle%20Make%3A%20%0D%0AVehicle%20Model%3A%20%0D%0AVehicle%20Color%3A%20%0D%0A%0D%0ARequested%20Service%3A%20Interior%20%2F%20Exterior%20%2F%20Complete%20Detail%0D%0A%0D%0ARequested%20Add-Ons%3A%20%0D%0A%0D%0AVehicle%20Condition%20or%20Questions%3A%20"
-            class="button button-outline"
-          >
-            Request Full Detail
+            Request a Quote
           </a>
 
         </div>
@@ -1572,25 +1737,39 @@
   </main>
 
   <footer>
-    <div class="container footer-row">
+    <div class="container footer-content">
 
-      <span>
-        © 2026 Never Dirty
-      </span>
+      <div>
+        <strong style="color: white;">
+          NEVER<span style="color: #dfff3f;">DIRTY</span>
+        </strong>
 
-      <a
-        href="mailto:goneverdirty@gmail.com"
-        class="footer-contact"
-      >
-        goneverdirty@gmail.com
-      </a>
+        <div>
+          Never wash your car again.
+        </div>
+      </div>
 
-      <a href="index.html" class="footer-contact">
-        Return to Homepage
-      </a>
+      <div>
+        <a href="mailto:goneverdirty@gmail.com">
+          goneverdirty@gmail.com
+        </a>
+        <br>
+        <a href="index.html">
+          GoNeverDirty.com
+        </a>
+      </div>
+
+      <div>
+        © <span id="year"></span> Never Dirty
+      </div>
 
     </div>
   </footer>
+
+  <script>
+    document.getElementById("year").textContent =
+      new Date().getFullYear();
+  </script>
 
 </body>
 </html>
