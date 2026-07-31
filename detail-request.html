@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Request a Detail | Never Dirty</title>
+  <meta name="description" content="Request a one-time mobile or weekend vehicle detail from Never Dirty in Southern Illinois.">
+  <meta name="theme-color" content="#080a08">
+
+  <style>
+    :root{--bg:#080a08;--surface:#131713;--surface2:#1b211a;--text:#f7f8f4;--muted:#b4baaf;--muted2:#858d80;--line:rgba(255,255,255,.1);--accent:#dfff3f;--danger:#ff8a80;--max:1160px;--radius:22px}
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth;scroll-padding-top:88px}
+    body{font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:radial-gradient(circle at 85% 5%,rgba(223,255,63,.08),transparent 26rem),var(--bg);color:var(--text);line-height:1.6}
+    a{color:inherit;text-decoration:none}
+    button,input,select,textarea{font:inherit}
+    button,a{-webkit-tap-highlight-color:transparent}
+    :focus-visible{outline:3px solid rgba(223,255,63,.8);outline-offset:3px}
+    .container{width:min(calc(100% - 32px),var(--max));margin:auto}
+    .section{padding:84px 0}
+    .eyebrow{color:var(--accent);font-size:.78rem;font-weight:900;letter-spacing:.15em;text-transform:uppercase;margin-bottom:14px}
+    .title{font-size:clamp(2.35rem,6vw,4.9rem);line-height:.97;letter-spacing:-.06em;font-weight:1000;max-width:860px;text-wrap:balance}
+    .copy{color:var(--muted);font-size:1.08rem;max-width:760px;margin-top:20px}
+    .btns{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
+    .btn{display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:0 22px;border-radius:999px;font-weight:900;border:1px solid transparent;transition:.2s;cursor:pointer}
+    .btn:hover{transform:translateY(-2px)}
+    .primary{background:var(--accent);color:#080a08}
+    .secondary{background:rgba(255,255,255,.04);border-color:var(--line);color:var(--text)}
+    header{position:sticky;top:0;z-index:20;background:rgba(8,10,8,.84);backdrop-filter:blur(18px);border-bottom:1px solid rgba(255,255,255,.07)}
+    .nav{height:74px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+    .brand{display:flex;align-items:center;gap:10px;font-weight:1000;letter-spacing:.12em;text-transform:uppercase}
+    .logo{display:grid;place-items:center;width:34px;height:34px;background:var(--accent);color:#080a08;border-radius:10px}
+    .links{display:flex;align-items:center;gap:22px}
+    .links a:not(.btn){color:var(--muted);font-size:.88rem;font-weight:800}
+    .menu{display:none;background:none;border:1px solid var(--line);color:var(--text);width:44px;height:44px;border-radius:13px;font-size:1.25rem}
+    .mobile{display:none;padding:12px 16px 22px;background:#0a0d0a;border-bottom:1px solid var(--line)}
+    .mobile.open{display:grid;gap:10px}
+    .mobile a{padding:12px;border-bottom:1px solid var(--line);font-weight:800}
+    .hero{padding:82px 0 64px}
+    .hero-grid{display:grid;grid-template-columns:1.08fr .92fr;gap:52px;align-items:end}
+    .summary{padding:32px;background:linear-gradient(150deg,var(--surface2),var(--surface));border:1px solid var(--line);border-radius:30px}
+    .summary h2{font-size:1.7rem;letter-spacing:-.04em}
+    .summary-list{display:grid;gap:15px;margin-top:22px}
+    .summary-item{display:grid;grid-template-columns:34px 1fr;gap:12px}
+    .summary-number{color:var(--accent);font-size:.76rem;font-weight:900;letter-spacing:.1em}
+    .summary-item strong{display:block}
+    .summary-item p{color:var(--muted);font-size:.9rem;margin-top:2px}
+    .notice{margin-top:22px;padding:17px 18px;border:1px solid rgba(223,255,63,.22);background:rgba(223,255,63,.06);border-radius:15px;color:#dfe5da}
+    .form-layout{display:grid;grid-template-columns:minmax(0,1fr) 330px;gap:24px;align-items:start}
+    .form-card,.side-card{background:linear-gradient(150deg,var(--surface2),var(--surface));border:1px solid var(--line);border-radius:var(--radius)}
+    .form-card{padding:clamp(24px,4vw,40px)}
+    .side-stack{display:grid;gap:18px;position:sticky;top:96px}
+    .side-card{padding:24px}
+    .side-card h3{font-size:1.2rem;letter-spacing:-.03em}
+    .side-card p,.side-card li{color:var(--muted);font-size:.9rem}
+    .side-card p{margin-top:9px}
+    .side-card ul{display:grid;gap:9px;margin:15px 0 0 18px}
+    .form-section{padding:0 0 34px;margin-bottom:34px;border-bottom:1px solid var(--line)}
+    .form-section:last-of-type{border-bottom:0;margin-bottom:0;padding-bottom:0}
+    .form-section h2{font-size:1.55rem;letter-spacing:-.035em}
+    .form-section>p{color:var(--muted);margin-top:6px;font-size:.92rem}
+    .field-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:22px}
+    .field-grid.one{grid-template-columns:1fr}
+    .field{display:grid;gap:8px}
+    .field.full{grid-column:1/-1}
+    label,.legend{font-size:.86rem;font-weight:850;color:#e8ebe5}
+    .required{color:var(--accent)}
+    input,select,textarea{width:100%;color:var(--text);background:#0c0f0c;border:1px solid var(--line);border-radius:13px;padding:13px 14px;transition:.18s}
+    input,select{min-height:50px}
+    textarea{min-height:115px;resize:vertical}
+    input::placeholder,textarea::placeholder{color:#626a5f}
+    input:focus,select:focus,textarea:focus{border-color:rgba(223,255,63,.5);outline:none;box-shadow:0 0 0 3px rgba(223,255,63,.08)}
+    select{color-scheme:dark}
+    .help{color:var(--muted2);font-size:.78rem}
+    fieldset{border:0}
+    .choices{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:12px}
+    .choices.two{grid-template-columns:repeat(2,1fr)}
+    .choice{position:relative}
+    .choice input{position:absolute;opacity:0;pointer-events:none}
+    .choice label{display:flex;min-height:82px;flex-direction:column;justify-content:center;padding:13px 14px;background:#0c0f0c;border:1px solid var(--line);border-radius:13px;cursor:pointer;transition:.18s}
+    .choice label span{display:block;color:var(--muted);font-size:.78rem;font-weight:600;margin-top:2px}
+    .choice input:checked+label{border-color:rgba(223,255,63,.62);background:rgba(223,255,63,.075);box-shadow:0 0 0 2px rgba(223,255,63,.08)}
+    .check-list{display:grid;gap:13px;margin-top:20px}
+    .check{display:grid;grid-template-columns:20px 1fr;gap:11px;align-items:start}
+    .check input{width:18px;height:18px;min-height:0;margin-top:4px;accent-color:var(--accent)}
+    .check label{font-weight:650;color:var(--muted)}
+    .check strong{color:var(--text)}
+    .submit-box{margin-top:30px;padding:24px;background:rgba(223,255,63,.055);border:1px solid rgba(223,255,63,.19);border-radius:18px}
+    .submit-box p{color:var(--muted);font-size:.86rem;margin-bottom:16px}
+    .submit-box .btn{width:100%}
+    .status{display:none;margin-top:14px;padding:12px 14px;border-radius:12px;font-size:.88rem}
+    .status.show{display:block}
+    .status.error{color:#ffd7d3;background:rgba(255,138,128,.09);border:1px solid rgba(255,138,128,.25)}
+    .price-table{width:100%;border-collapse:collapse;margin-top:14px;font-size:.88rem}
+    .price-table th,.price-table td{padding:10px 8px;border-bottom:1px solid var(--line);text-align:left}
+    .price-table th{color:var(--text)}
+    .price-table td{color:var(--muted)}
+    footer{padding:56px 0 110px;border-top:1px solid var(--line);color:var(--muted)}
+    .footer-grid{display:grid;grid-template-columns:1.4fr .6fr .6fr;gap:36px}
+    .footer-grid h4{color:var(--text);margin-bottom:12px}
+    .footer-links{display:grid;gap:8px}
+    .mobile-cta{display:none;position:fixed;bottom:0;left:0;right:0;z-index:25;background:rgba(8,10,8,.94);backdrop-filter:blur(16px);border-top:1px solid var(--line);padding:10px;gap:8px}
+    .mobile-cta .btn{flex:1;min-height:48px;padding:0 10px;font-size:.78rem}
+    @media(max-width:960px){.links a:not(.btn){display:none}.links .btn{display:none}.menu{display:block}.hero-grid,.form-layout{grid-template-columns:1fr}.side-stack{position:static;grid-template-columns:1fr 1fr}.footer-grid{grid-template-columns:1fr 1fr}.footer-grid>div:first-child{grid-column:1/-1}}
+    @media(max-width:680px){.section{padding:64px 0}.hero{padding:56px 0}.field-grid,.choices,.choices.two,.side-stack,.footer-grid{grid-template-columns:1fr}.btns{display:grid}.btn{width:100%}.form-card{padding:24px 18px}.mobile-cta{display:flex}footer{padding-bottom:130px}}
+  </style>
+</head>
+
+<body>
+<header>
+  <div class="container nav">
+    <a class="brand" href="index.html"><span class="logo">N</span><span>Never Dirty</span></a>
+    <nav class="links">
+      <a href="index.html">Home</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="membership.html">Membership</a>
+      <a href="#request">Request Form</a>
+      <a class="btn primary" href="#request">Request a Detail</a>
+    </nav>
+    <button class="menu" type="button" aria-label="Open menu" aria-expanded="false">☰</button>
+  </div>
+  <nav class="mobile">
+    <a href="index.html">Home</a>
+    <a href="pricing.html">Pricing</a>
+    <a href="membership.html">Membership</a>
+    <a href="#request">Request Form</a>
+  </nav>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="container hero-grid">
+      <div>
+        <p class="eyebrow">One-time detailing</p>
+        <h1 class="title">Request the right detail for your vehicle.</h1>
+        <p class="copy">Tell us what you drive, what condition it is in, and what level of service you are considering. We will review the request, confirm the right package, and send you an accurate quote before scheduling.</p>
+        <div class="btns">
+          <a class="btn primary" href="#request">Start Request</a>
+          <a class="btn secondary" href="pricing.html">Review Pricing</a>
+        </div>
+      </div>
+
+      <aside class="summary">
+        <p class="eyebrow">Available services</p>
+        <h2>From routine upkeep to a full reset.</h2>
+        <div class="summary-list">
+          <div class="summary-item"><span class="summary-number">01</span><div><strong>Maintenance Wash</strong><p>For vehicles that are already in reasonably maintained condition.</p></div></div>
+          <div class="summary-item"><span class="summary-number">02</span><div><strong>Refresh Detail</strong><p>A thorough interior, exterior, or complete cleaning for normal buildup.</p></div></div>
+          <div class="summary-item"><span class="summary-number">03</span><div><strong>Signature Detail</strong><p>The most complete service for deeper cleaning and elevated presentation.</p></div></div>
+        </div>
+        <div class="notice">One-time professional detailing is primarily scheduled on weekends. Mobile availability, drop-off options, and exact timing are confirmed after review.</div>
+      </aside>
+    </div>
+  </section>
+
+  <section class="section" id="request">
+    <div class="container form-layout">
+      <form class="form-card" id="detailForm" novalidate>
+        <section class="form-section">
+          <h2>1. Contact information</h2>
+          <p>Who should we contact about this detail request?</p>
+          <div class="field-grid">
+            <div class="field">
+              <label for="name">Full name <span class="required">*</span></label>
+              <input id="name" name="name" type="text" autocomplete="name" required placeholder="Your full name">
+            </div>
+            <div class="field">
+              <label for="phone">Mobile phone <span class="required">*</span></label>
+              <input id="phone" name="phone" type="tel" autocomplete="tel" required placeholder="(618) 555-1234">
+            </div>
+            <div class="field">
+              <label for="email">Email address <span class="required">*</span></label>
+              <input id="email" name="email" type="email" autocomplete="email" required placeholder="you@example.com">
+            </div>
+            <div class="field">
+              <label for="contactMethod">Preferred contact method</label>
+              <select id="contactMethod" name="contactMethod">
+                <option>Text message</option>
+                <option>Email</option>
+                <option>Phone call</option>
+              </select>
+            </div>
+          </div>
+        </section>
+
+        <section class="form-section">
+          <h2>2. Vehicle information</h2>
+          <p>Submit one vehicle per request so the quote stays accurate.</p>
+          <div class="field-grid">
+            <div class="field">
+              <label for="year">Year <span class="required">*</span></label>
+              <input id="year" name="year" type="number" min="1980" max="2030" required placeholder="2021">
+            </div>
+            <div class="field">
+              <label for="make">Make <span class="required">*</span></label>
+              <input id="make" name="make" type="text" required placeholder="Chevrolet">
+            </div>
+            <div class="field">
+              <label for="model">Model <span class="required">*</span></label>
+              <input id="model" name="model" type="text" required placeholder="Traverse">
+            </div>
+            <div class="field">
+              <label for="color">Color</label>
+              <input id="color" name="color" type="text" placeholder="Black">
+            </div>
+          </div>
+
+          <fieldset style="margin-top:22px">
+            <legend class="legend">Approximate vehicle size <span class="required">*</span></legend>
+            <div class="choices">
+              <div class="choice"><input id="sizeSmall" type="radio" name="vehicleSize" value="Small" required><label for="sizeSmall">Small<span>Car, coupe, compact</span></label></div>
+              <div class="choice"><input id="sizeMedium" type="radio" name="vehicleSize" value="Medium"><label for="sizeMedium">Medium<span>Small SUV, crossover, midsize truck</span></label></div>
+              <div class="choice"><input id="sizeLarge" type="radio" name="vehicleSize" value="Large"><label for="sizeLarge">Large<span>Large SUV, van, full-size truck</span></label></div>
+            </div>
+          </fieldset>
+        </section>
+
+        <section class="form-section">
+          <h2>3. Requested service</h2>
+          <p>Select the service you are most interested in. Final recommendations depend on actual condition.</p>
+
+          <fieldset style="margin-top:22px">
+            <legend class="legend">Service level <span class="required">*</span></legend>
+            <div class="choices">
+              <div class="choice"><input id="maintenance" type="radio" name="serviceLevel" value="One-Time Maintenance Wash" required><label for="maintenance">Maintenance Wash<span>Small $45 · Medium $55 · Large $65</span></label></div>
+              <div class="choice"><input id="refresh" type="radio" name="serviceLevel" value="Refresh Detail"><label for="refresh">Refresh Detail<span>Normal buildup and deeper cleaning</span></label></div>
+              <div class="choice"><input id="signature" type="radio" name="serviceLevel" value="Signature Detail"><label for="signature">Signature Detail<span>Most complete one-time service</span></label></div>
+            </div>
+          </fieldset>
+
+          <fieldset style="margin-top:22px">
+            <legend class="legend">Detail area <span class="required">*</span></legend>
+            <div class="choices">
+              <div class="choice"><input id="interior" type="radio" name="detailArea" value="Interior" required><label for="interior">Interior<span>Cabin-focused service</span></label></div>
+              <div class="choice"><input id="exterior" type="radio" name="detailArea" value="Exterior"><label for="exterior">Exterior<span>Paint, wheels, glass, trim</span></label></div>
+              <div class="choice"><input id="complete" type="radio" name="detailArea" value="Complete"><label for="complete">Complete<span>Interior and exterior</span></label></div>
+            </div>
+          </fieldset>
+
+          <div class="field-grid">
+            <div class="field">
+              <label for="preferredDate">Preferred date</label>
+              <input id="preferredDate" name="preferredDate" type="date">
+            </div>
+            <div class="field">
+              <label for="flexibility">Scheduling flexibility</label>
+              <select id="flexibility" name="flexibility">
+                <option>Any available weekend</option>
+                <option>Saturday preferred</option>
+                <option>Sunday preferred</option>
+                <option>Weekday only if available</option>
+                <option>Specific date required</option>
+              </select>
+            </div>
+          </div>
+        </section>
+
+        <section class="form-section">
+          <h2>4. Service location preference</h2>
+          <p>Choose your preferred arrangement. Availability depends on service type, location, weather, and route.</p>
+
+          <fieldset style="margin-top:22px">
+            <legend class="legend">Preferred setup <span class="required">*</span></legend>
+            <div class="choices">
+              <div class="choice"><input id="mobileHome" type="radio" name="serviceSetup" value="Mobile at home" required><label for="mobileHome">Mobile at Home<span>Service at your residence</span></label></div>
+              <div class="choice"><input id="mobileWork" type="radio" name="serviceSetup" value="Mobile at workplace"><label for="mobileWork">Mobile at Work<span>Employer-approved location</span></label></div>
+              <div class="choice"><input id="dropoff" type="radio" name="serviceSetup" value="Drop-off / flexible"><label for="dropoff">Drop-Off / Flexible<span>Open to the best available setup</span></label></div>
+            </div>
+          </fieldset>
+
+          <div class="field-grid">
+            <div class="field full">
+              <label for="address">Service or pickup address <span class="required">*</span></label>
+              <input id="address" name="address" type="text" autocomplete="street-address" required placeholder="Street address">
+            </div>
+            <div class="field">
+              <label for="city">City <span class="required">*</span></label>
+              <input id="city" name="city" type="text" required placeholder="City">
+            </div>
+            <div class="field">
+              <label for="county">County <span class="required">*</span></label>
+              <select id="county" name="county" required>
+                <option value="">Select county</option>
+                <option>Saline County</option>
+                <option>Williamson County</option>
+                <option>Franklin County</option>
+                <option>Other / Unsure</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="surface">Parking surface</label>
+              <select id="surface" name="surface">
+                <option>Paved driveway or lot</option>
+                <option>Gravel driveway or lot</option>
+                <option>Firm, non-muddy grass</option>
+                <option>Street parking</option>
+                <option>Unsure / Not applicable</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="access">Vehicle access</label>
+              <select id="access" name="access">
+                <option>I will be present</option>
+                <option>Keys will be available</option>
+                <option>Vehicle will be unlocked</option>
+                <option>Needs to be arranged</option>
+              </select>
+            </div>
+            <div class="field full">
+              <label for="locationNotes">Location or access notes</label>
+              <textarea id="locationNotes" name="locationNotes" placeholder="Gate instructions, workplace restrictions, parking details, runoff concerns, or anything else we should know"></textarea>
+            </div>
+          </div>
+        </section>
+
+        <section class="form-section">
+          <h2>5. Current vehicle condition</h2>
+          <p>Be specific. Heavy-condition work can require extra labor and a separate quote.</p>
+
+          <div class="field-grid">
+            <div class="field">
+              <label for="overallCondition">Overall condition <span class="required">*</span></label>
+              <select id="overallCondition" name="overallCondition" required>
+                <option value="">Select condition</option>
+                <option>Lightly used / already fairly clean</option>
+                <option>Normal daily-use buildup</option>
+                <option>Moderately dirty</option>
+                <option>Heavily soiled</option>
+                <option>Restoration-level / Unsure</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="lastDetail">Last professional detail</label>
+              <select id="lastDetail" name="lastDetail">
+                <option>Within the last 3 months</option>
+                <option>3–6 months ago</option>
+                <option>6–12 months ago</option>
+                <option>More than a year ago</option>
+                <option>Never / Unsure</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="check-list">
+            <div class="check"><input id="petHair" name="conditions" value="Pet hair" type="checkbox"><label for="petHair"><strong>Pet hair:</strong> noticeable pet hair is present.</label></div>
+            <div class="check"><input id="stains" name="conditions" value="Heavy stains" type="checkbox"><label for="stains"><strong>Stains:</strong> upholstery, carpets, or mats have significant staining.</label></div>
+            <div class="check"><input id="trash" name="conditions" value="Heavy trash or debris" type="checkbox"><label for="trash"><strong>Trash or debris:</strong> there is substantial loose trash or heavy debris.</label></div>
+            <div class="check"><input id="smoke" name="conditions" value="Smoke or strong odor" type="checkbox"><label for="smoke"><strong>Odor:</strong> cigarette smoke or another strong odor is present.</label></div>
+            <div class="check"><input id="mud" name="conditions" value="Heavy mud or worksite dirt" type="checkbox"><label for="mud"><strong>Heavy mud or worksite dirt:</strong> significant dirt, clay, coal dust, or jobsite buildup is present.</label></div>
+            <div class="check"><input id="biohazard" name="conditions" value="Possible biohazard" type="checkbox"><label for="biohazard"><strong>Possible biohazard:</strong> vomit, blood, urine, feces, needles, pests, mold, or other hazardous material may be present.</label></div>
+          </div>
+
+          <div class="field-grid one">
+            <div class="field">
+              <label for="conditionNotes">Condition details <span class="required">*</span></label>
+              <textarea id="conditionNotes" name="conditionNotes" required placeholder="Describe the vehicle honestly, including the areas that need the most work, existing damage, stains, odors, pet hair, mud, or specific concerns"></textarea>
+              <span class="help">You can attach photos manually to the email after the form opens. Photos are strongly recommended for heavily soiled vehicles.</span>
+            </div>
+          </div>
+        </section>
+
+        <section class="form-section">
+          <h2>6. Special requests</h2>
+          <p>Tell us what matters most to you so we can prioritize the quote correctly.</p>
+          <div class="field-grid one">
+            <div class="field">
+              <label for="priorities">Main priorities or special requests</label>
+              <textarea id="priorities" name="priorities" placeholder="Examples: child-seat area, dog hair, cupholders, wheels, bugs, salt buildup, work dust, odor, stains, glass, trim, or preparing the vehicle for sale"></textarea>
+            </div>
+          </div>
+        </section>
+
+        <section class="form-section" id="policies">
+          <h2>7. Required acknowledgments</h2>
+          <p>Please review these basic policies before submitting.</p>
+
+          <div class="check-list">
+            <div class="check"><input id="quote" type="checkbox" required><label for="quote">I understand that website prices are starting prices based on normal condition and that final pricing may change after vehicle review.</label></div>
+            <div class="check"><input id="belongings" type="checkbox" required><label for="belongings">I understand that I am <strong>requested, but not required, to remove personal belongings</strong>. Loose items may be placed into a provided belongings bag and left on the passenger seat. I remain responsible for valuables and sensitive items.</label></div>
+            <div class="check"><input id="damage" type="checkbox" required><label for="damage">I understand that pre-existing damage, worn materials, loose trim, failing clear coat, fragile controls, and similar conditions may limit what can be safely cleaned or improved.</label></div>
+            <div class="check"><input id="hazards" type="checkbox" required><label for="hazards">I agree to disclose biohazards, needles, pests, mold, bodily fluids, weapons, dangerous chemicals, or other unsafe materials before service.</label></div>
+            <div class="check"><input id="payment" type="checkbox" required><label for="payment">I understand that payment is due before service unless another arrangement is explicitly approved.</label></div>
+            <div class="check"><input id="weather" type="checkbox" required><label for="weather">I understand that weather, unsafe conditions, inadequate runoff space, muddy access, or site restrictions may require rescheduling or a different service setup.</label></div>
+            <div class="check"><input id="recording" type="checkbox" required><label for="recording">I understand that service visits may be recorded for safety, quality documentation, dispute prevention, and possible marketing use, subject to applicable permissions.</label></div>
+            <div class="check"><input id="smsConsent" type="checkbox" required><label for="smsConsent">I authorize Never Dirty to contact me by text, phone, or email about this request, pricing, scheduling, payment, and service updates. Standard message and data rates may apply.</label></div>
+          </div>
+        </section>
+
+        <div class="submit-box">
+          <p>Submitting opens your email app with the completed request addressed to <strong>goneverdirty@gmail.com</strong>. Add vehicle photos to the email before sending whenever possible.</p>
+          <button class="btn primary" type="submit">Create Detail Request Email</button>
+          <div class="status" id="formStatus" role="alert"></div>
+        </div>
+      </form>
+
+      <aside class="side-stack">
+        <section class="side-card">
+          <h3>One-time pricing</h3>
+          <table class="price-table">
+            <tr><th>Service</th><th>Small</th><th>Medium</th><th>Large</th></tr>
+            <tr><td>Maintenance</td><td>$45</td><td>$55</td><td>$65</td></tr>
+          </table>
+          <p><strong style="color:var(--text)">Refresh Complete:</strong> $140 / $170 / $200</p>
+          <p><strong style="color:var(--text)">Signature Complete:</strong> $230 / $275 / $330</p>
+          <p>Interior-only and exterior-only pricing is available on the full pricing page.</p>
+        </section>
+
+        <section class="side-card">
+          <h3>Photos improve accuracy</h3>
+          <p>After the email opens, attach clear photos of:</p>
+          <ul>
+            <li>Front and rear seating areas</li>
+            <li>Carpets and floor mats</li>
+            <li>Trunk or cargo area</li>
+            <li>Any major stains, pet hair, mud, or damage</li>
+            <li>Exterior problem areas</li>
+          </ul>
+        </section>
+
+        <section class="side-card">
+          <h3>Service-area reminder</h3>
+          <p>Primary coverage is Saline County, with select reasonably located customers in Williamson and Franklin Counties.</p>
+          <p>Travel and mobile setup requirements are confirmed before scheduling.</p>
+        </section>
+      </aside>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container footer-grid">
+    <div>
+      <a class="brand" href="index.html"><span class="logo">N</span><span>Never Dirty</span></a>
+      <p style="margin-top:16px;max-width:460px">Recurring mobile vehicle cleaning and professional detailing in Southern Illinois.</p>
+    </div>
+    <div>
+      <h4>Explore</h4>
+      <div class="footer-links"><a href="index.html">Home</a><a href="pricing.html">Pricing</a><a href="membership.html">Membership</a></div>
+    </div>
+    <div>
+      <h4>Contact</h4>
+      <div class="footer-links"><a href="mailto:goneverdirty@gmail.com">goneverdirty@gmail.com</a><a href="mailto:goneverdirty@gmail.com?subject=Never Dirty Question">Ask a Question</a></div>
+    </div>
+  </div>
+</footer>
+
+<div class="mobile-cta">
+  <a class="btn secondary" href="pricing.html">View Pricing</a>
+  <a class="btn primary" href="#request">Request Detail</a>
+</div>
+
+<script>
+  const menuButton = document.querySelector(".menu");
+  const mobileMenu = document.querySelector(".mobile");
+
+  menuButton.addEventListener("click", () => {
+    const open = mobileMenu.classList.toggle("open");
+    menuButton.setAttribute("aria-expanded", String(open));
+    menuButton.textContent = open ? "×" : "☰";
+  });
+
+  mobileMenu.querySelectorAll("a").forEach(link => {
+    link.addEventListener("click", () => {
+      mobileMenu.classList.remove("open");
+      menuButton.setAttribute("aria-expanded", "false");
+      menuButton.textContent = "☰";
+    });
+  });
+
+  const form = document.getElementById("detailForm");
+  const statusBox = document.getElementById("formStatus");
+
+  function selected(name) {
+    return form.querySelector(`[name="${name}"]:checked`)?.value || "Not selected";
+  }
+
+  function checkedValues(name) {
+    return [...form.querySelectorAll(`[name="${name}"]:checked`)].map(item => item.value).join(", ") || "None reported";
+  }
+
+  form.addEventListener("submit", event => {
+    event.preventDefault();
+
+    if (!form.checkValidity()) {
+      form.reportValidity();
+      statusBox.className = "status show error";
+      statusBox.textContent = "Please complete all required fields and acknowledgments before submitting.";
+      return;
+    }
+
+    const data = new FormData(form);
+    const subject = `Never Dirty Detail Request - ${data.get("name")} - ${data.get("year")} ${data.get("make")} ${data.get("model")}`;
+
+    const body = [
+      "NEVER DIRTY DETAIL REQUEST",
+      "",
+      "CONTACT",
+      `Name: ${data.get("name")}`,
+      `Phone: ${data.get("phone")}`,
+      `Email: ${data.get("email")}`,
+      `Preferred contact: ${data.get("contactMethod")}`,
+      "",
+      "VEHICLE",
+      `Year: ${data.get("year")}`,
+      `Make: ${data.get("make")}`,
+      `Model: ${data.get("model")}`,
+      `Color: ${data.get("color") || "Not provided"}`,
+      `Approximate size: ${selected("vehicleSize")}`,
+      "",
+      "SERVICE REQUEST",
+      `Service level: ${selected("serviceLevel")}`,
+      `Detail area: ${selected("detailArea")}`,
+      `Preferred date: ${data.get("preferredDate") || "No specific date"}`,
+      `Scheduling flexibility: ${data.get("flexibility")}`,
+      "",
+      "SERVICE SETUP",
+      `Preferred setup: ${selected("serviceSetup")}`,
+      `Address: ${data.get("address")}`,
+      `City: ${data.get("city")}`,
+      `County: ${data.get("county")}`,
+      `Parking surface: ${data.get("surface")}`,
+      `Vehicle access: ${data.get("access")}`,
+      `Location notes: ${data.get("locationNotes") || "None"}`,
+      "",
+      "CURRENT CONDITION",
+      `Overall condition: ${data.get("overallCondition")}`,
+      `Last professional detail: ${data.get("lastDetail")}`,
+      `Conditions reported: ${checkedValues("conditions")}`,
+      `Condition details: ${data.get("conditionNotes")}`,
+      "",
+      "PRIORITIES / SPECIAL REQUESTS",
+      data.get("priorities") || "None",
+      "",
+      "The customer checked all required policy acknowledgments and contact consent on the website form.",
+      "",
+      "PLEASE ATTACH VEHICLE PHOTOS TO THIS EMAIL BEFORE SENDING WHENEVER POSSIBLE."
+    ].join("\n");
+
+    window.location.href =
+      `mailto:goneverdirty@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  });
+</script>
+</body>
+</html>

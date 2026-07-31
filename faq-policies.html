@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FAQ & Policies | Never Dirty</title>
+  <meta name="description" content="Read Never Dirty's frequently asked questions and service policies for recurring mobile vehicle cleaning and one-time detailing in Southern Illinois.">
+  <meta name="theme-color" content="#080a08">
+
+  <style>
+    :root{
+      --bg:#080a08;
+      --surface:#131713;
+      --surface2:#1b211a;
+      --text:#f7f8f4;
+      --muted:#b4baaf;
+      --muted2:#858d80;
+      --line:rgba(255,255,255,.1);
+      --accent:#dfff3f;
+      --max:1160px;
+      --radius:22px;
+    }
+
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth;scroll-padding-top:90px}
+    body{
+      font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+      background:
+        radial-gradient(circle at 85% 5%,rgba(223,255,63,.08),transparent 26rem),
+        radial-gradient(circle at 8% 45%,rgba(223,255,63,.04),transparent 22rem),
+        var(--bg);
+      color:var(--text);
+      line-height:1.65;
+    }
+
+    a{color:inherit;text-decoration:none}
+    button{font:inherit}
+    button,a{-webkit-tap-highlight-color:transparent}
+    :focus-visible{outline:3px solid rgba(223,255,63,.8);outline-offset:3px}
+
+    .container{width:min(calc(100% - 32px),var(--max));margin:auto}
+    .section{padding:84px 0}
+    .section-sm{padding:58px 0}
+    .eyebrow{color:var(--accent);font-size:.78rem;font-weight:900;letter-spacing:.15em;text-transform:uppercase;margin-bottom:14px}
+    .title{font-size:clamp(2.5rem,6vw,5.1rem);line-height:.96;letter-spacing:-.06em;font-weight:1000;max-width:900px;text-wrap:balance}
+    .copy{color:var(--muted);font-size:1.08rem;max-width:770px;margin-top:20px}
+    .btns{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
+    .btn{display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:0 22px;border-radius:999px;font-weight:900;border:1px solid transparent;transition:.2s}
+    .btn:hover{transform:translateY(-2px)}
+    .primary{background:var(--accent);color:#080a08}
+    .secondary{background:rgba(255,255,255,.04);border-color:var(--line);color:var(--text)}
+
+    header{
+      position:sticky;
+      top:0;
+      z-index:20;
+      background:rgba(8,10,8,.84);
+      backdrop-filter:blur(18px);
+      border-bottom:1px solid rgba(255,255,255,.07);
+    }
+
+    .nav{height:74px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+    .brand{display:flex;align-items:center;gap:10px;font-weight:1000;letter-spacing:.12em;text-transform:uppercase}
+    .logo{display:grid;place-items:center;width:34px;height:34px;background:var(--accent);color:#080a08;border-radius:10px}
+    .links{display:flex;align-items:center;gap:22px}
+    .links a:not(.btn){color:var(--muted);font-size:.88rem;font-weight:800}
+    .menu{display:none;background:none;border:1px solid var(--line);color:var(--text);width:44px;height:44px;border-radius:13px;font-size:1.25rem}
+    .mobile{display:none;padding:12px 16px 22px;background:#0a0d0a;border-bottom:1px solid var(--line)}
+    .mobile.open{display:grid;gap:10px}
+    .mobile a{padding:12px;border-bottom:1px solid var(--line);font-weight:800}
+
+    .hero{padding:82px 0 58px}
+    .hero-grid{display:grid;grid-template-columns:1.08fr .92fr;gap:48px;align-items:end}
+    .hero-card{
+      padding:32px;
+      background:linear-gradient(150deg,var(--surface2),var(--surface));
+      border:1px solid var(--line);
+      border-radius:30px;
+    }
+
+    .hero-card h2{font-size:1.7rem;letter-spacing:-.04em}
+    .hero-list{display:grid;gap:14px;margin-top:20px}
+    .hero-item{display:grid;grid-template-columns:30px 1fr;gap:12px}
+    .hero-item span{color:var(--accent);font-size:.76rem;font-weight:900}
+    .hero-item strong{display:block}
+    .hero-item p{color:var(--muted);font-size:.9rem;margin-top:2px}
+
+    .quick-nav{
+      border-top:1px solid var(--line);
+      border-bottom:1px solid var(--line);
+      background:rgba(255,255,255,.018);
+    }
+
+    .quick-grid{
+      display:grid;
+      grid-template-columns:repeat(6,1fr);
+    }
+
+    .quick-grid a{
+      min-height:88px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:18px;
+      border-right:1px solid var(--line);
+      color:#d7dcd3;
+      font-size:.84rem;
+      font-weight:850;
+      text-align:center;
+    }
+
+    .quick-grid a:last-child{border-right:0}
+    .quick-grid a:hover{background:rgba(255,255,255,.035);color:var(--text)}
+
+    .content-layout{
+      display:grid;
+      grid-template-columns:240px minmax(0,1fr);
+      gap:34px;
+      align-items:start;
+    }
+
+    .sidebar{
+      position:sticky;
+      top:96px;
+      padding:22px;
+      background:linear-gradient(150deg,var(--surface2),var(--surface));
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+    }
+
+    .sidebar h3{font-size:1rem;margin-bottom:12px}
+    .side-links{display:grid;gap:5px}
+    .side-links a{
+      padding:10px 11px;
+      border-radius:10px;
+      color:var(--muted);
+      font-size:.87rem;
+      font-weight:750;
+    }
+
+    .side-links a:hover{background:rgba(255,255,255,.04);color:var(--text)}
+
+    .content{display:grid;gap:26px}
+    .policy-section{
+      padding:clamp(24px,4vw,38px);
+      background:linear-gradient(150deg,var(--surface2),var(--surface));
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+    }
+
+    .policy-section h2{font-size:clamp(1.7rem,3vw,2.35rem);letter-spacing:-.045em}
+    .policy-section>.intro{color:var(--muted);margin-top:10px;max-width:760px}
+
+    .faq-list{display:grid;gap:12px;margin-top:24px}
+    details{
+      background:#0d100d;
+      border:1px solid var(--line);
+      border-radius:15px;
+      overflow:hidden;
+    }
+
+    summary{
+      list-style:none;
+      cursor:pointer;
+      padding:18px 50px 18px 18px;
+      font-weight:850;
+      position:relative;
+    }
+
+    summary::-webkit-details-marker{display:none}
+    summary::after{
+      content:"+";
+      position:absolute;
+      right:18px;
+      top:50%;
+      transform:translateY(-50%);
+      color:var(--accent);
+      font-size:1.4rem;
+      font-weight:800;
+    }
+
+    details[open] summary::after{content:"–"}
+    details[open] summary{border-bottom:1px solid var(--line)}
+    .answer{padding:18px;color:var(--muted)}
+    .answer p+p{margin-top:12px}
+    .answer ul{margin:12px 0 0 20px;display:grid;gap:8px}
+    .answer strong{color:var(--text)}
+
+    .policy-box{
+      margin-top:24px;
+      padding:22px;
+      background:#0d100d;
+      border:1px solid var(--line);
+      border-radius:16px;
+    }
+
+    .policy-box h3{font-size:1.1rem}
+    .policy-box p,.policy-box li{color:var(--muted)}
+    .policy-box p{margin-top:10px}
+    .policy-box ul{display:grid;gap:9px;margin:14px 0 0 20px}
+
+    .highlight{
+      margin-top:24px;
+      padding:20px;
+      border:1px solid rgba(223,255,63,.23);
+      background:rgba(223,255,63,.06);
+      border-radius:16px;
+      color:#dfe4dc;
+    }
+
+    .cta{
+      text-align:center;
+      padding:72px 0;
+      border-top:1px solid var(--line);
+    }
+
+    .cta h2{font-size:clamp(2.2rem,5vw,4rem);line-height:1;letter-spacing:-.055em}
+    .cta p{color:var(--muted);max-width:650px;margin:18px auto 0}
+
+    footer{padding:56px 0 110px;border-top:1px solid var(--line);color:var(--muted)}
+    .footer-grid{display:grid;grid-template-columns:1.4fr .6fr .6fr;gap:36px}
+    .footer-grid h4{color:var(--text);margin-bottom:12px}
+    .footer-links{display:grid;gap:8px}
+
+    .mobile-cta{
+      display:none;
+      position:fixed;
+      bottom:0;
+      left:0;
+      right:0;
+      z-index:25;
+      background:rgba(8,10,8,.94);
+      backdrop-filter:blur(16px);
+      border-top:1px solid var(--line);
+      padding:10px;
+      gap:8px;
+    }
+
+    .mobile-cta .btn{flex:1;min-height:48px;padding:0 10px;font-size:.78rem}
+
+    @media(max-width:960px){
+      .links a:not(.btn){display:none}
+      .links .btn{display:none}
+      .menu{display:block}
+      .hero-grid{grid-template-columns:1fr}
+      .quick-grid{grid-template-columns:repeat(3,1fr)}
+      .quick-grid a:nth-child(3){border-right:0}
+      .quick-grid a:nth-child(-n+3){border-bottom:1px solid var(--line)}
+      .content-layout{grid-template-columns:1fr}
+      .sidebar{position:static}
+      .side-links{grid-template-columns:repeat(3,1fr)}
+      .footer-grid{grid-template-columns:1fr 1fr}
+      .footer-grid>div:first-child{grid-column:1/-1}
+    }
+
+    @media(max-width:680px){
+      .section{padding:64px 0}
+      .hero{padding:56px 0}
+      .btns{display:grid}
+      .btn{width:100%}
+      .quick-grid{grid-template-columns:1fr 1fr}
+      .quick-grid a:nth-child(n){border-right:1px solid var(--line);border-bottom:1px solid var(--line)}
+      .quick-grid a:nth-child(even){border-right:0}
+      .quick-grid a:nth-last-child(-n+2){border-bottom:0}
+      .side-links{grid-template-columns:1fr 1fr}
+      .footer-grid{grid-template-columns:1fr}
+      .footer-grid>div:first-child{grid-column:auto}
+      .mobile-cta{display:flex}
+      footer{padding-bottom:130px}
+    }
+  </style>
+</head>
+
+<body>
+<header>
+  <div class="container nav">
+    <a class="brand" href="index.html"><span class="logo">N</span><span>Never Dirty</span></a>
+    <nav class="links">
+      <a href="index.html">Home</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="membership.html">Membership</a>
+      <a href="detail-request.html">Detail Request</a>
+      <a class="btn primary" href="mailto:goneverdirty@gmail.com?subject=Never Dirty Question">Ask a Question</a>
+    </nav>
+    <button class="menu" type="button" aria-label="Open menu" aria-expanded="false">☰</button>
+  </div>
+
+  <nav class="mobile">
+    <a href="index.html">Home</a>
+    <a href="pricing.html">Pricing</a>
+    <a href="membership.html">Membership</a>
+    <a href="detail-request.html">Detail Request</a>
+    <a href="mailto:goneverdirty@gmail.com?subject=Never Dirty Question">Ask a Question</a>
+  </nav>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="container hero-grid">
+      <div>
+        <p class="eyebrow">FAQ & service policies</p>
+        <h1 class="title">Clear expectations make better details.</h1>
+        <p class="copy">This page explains how Never Dirty handles scheduling, weather, personal belongings, payments, vehicle condition, recording, access, service limitations, and recurring membership expectations.</p>
+        <div class="btns">
+          <a class="btn primary" href="#faq">Read the FAQ</a>
+          <a class="btn secondary" href="mailto:goneverdirty@gmail.com?subject=Never Dirty Policy Question">Ask a Question</a>
+        </div>
+      </div>
+
+      <aside class="hero-card">
+        <p class="eyebrow">The important basics</p>
+        <h2>What customers should know before service.</h2>
+        <div class="hero-list">
+          <div class="hero-item"><span>01</span><div><strong>Belongings do not automatically cancel service.</strong><p>Customers are requested to remove them, but loose items can be bagged and placed on the passenger seat.</p></div></div>
+          <div class="hero-item"><span>02</span><div><strong>Condition affects pricing.</strong><p>Heavy pet hair, stains, trash, odors, biohazards, and restoration-level work may require a higher quote.</p></div></div>
+          <div class="hero-item"><span>03</span><div><strong>Weather can affect mobile service.</strong><p>Unsafe conditions, mud, extreme temperatures, or inadequate runoff space may require rescheduling.</p></div></div>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <nav class="quick-nav" aria-label="Page sections">
+    <div class="container quick-grid">
+      <a href="#faq">General FAQ</a>
+      <a href="#belongings">Belongings</a>
+      <a href="#scheduling">Scheduling</a>
+      <a href="#payments">Payments</a>
+      <a href="#vehicle-condition">Vehicle Condition</a>
+      <a href="#recording">Recording</a>
+    </div>
+  </nav>
+
+  <section class="section">
+    <div class="container content-layout">
+      <aside class="sidebar">
+        <h3>On this page</h3>
+        <nav class="side-links">
+          <a href="#faq">General FAQ</a>
+          <a href="#belongings">Belongings</a>
+          <a href="#scheduling">Scheduling & Weather</a>
+          <a href="#payments">Payments & Cancellations</a>
+          <a href="#vehicle-condition">Condition & Pricing</a>
+          <a href="#damage">Damage & Limitations</a>
+          <a href="#access">Access & Service Area</a>
+          <a href="#recording">Recording & Media</a>
+          <a href="#membership">Membership Policies</a>
+        </nav>
+      </aside>
+
+      <div class="content">
+        <section class="policy-section" id="faq">
+          <p class="eyebrow">General questions</p>
+          <h2>Frequently asked questions</h2>
+          <p class="intro">These answers cover the most common questions about Never Dirty memberships and one-time detailing.</p>
+
+          <div class="faq-list">
+            <details>
+              <summary>What is Never Dirty?</summary>
+              <div class="answer">
+                <p>Never Dirty is a premium mobile vehicle-maintenance and professional detailing service. The main goal is to keep vehicles consistently clean through recurring service instead of allowing them to become heavily soiled between occasional details.</p>
+              </div>
+            </details>
+
+            <details>
+              <summary>Do you bring your own water and supplies?</summary>
+              <div class="answer">
+                <p>Yes. Never Dirty brings its own water, professional detailing products, microfiber towels, tools, and routine service equipment unless a special arrangement is required.</p>
+              </div>
+            </details>
+
+            <details>
+              <summary>Where do you provide service?</summary>
+              <div class="answer">
+                <p>Primary coverage is in Saline County, Illinois. Select reasonably located customers in Williamson and Franklin Counties may also be accepted depending on routing, travel, service type, and availability.</p>
+              </div>
+            </details>
+
+            <details>
+              <summary>Are memberships and one-time details scheduled on the same days?</summary>
+              <div class="answer">
+                <p>Recurring membership service is primarily scheduled on weekdays. One-time Refresh and Signature details are primarily scheduled on weekends, although availability can vary.</p>
+              </div>
+            </details>
+
+            <details>
+              <summary>Does requesting service guarantee an appointment?</summary>
+              <div class="answer">
+                <p>No. Website forms are service requests. Never Dirty reviews the vehicle, condition, location, schedule, and service area before confirming a quote or appointment.</p>
+              </div>
+            </details>
+
+            <details>
+              <summary>What products do you use?</summary>
+              <div class="answer">
+                <p>Never Dirty primarily uses Adam's detailing products, premium microfiber, and professional vehicle-cleaning tools. Product selection may vary based on the material and service being performed.</p>
+              </div>
+            </details>
+          </div>
+        </section>
+
+        <section class="policy-section" id="belongings">
+          <p class="eyebrow">Personal items</p>
+          <h2>Belongings policy</h2>
+          <p class="intro">Customers are requested to remove personal belongings before service, but the vehicle does not automatically have to be empty.</p>
+
+          <div class="policy-box">
+            <h3>How loose belongings are handled</h3>
+            <ul>
+              <li>Customers are asked to remove valuables, cash, medication, weapons, sensitive documents, electronics, and fragile items.</li>
+              <li>Loose everyday belongings may be placed into a provided belongings bag.</li>
+              <li>The bag will normally be left on the passenger seat unless another arrangement is made.</li>
+              <li>Areas blocked by large, fragile, unsafe, or excessive belongings may not be fully cleaned.</li>
+              <li>Never Dirty is not responsible for items that were not disclosed, were already damaged, or were left unsecured in the vehicle.</li>
+            </ul>
+          </div>
+
+          <div class="highlight"><strong>Important:</strong> Customers do not have to cancel solely because they forgot to empty the vehicle. However, removing unnecessary belongings allows for a faster and more complete service.</div>
+        </section>
+
+        <section class="policy-section" id="scheduling">
+          <p class="eyebrow">Appointments</p>
+          <h2>Scheduling and weather</h2>
+          <p class="intro">Mobile detailing depends on safe access, usable space, and workable weather.</p>
+
+          <div class="faq-list">
+            <details>
+              <summary>How is my appointment confirmed?</summary>
+              <div class="answer">
+                <p>An appointment is confirmed only after Never Dirty approves the request, verifies availability, confirms pricing, and receives payment when required.</p>
+              </div>
+            </details>
+
+            <details>
+              <summary>What happens if it rains?</summary>
+              <div class="answer">
+                <p>Light weather does not always require cancellation, especially when covered space is available. Heavy rain, storms, high winds, unsafe lightning, freezing conditions, excessive heat, muddy access, or conditions that prevent proper work may require rescheduling.</p>
+              </div>
+            </details>
+
+            <details>
+              <summary>What site conditions are required?</summary>
+              <div class="answer">
+                <ul>
+                  <li>A paved or gravel driveway, suitable parking lot, or firm non-muddy grass area</li>
+                  <li>Enough room to work safely around the vehicle</li>
+                  <li>Reasonable runoff conditions</li>
+                  <li>Permission from the property owner or employer when needed</li>
+                  <li>Vehicle access as arranged before service</li>
+                </ul>
+              </div>
+            </details>
+
+            <details>
+              <summary>Will I receive a day-of message?</summary>
+              <div class="answer">
+                <p>Yes. Customers may receive a text or other message confirming timing, vehicle availability, access, and any weather-related changes.</p>
+              </div>
+            </details>
+          </div>
+        </section>
+
+        <section class="policy-section" id="payments">
+          <p class="eyebrow">Financial policies</p>
+          <h2>Payments, cancellations, and rescheduling</h2>
+          <p class="intro">Clear payment and scheduling expectations protect both the customer and the service route.</p>
+
+          <div class="policy-box">
+            <h3>Payment policy</h3>
+            <ul>
+              <li>Payment is due before service unless Never Dirty explicitly approves another arrangement.</li>
+              <li>Recurring membership customers may be required to pay by the stated weekly or monthly deadline to remain on the schedule.</li>
+              <li>A service request is not considered confirmed solely because a form was submitted.</li>
+              <li>Additional charges will be discussed before major extra work is performed whenever reasonably possible.</li>
+            </ul>
+          </div>
+
+          <div class="policy-box">
+            <h3>Cancellations and no-access situations</h3>
+            <ul>
+              <li>Customers should provide as much notice as possible when rescheduling.</li>
+              <li>If the vehicle is unavailable, locked, moved, unsafe, or inaccessible at the scheduled time, the appointment may be treated as a late cancellation.</li>
+              <li>Repeated cancellations, payment issues, or access problems may result in loss of recurring route placement.</li>
+              <li>Never Dirty may reschedule when weather, illness, equipment issues, emergencies, unsafe conditions, or route disruptions prevent proper service.</li>
+            </ul>
+          </div>
+        </section>
+
+        <section class="policy-section" id="vehicle-condition">
+          <p class="eyebrow">Quotes and labor</p>
+          <h2>Vehicle condition and pricing</h2>
+          <p class="intro">Advertised prices assume a vehicle is within the normal condition expected for that service level.</p>
+
+          <div class="policy-box">
+            <h3>Conditions that may increase pricing</h3>
+            <ul>
+              <li>Heavy pet hair</li>
+              <li>Severe staining or embedded debris</li>
+              <li>Excessive trash or personal-item handling</li>
+              <li>Smoke, mildew, strong odors, or odor-treatment requests</li>
+              <li>Heavy mud, clay, coal dust, construction debris, or worksite buildup</li>
+              <li>Excessive bugs, sap, tar, road paint, oxidation, or bonded contamination</li>
+              <li>Large vehicles, lifted vehicles, oversized tires, or unusually complex interiors</li>
+              <li>Vehicles that require restoration-level labor rather than routine detailing</li>
+            </ul>
+          </div>
+
+          <div class="highlight">Never Dirty will make a reasonable effort to identify condition-based price changes before service. Photos and honest disclosures help prevent surprises.</div>
+        </section>
+
+        <section class="policy-section" id="damage">
+          <p class="eyebrow">Material safety</p>
+          <h2>Pre-existing damage and service limitations</h2>
+          <p class="intro">Detailing can improve cleanliness and appearance, but it cannot reverse every form of age, wear, damage, or neglect.</p>
+
+          <div class="faq-list">
+            <details>
+              <summary>What counts as pre-existing damage?</summary>
+              <div class="answer">
+                <p>Examples include failing clear coat, peeling paint, cracked leather, worn fabric, loose trim, brittle plastics, torn carpet, damaged switches, broken vents, leaking seals, chipped glass, rust, corrosion, scratches, dents, and previously repaired surfaces.</p>
+              </div>
+            </details>
+
+            <details>
+              <summary>Can every stain or odor be removed?</summary>
+              <div class="answer">
+                <p>No. Some stains, dye transfer, burns, permanent discoloration, deep contamination, smoke odor, biological contamination, and material damage may improve without being fully eliminated.</p>
+              </div>
+            </details>
+
+            <details>
+              <summary>Can you refuse unsafe work?</summary>
+              <div class="answer">
+                <p>Yes. Never Dirty may refuse or stop service involving needles, active pests, hazardous chemicals, weapons, mold, bodily fluids, unsafe structural conditions, aggressive animals, threatening behavior, or any situation that creates unreasonable risk.</p>
+              </div>
+            </details>
+          </div>
+        </section>
+
+        <section class="policy-section" id="access">
+          <p class="eyebrow">Mobile service requirements</p>
+          <h2>Vehicle access and service area</h2>
+          <p class="intro">Customers are responsible for ensuring that the vehicle and service location are ready at the scheduled time.</p>
+
+          <div class="policy-box">
+            <ul>
+              <li>The vehicle must be available at the approved location.</li>
+              <li>Interior service requires the vehicle to be unlocked, keys to be available, or the customer to be present.</li>
+              <li>Workplace service requires permission from the employer or property manager when applicable.</li>
+              <li>Street-side work, unsafe traffic areas, steep grades, muddy ground, or inadequate room may be declined.</li>
+              <li>Travel outside the normal route may include an additional fee or may not be accepted.</li>
+            </ul>
+          </div>
+        </section>
+
+        <section class="policy-section" id="recording">
+          <p class="eyebrow">Documentation</p>
+          <h2>Recording and marketing policy</h2>
+          <p class="intro">Service visits may be documented to support safety, quality control, training, marketing, and dispute prevention.</p>
+
+          <div class="policy-box">
+            <ul>
+              <li>Exterior and interior before-and-after condition may be photographed or recorded.</li>
+              <li>Recording may document pre-existing damage, vehicle condition, service completion, and access.</li>
+              <li>Customer names, addresses, license plates, private documents, and identifying information should not be intentionally published without appropriate permission.</li>
+              <li>Marketing use may be limited or declined when arranged in advance.</li>
+              <li>Never Dirty may still document condition privately for operational and dispute-prevention purposes.</li>
+            </ul>
+          </div>
+        </section>
+
+        <section class="policy-section" id="membership">
+          <p class="eyebrow">Recurring service</p>
+          <h2>Membership policies</h2>
+          <p class="intro">Membership pricing is based on maintaining a vehicle that has already been brought to an acceptable baseline condition.</p>
+
+          <div class="faq-list">
+            <details>
+              <summary>Why is a starting detail required?</summary>
+              <div class="answer">
+                <p>The starting detail creates the clean baseline needed for recurring maintenance pricing. It prevents a heavily soiled vehicle from being treated as a routine maintenance visit.</p>
+              </div>
+            </details>
+
+            <details>
+              <summary>What happens if I skip several visits?</summary>
+              <div class="answer">
+                <p>If the vehicle falls outside normal maintenance condition because of missed visits, heavy use, weather, travel, or unusual contamination, extra labor or another Refresh Detail may be required before normal membership pricing resumes.</p>
+              </div>
+            </details>
+
+            <details>
+              <summary>Can I add another vehicle?</summary>
+              <div class="answer">
+                <p>Yes, subject to route capacity and approval. Additional approved vehicles receive 25% off eligible recurring service pricing.</p>
+              </div>
+            </details>
+
+            <details>
+              <summary>Can my membership be ended?</summary>
+              <div class="answer">
+                <p>Yes. Either party may end recurring service. Never Dirty may discontinue service because of nonpayment, repeated access problems, unsafe conditions, abusive behavior, route changes, excessive cancellations, or a vehicle repeatedly falling outside the agreed maintenance condition.</p>
+              </div>
+            </details>
+          </div>
+
+          <div class="highlight">These policies are designed to keep scheduling fair, pricing accurate, and service quality consistent. Specific written quotes or agreements may add or modify terms for unusual jobs.</div>
+        </section>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta">
+    <div class="container">
+      <p class="eyebrow">Ready to get started?</p>
+      <h2>Choose the service that fits your vehicle.</h2>
+      <p>Request recurring maintenance or a one-time professional detail. Every request is reviewed before scheduling.</p>
+      <div class="btns" style="justify-content:center">
+        <a class="btn primary" href="membership.html">Request Membership</a>
+        <a class="btn secondary" href="detail-request.html">Request a Detail</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container footer-grid">
+    <div>
+      <a class="brand" href="index.html"><span class="logo">N</span><span>Never Dirty</span></a>
+      <p style="margin-top:16px;max-width:460px">Recurring mobile vehicle cleaning and professional detailing in Southern Illinois.</p>
+    </div>
+    <div>
+      <h4>Explore</h4>
+      <div class="footer-links">
+        <a href="index.html">Home</a>
+        <a href="pricing.html">Pricing</a>
+        <a href="membership.html">Membership</a>
+      </div>
+    </div>
+    <div>
+      <h4>Contact</h4>
+      <div class="footer-links">
+        <a href="detail-request.html">Request a Detail</a>
+        <a href="mailto:goneverdirty@gmail.com">goneverdirty@gmail.com</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<div class="mobile-cta">
+  <a class="btn secondary" href="membership.html">Membership</a>
+  <a class="btn primary" href="detail-request.html">Request Detail</a>
+</div>
+
+<script>
+  const menuButton = document.querySelector(".menu");
+  const mobileMenu = document.querySelector(".mobile");
+
+  menuButton.addEventListener("click", () => {
+    const open = mobileMenu.classList.toggle("open");
+    menuButton.setAttribute("aria-expanded", String(open));
+    menuButton.textContent = open ? "×" : "☰";
+  });
+
+  mobileMenu.querySelectorAll("a").forEach(link => {
+    link.addEventListener("click", () => {
+      mobileMenu.classList.remove("open");
+      menuButton.setAttribute("aria-expanded", "false");
+      menuButton.textContent = "☰";
+    });
+  });
+</script>
+</body>
+</html>

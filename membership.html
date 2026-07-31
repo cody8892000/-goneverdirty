@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Request Membership | Never Dirty</title>
+  <meta name="description" content="Request a Never Dirty recurring mobile vehicle-cleaning membership in Southern Illinois.">
+  <meta name="theme-color" content="#080a08">
+
+  <style>
+    :root{--bg:#080a08;--surface:#131713;--surface2:#1b211a;--text:#f7f8f4;--muted:#b4baaf;--muted2:#858d80;--line:rgba(255,255,255,.1);--accent:#dfff3f;--danger:#ff8a80;--max:1160px;--radius:22px}
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth;scroll-padding-top:88px}
+    body{font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:radial-gradient(circle at 85% 5%,rgba(223,255,63,.08),transparent 26rem),var(--bg);color:var(--text);line-height:1.6}
+    a{color:inherit;text-decoration:none}
+    button,input,select,textarea{font:inherit}
+    button,a{-webkit-tap-highlight-color:transparent}
+    :focus-visible{outline:3px solid rgba(223,255,63,.8);outline-offset:3px}
+    .container{width:min(calc(100% - 32px),var(--max));margin:auto}
+    .section{padding:84px 0}
+    .section-sm{padding:56px 0}
+    .eyebrow{color:var(--accent);font-size:.78rem;font-weight:900;letter-spacing:.15em;text-transform:uppercase;margin-bottom:14px}
+    .title{font-size:clamp(2.35rem,6vw,4.9rem);line-height:.97;letter-spacing:-.06em;font-weight:1000;max-width:860px;text-wrap:balance}
+    .copy{color:var(--muted);font-size:1.08rem;max-width:760px;margin-top:20px}
+    .btns{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
+    .btn{display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:0 22px;border-radius:999px;font-weight:900;border:1px solid transparent;transition:.2s;cursor:pointer}
+    .btn:hover{transform:translateY(-2px)}
+    .primary{background:var(--accent);color:#080a08}
+    .secondary{background:rgba(255,255,255,.04);border-color:var(--line);color:var(--text)}
+    header{position:sticky;top:0;z-index:20;background:rgba(8,10,8,.84);backdrop-filter:blur(18px);border-bottom:1px solid rgba(255,255,255,.07)}
+    .nav{height:74px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+    .brand{display:flex;align-items:center;gap:10px;font-weight:1000;letter-spacing:.12em;text-transform:uppercase}
+    .logo{display:grid;place-items:center;width:34px;height:34px;background:var(--accent);color:#080a08;border-radius:10px}
+    .links{display:flex;align-items:center;gap:22px}
+    .links a:not(.btn){color:var(--muted);font-size:.88rem;font-weight:800}
+    .menu{display:none;background:none;border:1px solid var(--line);color:var(--text);width:44px;height:44px;border-radius:13px;font-size:1.25rem}
+    .mobile{display:none;padding:12px 16px 22px;background:#0a0d0a;border-bottom:1px solid var(--line)}
+    .mobile.open{display:grid;gap:10px}
+    .mobile a{padding:12px;border-bottom:1px solid var(--line);font-weight:800}
+    .hero{padding:82px 0 64px}
+    .hero-grid{display:grid;grid-template-columns:1.08fr .92fr;gap:52px;align-items:end}
+    .summary{padding:32px;background:linear-gradient(150deg,var(--surface2),var(--surface));border:1px solid var(--line);border-radius:30px}
+    .summary h2{font-size:1.7rem;letter-spacing:-.04em}
+    .summary-list{display:grid;gap:15px;margin-top:22px}
+    .summary-item{display:grid;grid-template-columns:34px 1fr;gap:12px}
+    .summary-number{color:var(--accent);font-size:.76rem;font-weight:900;letter-spacing:.1em}
+    .summary-item strong{display:block}
+    .summary-item p{color:var(--muted);font-size:.9rem;margin-top:2px}
+    .notice{margin-top:22px;padding:17px 18px;border:1px solid rgba(223,255,63,.22);background:rgba(223,255,63,.06);border-radius:15px;color:#dfe5da}
+    .form-layout{display:grid;grid-template-columns:minmax(0,1fr) 330px;gap:24px;align-items:start}
+    .form-card,.side-card{background:linear-gradient(150deg,var(--surface2),var(--surface));border:1px solid var(--line);border-radius:var(--radius)}
+    .form-card{padding:clamp(24px,4vw,40px)}
+    .side-stack{display:grid;gap:18px;position:sticky;top:96px}
+    .side-card{padding:24px}
+    .side-card h3{font-size:1.2rem;letter-spacing:-.03em}
+    .side-card p,.side-card li{color:var(--muted);font-size:.9rem}
+    .side-card p{margin-top:9px}
+    .side-card ul{display:grid;gap:9px;margin:15px 0 0 18px}
+    .form-section{padding:0 0 34px;margin-bottom:34px;border-bottom:1px solid var(--line)}
+    .form-section:last-of-type{border-bottom:0;margin-bottom:0;padding-bottom:0}
+    .form-section h2{font-size:1.55rem;letter-spacing:-.035em}
+    .form-section>p{color:var(--muted);margin-top:6px;font-size:.92rem}
+    .field-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:22px}
+    .field-grid.one{grid-template-columns:1fr}
+    .field{display:grid;gap:8px}
+    .field.full{grid-column:1/-1}
+    label,.legend{font-size:.86rem;font-weight:850;color:#e8ebe5}
+    .required{color:var(--accent)}
+    input,select,textarea{width:100%;color:var(--text);background:#0c0f0c;border:1px solid var(--line);border-radius:13px;padding:13px 14px;transition:.18s}
+    input,select{min-height:50px}
+    textarea{min-height:115px;resize:vertical}
+    input::placeholder,textarea::placeholder{color:#626a5f}
+    input:focus,select:focus,textarea:focus{border-color:rgba(223,255,63,.5);outline:none;box-shadow:0 0 0 3px rgba(223,255,63,.08)}
+    select{color-scheme:dark}
+    .help{color:var(--muted2);font-size:.78rem}
+    fieldset{border:0}
+    .choices{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:12px}
+    .choices.two{grid-template-columns:repeat(2,1fr)}
+    .choice{position:relative}
+    .choice input{position:absolute;opacity:0;pointer-events:none}
+    .choice label{display:flex;min-height:76px;flex-direction:column;justify-content:center;padding:13px 14px;background:#0c0f0c;border:1px solid var(--line);border-radius:13px;cursor:pointer;transition:.18s}
+    .choice label span{display:block;color:var(--muted);font-size:.78rem;font-weight:600;margin-top:2px}
+    .choice input:checked+label{border-color:rgba(223,255,63,.62);background:rgba(223,255,63,.075);box-shadow:0 0 0 2px rgba(223,255,63,.08)}
+    .check-list{display:grid;gap:13px;margin-top:20px}
+    .check{display:grid;grid-template-columns:20px 1fr;gap:11px;align-items:start}
+    .check input{width:18px;height:18px;min-height:0;margin-top:4px;accent-color:var(--accent)}
+    .check label{font-weight:650;color:var(--muted)}
+    .check strong{color:var(--text)}
+    .submit-box{margin-top:30px;padding:24px;background:rgba(223,255,63,.055);border:1px solid rgba(223,255,63,.19);border-radius:18px}
+    .submit-box p{color:var(--muted);font-size:.86rem;margin-bottom:16px}
+    .submit-box .btn{width:100%}
+    .status{display:none;margin-top:14px;padding:12px 14px;border-radius:12px;font-size:.88rem}
+    .status.show{display:block}
+    .status.error{color:#ffd7d3;background:rgba(255,138,128,.09);border:1px solid rgba(255,138,128,.25)}
+    footer{padding:56px 0 110px;border-top:1px solid var(--line);color:var(--muted)}
+    .footer-grid{display:grid;grid-template-columns:1.4fr .6fr .6fr;gap:36px}
+    .footer-grid h4{color:var(--text);margin-bottom:12px}
+    .footer-links{display:grid;gap:8px}
+    .mobile-cta{display:none;position:fixed;bottom:0;left:0;right:0;z-index:25;background:rgba(8,10,8,.94);backdrop-filter:blur(16px);border-top:1px solid var(--line);padding:10px;gap:8px}
+    .mobile-cta .btn{flex:1;min-height:48px;padding:0 10px;font-size:.78rem}
+    @media(max-width:960px){.links a:not(.btn){display:none}.links .btn{display:none}.menu{display:block}.hero-grid,.form-layout{grid-template-columns:1fr}.side-stack{position:static;grid-template-columns:1fr 1fr}.footer-grid{grid-template-columns:1fr 1fr}.footer-grid>div:first-child{grid-column:1/-1}}
+    @media(max-width:680px){.section{padding:64px 0}.hero{padding:56px 0}.field-grid,.choices,.choices.two,.side-stack,.footer-grid{grid-template-columns:1fr}.btns{display:grid}.btn{width:100%}.form-card{padding:24px 18px}.mobile-cta{display:flex}footer{padding-bottom:130px}}
+  </style>
+</head>
+
+<body>
+<header>
+  <div class="container nav">
+    <a class="brand" href="index.html"><span class="logo">N</span><span>Never Dirty</span></a>
+    <nav class="links">
+      <a href="index.html">Home</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="#application">Application</a>
+      <a href="#policies">Important Policies</a>
+      <a class="btn primary" href="#application">Request Membership</a>
+    </nav>
+    <button class="menu" type="button" aria-label="Open menu" aria-expanded="false">☰</button>
+  </div>
+  <nav class="mobile">
+    <a href="index.html">Home</a>
+    <a href="pricing.html">Pricing</a>
+    <a href="#application">Application</a>
+    <a href="#policies">Important Policies</a>
+  </nav>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="container hero-grid">
+      <div>
+        <p class="eyebrow">Membership application</p>
+        <h1 class="title">Tell us about your vehicle and your routine.</h1>
+        <p class="copy">Submit the form below to request a recurring Never Dirty membership. This is an application, not an automatic booking. We will review your vehicle, location, requested schedule, and service needs before confirming availability and pricing.</p>
+        <div class="btns">
+          <a class="btn primary" href="#application">Start Application</a>
+          <a class="btn secondary" href="pricing.html">Review Pricing</a>
+        </div>
+      </div>
+
+      <aside class="summary">
+        <p class="eyebrow">What happens next</p>
+        <h2>A simple approval process.</h2>
+        <div class="summary-list">
+          <div class="summary-item"><span class="summary-number">01</span><div><strong>You submit the request.</strong><p>Provide your contact, vehicle, location, and scheduling information.</p></div></div>
+          <div class="summary-item"><span class="summary-number">02</span><div><strong>We review the fit.</strong><p>We confirm service-area coverage, vehicle condition, and available routes.</p></div></div>
+          <div class="summary-item"><span class="summary-number">03</span><div><strong>You receive a quote.</strong><p>Approved customers receive starting-detail and recurring-service details.</p></div></div>
+        </div>
+        <div class="notice">Every new membership begins with a required Complete Refresh Detail. New members receive 50% off the standard starting-detail price when the first month is prepaid.</div>
+      </aside>
+    </div>
+  </section>
+
+  <section class="section" id="application">
+    <div class="container form-layout">
+      <form class="form-card" id="membershipForm" novalidate>
+        <section class="form-section">
+          <h2>1. Contact information</h2>
+          <p>Who should we contact about this membership request?</p>
+          <div class="field-grid">
+            <div class="field">
+              <label for="name">Full name <span class="required">*</span></label>
+              <input id="name" name="name" type="text" autocomplete="name" required placeholder="Your full name">
+            </div>
+            <div class="field">
+              <label for="phone">Mobile phone <span class="required">*</span></label>
+              <input id="phone" name="phone" type="tel" autocomplete="tel" required placeholder="(618) 555-1234">
+            </div>
+            <div class="field">
+              <label for="email">Email address <span class="required">*</span></label>
+              <input id="email" name="email" type="email" autocomplete="email" required placeholder="you@example.com">
+            </div>
+            <div class="field">
+              <label for="contactMethod">Preferred contact method</label>
+              <select id="contactMethod" name="contactMethod">
+                <option>Text message</option>
+                <option>Email</option>
+                <option>Phone call</option>
+              </select>
+            </div>
+          </div>
+        </section>
+
+        <section class="form-section">
+          <h2>2. Service location</h2>
+          <p>Where will the vehicle normally be available for recurring service?</p>
+          <div class="field-grid">
+            <div class="field full">
+              <label for="address">Service address <span class="required">*</span></label>
+              <input id="address" name="address" type="text" autocomplete="street-address" required placeholder="Street address">
+            </div>
+            <div class="field">
+              <label for="city">City <span class="required">*</span></label>
+              <input id="city" name="city" type="text" required placeholder="City">
+            </div>
+            <div class="field">
+              <label for="county">County <span class="required">*</span></label>
+              <select id="county" name="county" required>
+                <option value="">Select county</option>
+                <option>Saline County</option>
+                <option>Williamson County</option>
+                <option>Franklin County</option>
+                <option>Other / Unsure</option>
+              </select>
+            </div>
+          </div>
+
+          <fieldset style="margin-top:22px">
+            <legend class="legend">Usual service location <span class="required">*</span></legend>
+            <div class="choices">
+              <div class="choice"><input id="locHome" type="radio" name="locationType" value="Home" required><label for="locHome">Home<span>Residential service location</span></label></div>
+              <div class="choice"><input id="locWork" type="radio" name="locationType" value="Work"><label for="locWork">Workplace<span>Employer-approved location</span></label></div>
+              <div class="choice"><input id="locOther" type="radio" name="locationType" value="Other"><label for="locOther">Other<span>Describe below</span></label></div>
+            </div>
+          </fieldset>
+
+          <div class="field-grid">
+            <div class="field">
+              <label for="surface">Parking surface <span class="required">*</span></label>
+              <select id="surface" name="surface" required>
+                <option value="">Select surface</option>
+                <option>Paved driveway or lot</option>
+                <option>Gravel driveway or lot</option>
+                <option>Firm, non-muddy grass</option>
+                <option>Street parking</option>
+                <option>Other</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="access">Vehicle access</label>
+              <select id="access" name="access">
+                <option>Vehicle will be unlocked</option>
+                <option>Keys will be available</option>
+                <option>I will be present</option>
+                <option>Exterior service only unless arranged</option>
+              </select>
+            </div>
+            <div class="field full">
+              <label for="locationNotes">Location or access notes</label>
+              <textarea id="locationNotes" name="locationNotes" placeholder="Gate instructions, workplace restrictions, runoff concerns, parking details, or other useful information"></textarea>
+            </div>
+          </div>
+        </section>
+
+        <section class="form-section">
+          <h2>3. Vehicle information</h2>
+          <p>Submit one vehicle per application. Additional vehicles can be added after review.</p>
+          <div class="field-grid">
+            <div class="field">
+              <label for="year">Year <span class="required">*</span></label>
+              <input id="year" name="year" type="number" min="1980" max="2030" required placeholder="2021">
+            </div>
+            <div class="field">
+              <label for="make">Make <span class="required">*</span></label>
+              <input id="make" name="make" type="text" required placeholder="Chevrolet">
+            </div>
+            <div class="field">
+              <label for="model">Model <span class="required">*</span></label>
+              <input id="model" name="model" type="text" required placeholder="Traverse">
+            </div>
+            <div class="field">
+              <label for="color">Color</label>
+              <input id="color" name="color" type="text" placeholder="Black">
+            </div>
+          </div>
+
+          <fieldset style="margin-top:22px">
+            <legend class="legend">Approximate vehicle size <span class="required">*</span></legend>
+            <div class="choices">
+              <div class="choice"><input id="sizeSmall" type="radio" name="vehicleSize" value="Small" required><label for="sizeSmall">Small<span>Car, coupe, compact</span></label></div>
+              <div class="choice"><input id="sizeMedium" type="radio" name="vehicleSize" value="Medium"><label for="sizeMedium">Medium<span>Small SUV, crossover, midsize truck</span></label></div>
+              <div class="choice"><input id="sizeLarge" type="radio" name="vehicleSize" value="Large"><label for="sizeLarge">Large<span>Large SUV, van, full-size truck</span></label></div>
+            </div>
+          </fieldset>
+        </section>
+
+        <section class="form-section">
+          <h2>4. Membership selection</h2>
+          <p>Select the service and frequency you are most interested in. We may recommend a different option after reviewing the vehicle.</p>
+
+          <fieldset style="margin-top:22px">
+            <legend class="legend">Membership level <span class="required">*</span></legend>
+            <div class="choices two">
+              <div class="choice"><input id="essential" type="radio" name="membership" value="Essential" required><label for="essential">Essential<span>$20 weekly · $25 bi-weekly · $30 monthly</span></label></div>
+              <div class="choice"><input id="deluxe" type="radio" name="membership" value="Deluxe"><label for="deluxe">Deluxe<span>$35 weekly · $40 bi-weekly · $45 monthly</span></label></div>
+            </div>
+          </fieldset>
+
+          <fieldset style="margin-top:22px">
+            <legend class="legend">Requested frequency <span class="required">*</span></legend>
+            <div class="choices">
+              <div class="choice"><input id="weekly" type="radio" name="frequency" value="Weekly" required><label for="weekly">Weekly<span>Most consistent upkeep</span></label></div>
+              <div class="choice"><input id="biweekly" type="radio" name="frequency" value="Every 2 Weeks"><label for="biweekly">Every 2 Weeks<span>Balanced maintenance</span></label></div>
+              <div class="choice"><input id="monthly" type="radio" name="frequency" value="Monthly"><label for="monthly">Monthly<span>Light ongoing upkeep</span></label></div>
+            </div>
+          </fieldset>
+
+          <div class="field-grid">
+            <div class="field">
+              <label for="preferredDays">Preferred weekdays</label>
+              <input id="preferredDays" name="preferredDays" type="text" placeholder="Example: Monday, Wednesday, or Friday">
+            </div>
+            <div class="field">
+              <label for="timeWindow">Best service window</label>
+              <select id="timeWindow" name="timeWindow">
+                <option>Any weekday availability</option>
+                <option>Morning</option>
+                <option>Afternoon</option>
+                <option>After 2:00 PM</option>
+                <option>Workplace hours</option>
+              </select>
+            </div>
+          </div>
+        </section>
+
+        <section class="form-section">
+          <h2>5. Current vehicle condition</h2>
+          <p>Accurate answers help us determine whether the standard starting detail is appropriate.</p>
+
+          <div class="field-grid">
+            <div class="field">
+              <label for="overallCondition">Overall interior condition <span class="required">*</span></label>
+              <select id="overallCondition" name="overallCondition" required>
+                <option value="">Select condition</option>
+                <option>Lightly used / already fairly clean</option>
+                <option>Normal daily-use buildup</option>
+                <option>Moderately dirty</option>
+                <option>Heavily soiled</option>
+                <option>Unsure</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="lastDetail">Last professional detail</label>
+              <select id="lastDetail" name="lastDetail">
+                <option>Within the last 3 months</option>
+                <option>3–6 months ago</option>
+                <option>6–12 months ago</option>
+                <option>More than a year ago</option>
+                <option>Never / Unsure</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="check-list">
+            <div class="check"><input id="petHair" name="conditions" value="Pet hair" type="checkbox"><label for="petHair"><strong>Pet hair:</strong> noticeable pet hair is currently present.</label></div>
+            <div class="check"><input id="stains" name="conditions" value="Heavy stains" type="checkbox"><label for="stains"><strong>Stains:</strong> seats, carpets, or mats have significant staining.</label></div>
+            <div class="check"><input id="trash" name="conditions" value="Heavy trash or debris" type="checkbox"><label for="trash"><strong>Trash or debris:</strong> the vehicle contains substantial loose trash or heavy debris.</label></div>
+            <div class="check"><input id="smoke" name="conditions" value="Smoke or strong odor" type="checkbox"><label for="smoke"><strong>Odor:</strong> cigarette smoke or another strong odor is present.</label></div>
+            <div class="check"><input id="biohazard" name="conditions" value="Possible biohazard" type="checkbox"><label for="biohazard"><strong>Possible biohazard:</strong> vomit, blood, urine, feces, needles, pests, mold, or other hazardous material may be present.</label></div>
+          </div>
+
+          <div class="field-grid one">
+            <div class="field">
+              <label for="conditionNotes">Condition details</label>
+              <textarea id="conditionNotes" name="conditionNotes" placeholder="Describe pet hair, stains, odors, spills, excessive mud, work-related dirt, child-seat areas, or anything else we should know"></textarea>
+            </div>
+          </div>
+        </section>
+
+        <section class="form-section" id="policies">
+          <h2>6. Required acknowledgments</h2>
+          <p>Please review and acknowledge the basic service policies below.</p>
+
+          <div class="check-list">
+            <div class="check"><input id="baseline" type="checkbox" required><label for="baseline">I understand that every membership begins with a <strong>required Complete Refresh Detail</strong> and that severe conditions may cost more than the advertised new-member starting price.</label></div>
+            <div class="check"><input id="belongings" type="checkbox" required><label for="belongings">I understand that I am <strong>requested, but not required, to remove personal belongings</strong>. Loose items may be placed into a provided belongings bag and left on the passenger seat. I remain responsible for valuables and sensitive items.</label></div>
+            <div class="check"><input id="payment" type="checkbox" required><label for="payment">I understand that payment is due before service and that recurring scheduling is not confirmed until payment and availability are verified.</label></div>
+            <div class="check"><input id="weather" type="checkbox" required><label for="weather">I understand that weather, unsafe conditions, muddy access, inadequate runoff space, or other site limitations may require rescheduling.</label></div>
+            <div class="check"><input id="recording" type="checkbox" required><label for="recording">I understand that service visits may be recorded for safety, quality documentation, dispute prevention, and possible marketing use, subject to applicable permissions.</label></div>
+            <div class="check"><input id="smsConsent" type="checkbox" required><label for="smsConsent">I authorize Never Dirty to contact me by text, phone, or email about this request, scheduling, payment, and service updates. Standard message and data rates may apply.</label></div>
+            <div class="check"><input id="truthful" type="checkbox" required><label for="truthful">I confirm that the information provided is accurate to the best of my knowledge.</label></div>
+          </div>
+        </section>
+
+        <div class="submit-box">
+          <p>Submitting opens your email app with the completed application addressed to <strong>goneverdirty@gmail.com</strong>. Review the email and press send to finish your request.</p>
+          <button class="btn primary" type="submit">Create Membership Request Email</button>
+          <div class="status" id="formStatus" role="alert"></div>
+        </div>
+      </form>
+
+      <aside class="side-stack">
+        <section class="side-card">
+          <h3>Starting-detail prices</h3>
+          <p>New-member pricing with first-month prepayment:</p>
+          <ul>
+            <li>Small vehicle: $70</li>
+            <li>Medium vehicle: $85</li>
+            <li>Large vehicle: $100</li>
+          </ul>
+          <p>Severe pet hair, heavy stains, trash, biohazards, or restoration work require a separate quote.</p>
+        </section>
+
+        <section class="side-card">
+          <h3>Service-area reminder</h3>
+          <p>Primary coverage is Saline County, with select reasonably located customers in Williamson and Franklin Counties.</p>
+          <p>Route availability and travel requirements are reviewed before approval.</p>
+        </section>
+
+        <section class="side-card">
+          <h3>Site requirements</h3>
+          <ul>
+            <li>Approved home or workplace location</li>
+            <li>Paved, gravel, or firm non-muddy service area</li>
+            <li>Adequate room and safe runoff conditions</li>
+            <li>Vehicle and interior access as arranged</li>
+          </ul>
+        </section>
+      </aside>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container footer-grid">
+    <div>
+      <a class="brand" href="index.html"><span class="logo">N</span><span>Never Dirty</span></a>
+      <p style="margin-top:16px;max-width:460px">Recurring mobile vehicle cleaning and professional detailing in Southern Illinois.</p>
+    </div>
+    <div>
+      <h4>Explore</h4>
+      <div class="footer-links"><a href="index.html">Home</a><a href="pricing.html">Pricing</a><a href="#application">Membership Form</a></div>
+    </div>
+    <div>
+      <h4>Contact</h4>
+      <div class="footer-links"><a href="mailto:goneverdirty@gmail.com">goneverdirty@gmail.com</a><a href="mailto:goneverdirty@gmail.com?subject=Never Dirty Question">Ask a Question</a></div>
+    </div>
+  </div>
+</footer>
+
+<div class="mobile-cta">
+  <a class="btn secondary" href="pricing.html">View Pricing</a>
+  <a class="btn primary" href="#application">Apply Now</a>
+</div>
+
+<script>
+  const menuButton = document.querySelector(".menu");
+  const mobileMenu = document.querySelector(".mobile");
+
+  menuButton.addEventListener("click", () => {
+    const open = mobileMenu.classList.toggle("open");
+    menuButton.setAttribute("aria-expanded", String(open));
+    menuButton.textContent = open ? "×" : "☰";
+  });
+
+  mobileMenu.querySelectorAll("a").forEach(link => {
+    link.addEventListener("click", () => {
+      mobileMenu.classList.remove("open");
+      menuButton.setAttribute("aria-expanded", "false");
+      menuButton.textContent = "☰";
+    });
+  });
+
+  const form = document.getElementById("membershipForm");
+  const statusBox = document.getElementById("formStatus");
+
+  function selected(name) {
+    return form.querySelector(`[name="${name}"]:checked`)?.value || "Not selected";
+  }
+
+  function checkedValues(name) {
+    return [...form.querySelectorAll(`[name="${name}"]:checked`)].map(item => item.value).join(", ") || "None reported";
+  }
+
+  form.addEventListener("submit", event => {
+    event.preventDefault();
+
+    if (!form.checkValidity()) {
+      form.reportValidity();
+      statusBox.className = "status show error";
+      statusBox.textContent = "Please complete all required fields and acknowledgments before submitting.";
+      return;
+    }
+
+    const data = new FormData(form);
+    const subject = `Never Dirty Membership Request - ${data.get("name")} - ${data.get("year")} ${data.get("make")} ${data.get("model")}`;
+
+    const body = [
+      "NEVER DIRTY MEMBERSHIP REQUEST",
+      "",
+      "CONTACT",
+      `Name: ${data.get("name")}`,
+      `Phone: ${data.get("phone")}`,
+      `Email: ${data.get("email")}`,
+      `Preferred contact: ${data.get("contactMethod")}`,
+      "",
+      "SERVICE LOCATION",
+      `Address: ${data.get("address")}`,
+      `City: ${data.get("city")}`,
+      `County: ${data.get("county")}`,
+      `Location type: ${selected("locationType")}`,
+      `Parking surface: ${data.get("surface")}`,
+      `Vehicle access: ${data.get("access")}`,
+      `Location notes: ${data.get("locationNotes") || "None"}`,
+      "",
+      "VEHICLE",
+      `Year: ${data.get("year")}`,
+      `Make: ${data.get("make")}`,
+      `Model: ${data.get("model")}`,
+      `Color: ${data.get("color") || "Not provided"}`,
+      `Approximate size: ${selected("vehicleSize")}`,
+      "",
+      "MEMBERSHIP REQUEST",
+      `Level: ${selected("membership")}`,
+      `Frequency: ${selected("frequency")}`,
+      `Preferred weekdays: ${data.get("preferredDays") || "Flexible"}`,
+      `Best service window: ${data.get("timeWindow")}`,
+      "",
+      "CURRENT CONDITION",
+      `Overall condition: ${data.get("overallCondition")}`,
+      `Last professional detail: ${data.get("lastDetail")}`,
+      `Conditions reported: ${checkedValues("conditions")}`,
+      `Condition details: ${data.get("conditionNotes") || "None"}`,
+      "",
+      "The applicant checked all required policy acknowledgments and contact consent on the website form."
+    ].join("\n");
+
+    window.location.href =
+      `mailto:goneverdirty@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Never Dirty | Premium Mobile Vehicle Care</title>
+  <meta name="description" content="Learn about Never Dirty, a premium mobile vehicle-maintenance and detailing service serving Southern Illinois.">
+  <meta name="theme-color" content="#080a08">
+
+  <style>
+    :root{
+      --bg:#080a08;
+      --surface:#131713;
+      --surface2:#1b211a;
+      --text:#f7f8f4;
+      --muted:#b4baaf;
+      --muted2:#858d80;
+      --line:rgba(255,255,255,.1);
+      --accent:#dfff3f;
+      --max:1160px;
+      --radius:22px;
+    }
+
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth;scroll-padding-top:88px}
+    body{
+      font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+      background:
+        radial-gradient(circle at 84% 6%,rgba(223,255,63,.08),transparent 26rem),
+        radial-gradient(circle at 10% 55%,rgba(223,255,63,.04),transparent 22rem),
+        var(--bg);
+      color:var(--text);
+      line-height:1.65;
+    }
+
+    a{color:inherit;text-decoration:none}
+    button{font:inherit}
+    button,a{-webkit-tap-highlight-color:transparent}
+    :focus-visible{outline:3px solid rgba(223,255,63,.8);outline-offset:3px}
+
+    .container{width:min(calc(100% - 32px),var(--max));margin:auto}
+    .section{padding:88px 0}
+    .eyebrow{color:var(--accent);font-size:.78rem;font-weight:900;letter-spacing:.15em;text-transform:uppercase;margin-bottom:14px}
+    .title{font-size:clamp(2.6rem,6vw,5.25rem);line-height:.96;letter-spacing:-.06em;font-weight:1000;max-width:920px;text-wrap:balance}
+    .section-title{font-size:clamp(2rem,4vw,3.6rem);line-height:1;letter-spacing:-.055em;max-width:820px;text-wrap:balance}
+    .copy{color:var(--muted);font-size:1.08rem;max-width:760px;margin-top:20px}
+    .btns{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
+    .btn{display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:0 22px;border-radius:999px;font-weight:900;border:1px solid transparent;transition:.2s}
+    .btn:hover{transform:translateY(-2px)}
+    .primary{background:var(--accent);color:#080a08}
+    .secondary{background:rgba(255,255,255,.04);border-color:var(--line);color:var(--text)}
+
+    header{
+      position:sticky;
+      top:0;
+      z-index:20;
+      background:rgba(8,10,8,.84);
+      backdrop-filter:blur(18px);
+      border-bottom:1px solid rgba(255,255,255,.07);
+    }
+
+    .nav{height:74px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+    .brand{display:flex;align-items:center;gap:10px;font-weight:1000;letter-spacing:.12em;text-transform:uppercase}
+    .logo{display:grid;place-items:center;width:34px;height:34px;background:var(--accent);color:#080a08;border-radius:10px}
+    .links{display:flex;align-items:center;gap:22px}
+    .links a:not(.btn){color:var(--muted);font-size:.88rem;font-weight:800}
+    .menu{display:none;background:none;border:1px solid var(--line);color:var(--text);width:44px;height:44px;border-radius:13px;font-size:1.25rem}
+    .mobile{display:none;padding:12px 16px 22px;background:#0a0d0a;border-bottom:1px solid var(--line)}
+    .mobile.open{display:grid;gap:10px}
+    .mobile a{padding:12px;border-bottom:1px solid var(--line);font-weight:800}
+
+    .hero{padding:88px 0 72px}
+    .hero-grid{display:grid;grid-template-columns:1.08fr .92fr;gap:50px;align-items:center}
+    .visual{
+      min-height:500px;
+      border-radius:32px;
+      border:1px solid var(--line);
+      background:
+        linear-gradient(135deg,rgba(223,255,63,.12),transparent 35%),
+        linear-gradient(160deg,#1a2119,#0f120f);
+      position:relative;
+      overflow:hidden;
+      display:flex;
+      align-items:flex-end;
+      padding:28px;
+    }
+
+    .visual::before{
+      content:"";
+      position:absolute;
+      width:360px;
+      height:360px;
+      border-radius:50%;
+      background:rgba(223,255,63,.08);
+      top:-80px;
+      right:-70px;
+      filter:blur(4px);
+    }
+
+    .visual::after{
+      content:"NEVER DIRTY";
+      position:absolute;
+      right:-28px;
+      top:54%;
+      transform:rotate(90deg);
+      font-size:clamp(3rem,7vw,6.5rem);
+      font-weight:1000;
+      letter-spacing:.07em;
+      color:rgba(255,255,255,.03);
+      white-space:nowrap;
+    }
+
+    .owner-card{
+      position:relative;
+      z-index:2;
+      width:min(100%,430px);
+      padding:24px;
+      border-radius:20px;
+      background:rgba(8,10,8,.8);
+      backdrop-filter:blur(12px);
+      border:1px solid rgba(255,255,255,.09);
+    }
+
+    .owner-card h2{font-size:1.6rem;letter-spacing:-.04em}
+    .owner-card p{color:var(--muted);margin-top:10px}
+    .owner-card .tag{display:inline-block;margin-top:16px;color:var(--accent);font-size:.8rem;font-weight:900;letter-spacing:.11em;text-transform:uppercase}
+
+    .stats{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      border-top:1px solid var(--line);
+      border-bottom:1px solid var(--line);
+      background:rgba(255,255,255,.018);
+    }
+
+    .stat{
+      padding:30px;
+      border-right:1px solid var(--line);
+      text-align:center;
+    }
+
+    .stat:last-child{border-right:0}
+    .stat strong{display:block;font-size:1.8rem;letter-spacing:-.04em}
+    .stat span{display:block;color:var(--muted);font-size:.82rem;margin-top:4px}
+
+    .story-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:48px;align-items:start}
+    .story-copy{display:grid;gap:18px}
+    .story-copy p{color:var(--muted)}
+    .story-card{
+      padding:34px;
+      background:linear-gradient(150deg,var(--surface2),var(--surface));
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+    }
+
+    .story-card h3{font-size:1.45rem;letter-spacing:-.04em}
+    .story-card p{color:var(--muted);margin-top:12px}
+
+    .principles{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:18px;
+      margin-top:34px;
+    }
+
+    .principle{
+      padding:26px;
+      background:linear-gradient(150deg,var(--surface2),var(--surface));
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+    }
+
+    .principle span{display:inline-grid;place-items:center;width:38px;height:38px;border-radius:11px;background:rgba(223,255,63,.1);color:var(--accent);font-weight:900}
+    .principle h3{margin-top:18px;font-size:1.18rem;letter-spacing:-.03em}
+    .principle p{color:var(--muted);margin-top:8px;font-size:.92rem}
+
+    .difference-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:34px}
+    .difference-card{
+      padding:30px;
+      background:#0d100d;
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+    }
+
+    .difference-card h3{font-size:1.35rem;letter-spacing:-.04em}
+    .difference-card ul{display:grid;gap:10px;margin:16px 0 0 20px;color:var(--muted)}
+    .difference-card strong{color:var(--text)}
+
+    .process{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:16px;
+      margin-top:34px;
+    }
+
+    .step{
+      padding:24px;
+      border:1px solid var(--line);
+      border-radius:18px;
+      background:linear-gradient(150deg,var(--surface2),var(--surface));
+    }
+
+    .step .num{color:var(--accent);font-weight:900;font-size:.82rem;letter-spacing:.1em}
+    .step h3{font-size:1.1rem;margin-top:14px}
+    .step p{color:var(--muted);font-size:.9rem;margin-top:8px}
+
+    .trust{
+      display:grid;
+      grid-template-columns:1.1fr .9fr;
+      gap:26px;
+      align-items:stretch;
+    }
+
+    .trust-main,.trust-side{
+      padding:36px;
+      border-radius:var(--radius);
+      border:1px solid var(--line);
+      background:linear-gradient(150deg,var(--surface2),var(--surface));
+    }
+
+    .trust-main p,.trust-side p{color:var(--muted);margin-top:14px}
+    .trust-list{display:grid;gap:12px;margin-top:24px}
+    .trust-item{display:grid;grid-template-columns:22px 1fr;gap:10px;color:var(--muted)}
+    .trust-item span{color:var(--accent);font-weight:900}
+
+    .cta{
+      text-align:center;
+      padding:76px 0;
+      border-top:1px solid var(--line);
+    }
+
+    .cta h2{font-size:clamp(2.2rem,5vw,4rem);line-height:1;letter-spacing:-.055em}
+    .cta p{color:var(--muted);max-width:650px;margin:18px auto 0}
+
+    footer{padding:56px 0 110px;border-top:1px solid var(--line);color:var(--muted)}
+    .footer-grid{display:grid;grid-template-columns:1.4fr .6fr .6fr;gap:36px}
+    .footer-grid h4{color:var(--text);margin-bottom:12px}
+    .footer-links{display:grid;gap:8px}
+
+    .mobile-cta{
+      display:none;
+      position:fixed;
+      bottom:0;
+      left:0;
+      right:0;
+      z-index:25;
+      background:rgba(8,10,8,.94);
+      backdrop-filter:blur(16px);
+      border-top:1px solid var(--line);
+      padding:10px;
+      gap:8px;
+    }
+
+    .mobile-cta .btn{flex:1;min-height:48px;padding:0 10px;font-size:.78rem}
+
+    @media(max-width:960px){
+      .links a:not(.btn){display:none}
+      .links .btn{display:none}
+      .menu{display:block}
+      .hero-grid,.story-grid,.trust{grid-template-columns:1fr}
+      .stats{grid-template-columns:repeat(2,1fr)}
+      .stat:nth-child(2){border-right:0}
+      .stat:nth-child(-n+2){border-bottom:1px solid var(--line)}
+      .principles{grid-template-columns:1fr 1fr}
+      .process{grid-template-columns:1fr 1fr}
+      .footer-grid{grid-template-columns:1fr 1fr}
+      .footer-grid>div:first-child{grid-column:1/-1}
+    }
+
+    @media(max-width:680px){
+      .section{padding:66px 0}
+      .hero{padding:58px 0}
+      .visual{min-height:400px}
+      .btns{display:grid}
+      .btn{width:100%}
+      .principles,.difference-grid,.process,.footer-grid{grid-template-columns:1fr}
+      .footer-grid>div:first-child{grid-column:auto}
+      .stats{grid-template-columns:1fr}
+      .stat{border-right:0;border-bottom:1px solid var(--line)}
+      .stat:last-child{border-bottom:0}
+      .mobile-cta{display:flex}
+      footer{padding-bottom:130px}
+    }
+  </style>
+</head>
+
+<body>
+<header>
+  <div class="container nav">
+    <a class="brand" href="index.html"><span class="logo">N</span><span>Never Dirty</span></a>
+    <nav class="links">
+      <a href="index.html">Home</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="membership.html">Membership</a>
+      <a href="detail-request.html">Detail Request</a>
+      <a href="faq-policies.html">FAQ</a>
+      <a class="btn primary" href="membership.html">Request Membership</a>
+    </nav>
+    <button class="menu" type="button" aria-label="Open menu" aria-expanded="false">☰</button>
+  </div>
+
+  <nav class="mobile">
+    <a href="index.html">Home</a>
+    <a href="pricing.html">Pricing</a>
+    <a href="membership.html">Membership</a>
+    <a href="detail-request.html">Detail Request</a>
+    <a href="faq-policies.html">FAQ & Policies</a>
+  </nav>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="container hero-grid">
+      <div>
+        <p class="eyebrow">About Never Dirty</p>
+        <h1 class="title">Built for people who are tired of starting over.</h1>
+        <p class="copy">Never Dirty was created around one simple idea: your vehicle should stay clean without taking over your evenings, weekends, or free time. Instead of waiting until the mess becomes a problem, we maintain it before it gets there.</p>
+        <div class="btns">
+          <a class="btn primary" href="membership.html">Request Membership</a>
+          <a class="btn secondary" href="detail-request.html">Request a Detail</a>
+        </div>
+      </div>
+
+      <div class="visual" aria-label="Never Dirty brand story">
+        <div class="owner-card">
+          <p class="eyebrow">Owner-operated service</p>
+          <h2>Attention to detail without the dealership attitude.</h2>
+          <p>Every vehicle is treated like a reflection of the business. The goal is not to rush through as many cars as possible. The goal is to make each customer feel like maintaining a clean vehicle finally became easy.</p>
+          <span class="tag">Southern Illinois</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="stats" aria-label="Business highlights">
+    <div class="stat"><strong>Mobile</strong><span>Service at home or work</span></div>
+    <div class="stat"><strong>Recurring</strong><span>Consistent vehicle maintenance</span></div>
+    <div class="stat"><strong>Premium</strong><span>Professional products and process</span></div>
+    <div class="stat"><strong>Local</strong><span>Southern Illinois coverage</span></div>
+  </section>
+
+  <section class="section">
+    <div class="container story-grid">
+      <div>
+        <p class="eyebrow">Why it exists</p>
+        <h2 class="section-title">A cleaner vehicle without losing your weekend.</h2>
+      </div>
+
+      <div class="story-copy">
+        <p>Most people do not actually hate having a clean vehicle. They hate the time, effort, setup, and constant restarting that comes with keeping it clean.</p>
+        <p>Traditional detailing usually happens after the vehicle has already become heavily soiled. That means larger bills, longer appointments, and a constant cycle of letting the vehicle go and then paying to bring it back.</p>
+        <p>Never Dirty is built around a different model: start with a proper detail, then maintain the result on a schedule that fits the way the vehicle is actually used.</p>
+        <div class="story-card">
+          <h3>The goal is simple.</h3>
+          <p>When someone gets into their vehicle, it should feel cared for—not like another chore waiting for them after work.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:0">
+    <div class="container">
+      <p class="eyebrow">What the brand stands for</p>
+      <h2 class="section-title">Professional service built around real life.</h2>
+
+      <div class="principles">
+        <article class="principle">
+          <span>01</span>
+          <h3>Convenience first</h3>
+          <p>Service comes to approved homes and workplaces so customers do not have to rearrange their entire day around a detail.</p>
+        </article>
+
+        <article class="principle">
+          <span>02</span>
+          <h3>Consistency over rescue</h3>
+          <p>Recurring maintenance prevents heavy buildup and keeps the vehicle from falling back into the same condition.</p>
+        </article>
+
+        <article class="principle">
+          <span>03</span>
+          <h3>Clear expectations</h3>
+          <p>Pricing, belongings, access, weather, recording, and condition policies are explained before service—not hidden afterward.</p>
+        </article>
+
+        <article class="principle">
+          <span>04</span>
+          <h3>Respect for the vehicle</h3>
+          <p>Professional products, premium microfiber, and material-conscious methods are used instead of one-process-fits-all cleaning.</p>
+        </article>
+
+        <article class="principle">
+          <span>05</span>
+          <h3>Respect for the customer</h3>
+          <p>Customers are requested to remove belongings, but forgotten items do not automatically become a reason to cancel service.</p>
+        </article>
+
+        <article class="principle">
+          <span>06</span>
+          <h3>Local accountability</h3>
+          <p>Never Dirty is a local business serving Southern Illinois, where reputation and repeat customers matter more than quick volume.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <p class="eyebrow">The Never Dirty difference</p>
+      <h2 class="section-title">Not a cheap car wash. Not a rushed volume shop.</h2>
+
+      <div class="difference-grid">
+        <article class="difference-card">
+          <h3>Traditional approach</h3>
+          <ul>
+            <li>Wait until the vehicle is heavily dirty</li>
+            <li>Lose several hours or an entire weekend</li>
+            <li>Pay for a large reset</li>
+            <li>Watch the vehicle slowly return to the same condition</li>
+            <li>Repeat the cycle again later</li>
+          </ul>
+        </article>
+
+        <article class="difference-card">
+          <h3>Never Dirty approach</h3>
+          <ul>
+            <li><strong>Start clean</strong> with a proper baseline detail</li>
+            <li><strong>Stay clean</strong> with recurring maintenance</li>
+            <li><strong>Save time</strong> through mobile service</li>
+            <li><strong>Protect the result</strong> before buildup becomes severe</li>
+            <li><strong>Enjoy the vehicle</strong> instead of managing the mess</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:0">
+    <div class="container">
+      <p class="eyebrow">How service works</p>
+      <h2 class="section-title">Simple from the first request forward.</h2>
+
+      <div class="process">
+        <article class="step">
+          <span class="num">STEP 01</span>
+          <h3>Submit a request</h3>
+          <p>Choose recurring membership or a one-time detail and provide vehicle, condition, and location information.</p>
+        </article>
+
+        <article class="step">
+          <span class="num">STEP 02</span>
+          <h3>Receive a review</h3>
+          <p>Never Dirty confirms the service area, vehicle condition, route fit, and the right level of service.</p>
+        </article>
+
+        <article class="step">
+          <span class="num">STEP 03</span>
+          <h3>Approve the quote</h3>
+          <p>Pricing, timing, access, and any condition-based adjustments are confirmed before the appointment.</p>
+        </article>
+
+        <article class="step">
+          <span class="num">STEP 04</span>
+          <h3>Enjoy a cleaner vehicle</h3>
+          <p>One-time customers receive a professional reset. Members move into a recurring maintenance schedule.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container trust">
+      <article class="trust-main">
+        <p class="eyebrow">Professional standards</p>
+        <h2 class="section-title">Built around trust, documentation, and quality control.</h2>
+        <p>Never Dirty may document service visits for safety, quality assurance, training, marketing, and dispute prevention. Before-and-after condition helps protect both the customer and the business.</p>
+
+        <div class="trust-list">
+          <div class="trust-item"><span>✓</span><div>Professional Adam's detailing products and premium microfiber</div></div>
+          <div class="trust-item"><span>✓</span><div>Own water and mobile service equipment</div></div>
+          <div class="trust-item"><span>✓</span><div>Clear vehicle-condition and pricing expectations</div></div>
+          <div class="trust-item"><span>✓</span><div>Service requests reviewed before scheduling</div></div>
+          <div class="trust-item"><span>✓</span><div>Customer belongings handled through a defined bagging policy</div></div>
+        </div>
+      </article>
+
+      <aside class="trust-side">
+        <p class="eyebrow">Service area</p>
+        <h2 style="font-size:2rem;letter-spacing:-.045em">Southern Illinois, selectively served.</h2>
+        <p>Primary service coverage is Saline County, with select reasonably located customers in Williamson and Franklin Counties.</p>
+        <p>Route availability, travel, service type, and mobile access are reviewed before approval.</p>
+        <div class="btns">
+          <a class="btn secondary" href="faq-policies.html#access">Read Service Requirements</a>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <section class="cta">
+    <div class="container">
+      <p class="eyebrow">Never wash your car again.</p>
+      <h2>Start with a detail. Stay clean with maintenance.</h2>
+      <p>Request recurring service or a one-time professional detail and let Never Dirty handle the work.</p>
+      <div class="btns" style="justify-content:center">
+        <a class="btn primary" href="membership.html">Request Membership</a>
+        <a class="btn secondary" href="detail-request.html">Request a Detail</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container footer-grid">
+    <div>
+      <a class="brand" href="index.html"><span class="logo">N</span><span>Never Dirty</span></a>
+      <p style="margin-top:16px;max-width:460px">Recurring mobile vehicle cleaning and professional detailing in Southern Illinois.</p>
+    </div>
+
+    <div>
+      <h4>Explore</h4>
+      <div class="footer-links">
+        <a href="index.html">Home</a>
+        <a href="pricing.html">Pricing</a>
+        <a href="faq-policies.html">FAQ & Policies</a>
+      </div>
+    </div>
+
+    <div>
+      <h4>Contact</h4>
+      <div class="footer-links">
+        <a href="membership.html">Request Membership</a>
+        <a href="detail-request.html">Request a Detail</a>
+        <a href="mailto:goneverdirty@gmail.com">goneverdirty@gmail.com</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<div class="mobile-cta">
+  <a class="btn secondary" href="detail-request.html">Request Detail</a>
+  <a class="btn primary" href="membership.html">Membership</a>
+</div>
+
+<script>
+  const menuButton = document.querySelector(".menu");
+  const mobileMenu = document.querySelector(".mobile");
+
+  menuButton.addEventListener("click", () => {
+    const open = mobileMenu.classList.toggle("open");
+    menuButton.setAttribute("aria-expanded", String(open));
+    menuButton.textContent = open ? "×" : "☰";
+  });
+
+  mobileMenu.querySelectorAll("a").forEach(link => {
+    link.addEventListener("click", () => {
+      mobileMenu.classList.remove("open");
+      menuButton.setAttribute("aria-expanded", "false");
+      menuButton.textContent = "☰";
+    });
+  });
+</script>
+</body>
+</html>
