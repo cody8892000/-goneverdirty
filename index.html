@@ -8,23 +8,35 @@
     content="width=device-width, initial-scale=1.0"
   >
 
-  <title>Never Dirty | Never Wash Your Car Again</title>
+  <title>Never Dirty | Mobile Vehicle Cleaning</title>
 
   <meta
     name="description"
-    content="Never Dirty is Southern Illinois' mobile vehicle maintenance membership. We come to your home or workplace on a recurring schedule so you never have to wash your vehicle again."
+    content="Never Dirty provides recurring mobile vehicle cleaning memberships and professional detailing in Saline County and select areas of Williamson and Franklin Counties in Southern Illinois."
   >
+
+  <meta name="theme-color" content="#070707">
 
   <style>
     :root {
       --black: #070707;
-      --dark: #111111;
-      --card: #181818;
+      --dark: #101010;
+      --surface: #171717;
+      --surface-light: #1e1e1e;
       --white: #ffffff;
-      --gray: #b9b9b9;
+      --gray: #b7b7b7;
+      --muted: #838383;
       --line: #2b2b2b;
       --accent: #dfff3f;
-      --max-width: 1150px;
+      --accent-dark: #bcd723;
+      --accent-soft: rgba(223, 255, 63, 0.1);
+      --danger-soft: rgba(255, 255, 255, 0.04);
+      --shadow: 0 24px 70px rgba(0, 0, 0, 0.28);
+      --radius-large: 28px;
+      --radius-medium: 20px;
+      --radius-small: 14px;
+      --max-width: 1180px;
+      --header-height: 74px;
     }
 
     * {
@@ -35,13 +47,23 @@
 
     html {
       scroll-behavior: smooth;
+      scroll-padding-top: calc(var(--header-height) + 20px);
     }
 
     body {
+      min-width: 320px;
       background: var(--black);
       color: var(--white);
-      font-family: Arial, Helvetica, sans-serif;
+      font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
       line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    body.menu-open {
+      overflow: hidden;
     }
 
     a {
@@ -49,52 +71,232 @@
       text-decoration: none;
     }
 
+    button,
+    input,
+    select,
+    textarea {
+      font: inherit;
+    }
+
+    button {
+      border: 0;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    ul {
+      list-style: none;
+    }
+
     .container {
       width: min(92%, var(--max-width));
       margin: 0 auto;
     }
 
+    .section {
+      position: relative;
+      padding: 100px 0;
+      border-top: 1px solid var(--line);
+    }
+
+    .section-dark {
+      background: var(--dark);
+    }
+
+    .section-glow {
+      background:
+        radial-gradient(
+          circle at 50% 0%,
+          rgba(223, 255, 63, 0.09),
+          transparent 38%
+        ),
+        var(--black);
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      margin-bottom: 18px;
+      color: var(--accent);
+      font-size: 0.78rem;
+      font-weight: 900;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 22px;
+      height: 2px;
+      background: var(--accent);
+    }
+
+    .section-heading {
+      max-width: 780px;
+      margin-bottom: 46px;
+    }
+
+    .section-heading.centered {
+      margin-right: auto;
+      margin-left: auto;
+      text-align: center;
+    }
+
+    .section-heading.centered .eyebrow {
+      justify-content: center;
+    }
+
+    .section-heading h2 {
+      margin-bottom: 18px;
+      font-size: clamp(2.4rem, 6vw, 4.8rem);
+      line-height: 0.98;
+      letter-spacing: -0.055em;
+    }
+
+    .section-heading p {
+      color: var(--gray);
+      font-size: clamp(1rem, 2vw, 1.12rem);
+    }
+
+    .accent-text {
+      color: var(--accent);
+    }
+
     .button {
-      display: inline-block;
-      padding: 15px 24px;
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 52px;
+      padding: 14px 24px;
+      border: 1px solid var(--accent);
       border-radius: 999px;
       background: var(--accent);
       color: #000;
-      font-weight: 800;
+      font-weight: 900;
+      line-height: 1;
+      text-align: center;
+      cursor: pointer;
       transition:
         transform 0.2s ease,
+        background 0.2s ease,
+        border-color 0.2s ease,
         box-shadow 0.2s ease;
     }
 
     .button:hover {
       transform: translateY(-2px);
-      box-shadow: 0 10px 30px rgba(223, 255, 63, 0.14);
+      background: #e7ff71;
+      box-shadow: 0 12px 34px rgba(223, 255, 63, 0.18);
+    }
+
+    .button:active {
+      transform: translateY(0);
     }
 
     .button-outline {
+      border-color: #555;
       background: transparent;
       color: var(--white);
-      border: 1px solid #555;
+    }
+
+    .button-outline:hover {
+      border-color: var(--accent);
+      background: var(--accent-soft);
+      color: var(--white);
+    }
+
+    .button-small {
+      min-height: 42px;
+      padding: 11px 17px;
+      font-size: 0.84rem;
+    }
+
+    .button-full {
+      width: 100%;
+    }
+
+    .card {
+      position: relative;
+      height: 100%;
+      padding: 30px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius-medium);
+      background:
+        linear-gradient(
+          145deg,
+          rgba(255, 255, 255, 0.025),
+          transparent 55%
+        ),
+        var(--surface);
+      overflow: hidden;
+      transition:
+        transform 0.2s ease,
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      border-color: #414141;
+      box-shadow: var(--shadow);
+    }
+
+    .card h3 {
+      margin-bottom: 10px;
+      font-size: 1.4rem;
+      line-height: 1.2;
+      letter-spacing: -0.025em;
+    }
+
+    .card p {
+      color: var(--gray);
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 20px;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 20px;
+    }
+
+    .grid-4 {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 18px;
     }
 
     header {
       position: sticky;
       top: 0;
-      z-index: 100;
-      background: rgba(7, 7, 7, 0.93);
-      border-bottom: 1px solid var(--line);
-      backdrop-filter: blur(10px);
+      z-index: 1000;
+      min-height: var(--header-height);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      background: rgba(7, 7, 7, 0.92);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
     }
 
-    nav {
-      min-height: 72px;
+    .nav {
+      min-height: var(--header-height);
       display: flex;
       justify-content: space-between;
       align-items: center;
-      gap: 20px;
+      gap: 24px;
     }
 
     .logo {
+      position: relative;
+      z-index: 1002;
+      flex-shrink: 0;
       font-size: 1.2rem;
       font-weight: 900;
       letter-spacing: 0.08em;
@@ -104,27 +306,132 @@
       color: var(--accent);
     }
 
-    .nav-links {
+    .desktop-nav {
       display: flex;
       align-items: center;
-      gap: 22px;
+      gap: 21px;
       color: var(--gray);
-      font-size: 0.95rem;
+      font-size: 0.9rem;
     }
 
-    .nav-links a:not(.button):hover {
+    .desktop-nav a:not(.button) {
+      transition: color 0.2s ease;
+    }
+
+    .desktop-nav a:not(.button):hover {
       color: var(--white);
     }
 
+    .mobile-menu-button {
+      position: relative;
+      z-index: 1002;
+      width: 44px;
+      height: 44px;
+      display: none;
+      place-items: center;
+      border: 1px solid var(--line);
+      border-radius: 50%;
+      background: var(--surface);
+      color: var(--white);
+      cursor: pointer;
+    }
+
+    .mobile-menu-icon {
+      position: relative;
+      width: 18px;
+      height: 12px;
+    }
+
+    .mobile-menu-icon span {
+      position: absolute;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      border-radius: 999px;
+      background: var(--white);
+      transition:
+        top 0.2s ease,
+        transform 0.2s ease,
+        opacity 0.2s ease;
+    }
+
+    .mobile-menu-icon span:first-child {
+      top: 0;
+    }
+
+    .mobile-menu-icon span:nth-child(2) {
+      top: 5px;
+    }
+
+    .mobile-menu-icon span:last-child {
+      top: 10px;
+    }
+
+    .mobile-menu-button.active
+    .mobile-menu-icon span:first-child {
+      top: 5px;
+      transform: rotate(45deg);
+    }
+
+    .mobile-menu-button.active
+    .mobile-menu-icon span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .mobile-menu-button.active
+    .mobile-menu-icon span:last-child {
+      top: 5px;
+      transform: rotate(-45deg);
+    }
+
+    .mobile-nav {
+      position: fixed;
+      inset: var(--header-height) 0 auto;
+      z-index: 999;
+      display: none;
+      padding: 22px 4% 30px;
+      border-bottom: 1px solid var(--line);
+      background: rgba(7, 7, 7, 0.98);
+      box-shadow: var(--shadow);
+    }
+
+    .mobile-nav.active {
+      display: block;
+    }
+
+    .mobile-nav-links {
+      display: grid;
+      gap: 8px;
+    }
+
+    .mobile-nav-links a {
+      padding: 14px 4px;
+      border-bottom: 1px solid var(--line);
+      color: var(--gray);
+      font-weight: 800;
+    }
+
+    .mobile-nav-links .button {
+      margin-top: 12px;
+      color: #000;
+    }
+
     .hero {
-      min-height: calc(100vh - 72px);
+      position: relative;
+      min-height: calc(100vh - var(--header-height));
       display: flex;
       align-items: center;
-      padding: 90px 0;
+      padding: 110px 0;
+      overflow: hidden;
       background:
         radial-gradient(
-          circle at 80% 20%,
-          rgba(223, 255, 63, 0.13),
+          circle at 78% 18%,
+          rgba(223, 255, 63, 0.16),
+          transparent 29%
+        ),
+        radial-gradient(
+          circle at 12% 86%,
+          rgba(255, 255, 255, 0.045),
           transparent 30%
         ),
         linear-gradient(
@@ -135,130 +442,537 @@
         );
     }
 
-    .eyebrow {
-      display: inline-block;
-      margin-bottom: 20px;
-      color: var(--accent);
-      font-size: 0.8rem;
-      font-weight: 800;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
+    .hero::after {
+      content: "";
+      position: absolute;
+      right: -180px;
+      bottom: -240px;
+      width: 600px;
+      height: 600px;
+      border: 1px solid rgba(223, 255, 63, 0.09);
+      border-radius: 50%;
+      box-shadow:
+        0 0 0 70px rgba(223, 255, 63, 0.025),
+        0 0 0 140px rgba(223, 255, 63, 0.018);
+      pointer-events: none;
     }
 
-    h1 {
-      max-width: 900px;
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 940px;
+    }
+
+    .hero h1 {
+      max-width: 1050px;
       margin-bottom: 28px;
-      font-size: clamp(4rem, 13vw, 9rem);
-      line-height: 0.85;
-      letter-spacing: -0.07em;
+      font-size: clamp(3.8rem, 10vw, 8.7rem);
+      line-height: 0.87;
+      letter-spacing: -0.075em;
       text-transform: uppercase;
     }
 
-    .hero-text {
-      max-width: 670px;
+    .hero-copy {
+      max-width: 720px;
       margin-bottom: 32px;
       color: var(--gray);
-      font-size: clamp(1.08rem, 2vw, 1.35rem);
+      font-size: clamp(1.08rem, 2vw, 1.34rem);
     }
 
-    .hero-buttons {
+    .hero-copy p + p {
+      margin-top: 12px;
+    }
+
+    .hero-actions {
       display: flex;
       flex-wrap: wrap;
       gap: 12px;
     }
 
-    .service-note {
+    .hero-service-area {
+      max-width: 740px;
       margin-top: 24px;
-      color: #888;
+      color: var(--muted);
       font-size: 0.9rem;
     }
 
-    section {
-      padding: 90px 0;
-      border-top: 1px solid var(--line);
+    .mobile-membership-bar {
+      position: fixed;
+      right: 12px;
+      bottom: 12px;
+      left: 12px;
+      z-index: 950;
+      display: none;
     }
 
-    .section-heading {
-      max-width: 760px;
-      margin-bottom: 42px;
+    .mobile-membership-bar .button {
+      width: 100%;
+      box-shadow: 0 12px 38px rgba(0, 0, 0, 0.46);
     }
-
-    .section-heading h2 {
-      margin-bottom: 16px;
-      font-size: clamp(2.3rem, 6vw, 4.6rem);
-      line-height: 1;
-      letter-spacing: -0.05em;
-    }
-
-    .section-heading p {
-      color: var(--gray);
-      font-size: 1.05rem;
-    }
-
-    .grid-3 {
+        .process-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(4, minmax(0, 1fr));
       gap: 18px;
     }
 
-    .grid-4 {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 18px;
+    .process-card {
+      min-height: 250px;
     }
 
-    .card {
-      background: var(--card);
-      border: 1px solid var(--line);
-      border-radius: 22px;
-      padding: 28px;
-      transition:
-        transform 0.2s ease,
-        border-color 0.2s ease;
-    }
-
-    .card:hover {
-      transform: translateY(-3px);
-      border-color: #3d3d3d;
-    }
-
-    .step-number {
-      width: 44px;
-      height: 44px;
+    .process-number {
+      width: 48px;
+      height: 48px;
       margin-bottom: 42px;
-      border-radius: 50%;
       display: grid;
       place-items: center;
+      border-radius: 50%;
       background: var(--accent);
       color: #000;
       font-weight: 900;
+      box-shadow: 0 10px 30px rgba(223, 255, 63, 0.12);
     }
 
-    .card h3 {
-      margin-bottom: 10px;
-      font-size: 1.3rem;
+    .member-special {
+      padding: 44px;
+      border: 1px solid rgba(223, 255, 63, 0.34);
+      border-radius: var(--radius-large);
+      background:
+        radial-gradient(
+          circle at 50% 0%,
+          rgba(223, 255, 63, 0.16),
+          transparent 52%
+        ),
+        linear-gradient(
+          135deg,
+          rgba(223, 255, 63, 0.08),
+          rgba(255, 255, 255, 0.015)
+        );
+      text-align: center;
+      overflow: hidden;
     }
 
-    .card p {
+    .member-special h2 {
+      margin-bottom: 16px;
+      font-size: clamp(2.5rem, 6vw, 5rem);
+      line-height: 0.95;
+      letter-spacing: -0.055em;
+    }
+
+    .member-special p {
+      max-width: 780px;
+      margin: 0 auto;
+      color: var(--gray);
+      font-size: 1.08rem;
+    }
+
+    .comparison-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 20px;
+    }
+
+    .comparison-card {
+      min-height: 250px;
+    }
+
+    .comparison-label {
+      display: inline-flex;
+      margin-bottom: 22px;
+      padding: 7px 11px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      color: var(--gray);
+      font-size: 0.74rem;
+      font-weight: 900;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+    }
+
+    .comparison-card.featured {
+      border-color: rgba(223, 255, 63, 0.44);
+      background:
+        linear-gradient(
+          145deg,
+          rgba(223, 255, 63, 0.08),
+          transparent 58%
+        ),
+        var(--surface);
+    }
+
+    .comparison-card.featured .comparison-label {
+      border-color: rgba(223, 255, 63, 0.4);
+      background: var(--accent-soft);
+      color: var(--accent);
+    }
+
+    .comparison-summary {
+      margin-top: 20px;
+      padding: 24px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius-medium);
+      background: var(--surface);
+    }
+
+    .comparison-summary h3 {
+      margin-bottom: 8px;
+      font-size: 1.45rem;
+    }
+
+    .comparison-summary p {
       color: var(--gray);
     }
 
-    .benefit-icon {
-      margin-bottom: 18px;
-      font-size: 1.7rem;
+    .membership-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 22px;
+      align-items: stretch;
     }
 
-    .service-area {
+    .membership-card {
+      display: flex;
+      flex-direction: column;
+      padding: 34px;
+    }
+
+    .membership-card.featured {
+      border-color: rgba(223, 255, 63, 0.54);
+      background:
+        radial-gradient(
+          circle at 100% 0%,
+          rgba(223, 255, 63, 0.12),
+          transparent 34%
+        ),
+        linear-gradient(
+          145deg,
+          rgba(223, 255, 63, 0.055),
+          transparent 55%
+        ),
+        var(--surface);
+      box-shadow: 0 20px 70px rgba(0, 0, 0, 0.25);
+    }
+
+    .membership-badge {
+      display: inline-flex;
+      align-self: flex-start;
+      margin-bottom: 20px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: var(--accent);
+      color: #000;
+      font-size: 0.72rem;
+      font-weight: 900;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+    }
+
+    .membership-card h3 {
+      margin-bottom: 8px;
+      font-size: 2.25rem;
+      letter-spacing: -0.045em;
+    }
+
+    .membership-intro {
+      min-height: 54px;
+      margin-bottom: 24px;
+    }
+
+    .membership-prices {
       display: grid;
-      grid-template-columns: 1.2fr 0.8fr;
+      gap: 4px;
+      margin-bottom: 22px;
+      border-top: 1px solid var(--line);
+    }
+
+    .membership-price-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 18px;
+      padding: 15px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .membership-price-row span {
+      color: var(--gray);
+    }
+
+    .membership-price-row strong {
+      font-size: 1.15rem;
+    }
+
+    .additional-vehicle-discount {
+      margin-bottom: 18px;
+      padding: 15px 17px;
+      border: 1px solid rgba(223, 255, 63, 0.22);
+      border-radius: var(--radius-small);
+      background: rgba(223, 255, 63, 0.055);
+      color: #e8e8e8;
+      font-size: 0.92rem;
+    }
+
+    .membership-time {
+      margin-bottom: 20px;
+      color: var(--accent);
+      font-size: 0.92rem;
+      font-weight: 900;
+    }
+
+    .check-list {
+      display: grid;
+      gap: 11px;
+      margin-bottom: 28px;
+    }
+
+    .check-list li {
+      position: relative;
+      padding-left: 25px;
+      color: var(--gray);
+    }
+
+    .check-list li::before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-weight: 900;
+    }
+
+    .membership-card .button {
+      margin-top: auto;
+    }
+
+    .benefits-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 18px;
     }
 
-    .service-area h2 {
-      margin-bottom: 16px;
-      font-size: clamp(2.2rem, 5vw, 4rem);
+    .benefit-card {
+      min-height: 220px;
+    }
+
+    .benefit-icon {
+      width: 46px;
+      height: 46px;
+      margin-bottom: 20px;
+      display: grid;
+      place-items: center;
+      border: 1px solid rgba(223, 255, 63, 0.28);
+      border-radius: 14px;
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-size: 1.3rem;
+      font-weight: 900;
+    }
+
+    .time-savings-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .time-savings-card {
+      text-align: center;
+    }
+
+    .time-savings-card strong {
+      display: block;
+      margin-bottom: 10px;
+      color: var(--accent);
+      font-size: clamp(2.5rem, 5vw, 4rem);
       line-height: 1;
       letter-spacing: -0.05em;
+    }
+
+    .time-savings-card span {
+      color: var(--gray);
+    }
+
+    .service-price-card {
+      max-width: 600px;
+    }
+
+    .service-price {
+      margin: 14px 0 18px;
+      color: var(--accent);
+      font-size: clamp(3rem, 6vw, 4.5rem);
+      font-weight: 900;
+      line-height: 1;
+      letter-spacing: -0.06em;
+    }
+
+    .detail-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 22px;
+    }
+
+    .detail-card {
+      padding: 34px;
+    }
+
+    .detail-card.featured {
+      border-color: rgba(223, 255, 63, 0.46);
+      background:
+        radial-gradient(
+          circle at 100% 0%,
+          rgba(223, 255, 63, 0.11),
+          transparent 33%
+        ),
+        var(--surface);
+    }
+
+    .detail-card h3 {
+      margin-bottom: 6px;
+      font-size: 2rem;
+      letter-spacing: -0.04em;
+    }
+
+    .detail-subtitle {
+      margin-bottom: 8px;
+      color: var(--white);
+      font-weight: 900;
+    }
+
+    .detail-time {
+      margin-bottom: 24px;
+      color: var(--accent);
+      font-weight: 900;
+    }
+
+    .pricing-table {
+      display: grid;
+      gap: 14px;
+    }
+
+    .pricing-size {
+      padding: 19px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius-small);
+      background: rgba(255, 255, 255, 0.018);
+    }
+
+    .pricing-size h4 {
+      margin-bottom: 11px;
+      color: var(--accent);
+      font-size: 0.82rem;
+      letter-spacing: 0.11em;
+      text-transform: uppercase;
+    }
+
+    .pricing-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      padding: 7px 0;
+      color: var(--gray);
+    }
+
+    .pricing-row strong {
+      color: var(--white);
+    }
+
+    .vehicle-size-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .vehicle-size-card h3 {
+      color: var(--accent);
+    }
+
+    .bullet-list {
+      display: grid;
+      gap: 9px;
+    }
+
+    .bullet-list li {
+      position: relative;
+      padding-left: 19px;
+      color: var(--gray);
+    }
+
+    .bullet-list li::before {
+      content: "•";
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-weight: 900;
+    }
+
+    .add-on-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 20px;
+    }
+
+    .add-on-card h3 {
+      margin-bottom: 20px;
+      font-size: 1.7rem;
+    }
+
+    .important-card {
+      border-color: #383838;
+    }
+
+    .important-list {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px 26px;
+      margin-top: 22px;
+    }
+
+    .important-list li {
+      position: relative;
+      padding-left: 20px;
+      color: var(--gray);
+    }
+
+    .important-list li::before {
+      content: "•";
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-weight: 900;
+    }
+
+    .information-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 20px;
+    }
+
+    .guarantee {
+      padding: 42px;
+      border: 1px solid rgba(223, 255, 63, 0.4);
+      border-radius: var(--radius-large);
+      background:
+        linear-gradient(
+          135deg,
+          rgba(223, 255, 63, 0.1),
+          rgba(223, 255, 63, 0.025)
+        );
+    }
+
+    .guarantee h2 {
+      margin-bottom: 14px;
+      font-size: clamp(2.3rem, 5vw, 4rem);
+      line-height: 0.98;
+      letter-spacing: -0.05em;
+    }
+
+    .guarantee p {
+      max-width: 780px;
+      color: var(--gray);
+      font-size: 1.08rem;
+    }
+
+    .service-area-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 20px;
     }
 
     .county-list {
@@ -267,44 +981,90 @@
       margin-top: 24px;
     }
 
-    .county {
+    .county-row {
       display: flex;
       justify-content: space-between;
-      gap: 16px;
+      gap: 18px;
       padding: 16px 18px;
       border: 1px solid var(--line);
-      border-radius: 14px;
+      border-radius: var(--radius-small);
+      background: rgba(255, 255, 255, 0.018);
     }
 
-    .county strong {
+    .county-row strong {
       color: var(--accent);
     }
 
-    .cta {
+    .faq-list {
+      display: grid;
+      gap: 12px;
+    }
+
+    .faq-item {
+      border: 1px solid var(--line);
+      border-radius: var(--radius-small);
+      background: var(--surface);
+      overflow: hidden;
+    }
+
+    .faq-item summary {
+      position: relative;
+      padding: 20px 56px 20px 22px;
+      cursor: pointer;
+      list-style: none;
+      font-weight: 900;
+    }
+
+    .faq-item summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .faq-item summary::after {
+      content: "+";
+      position: absolute;
+      top: 50%;
+      right: 22px;
+      transform: translateY(-50%);
+      color: var(--accent);
+      font-size: 1.5rem;
+      font-weight: 400;
+    }
+
+    .faq-item[open] summary::after {
+      content: "−";
+    }
+
+    .faq-item p {
+      padding: 0 22px 22px;
+      color: var(--gray);
+    }
+
+    .final-cta {
       text-align: center;
       background:
         radial-gradient(
-          circle at center,
-          rgba(223, 255, 63, 0.15),
-          transparent 48%
-        );
+          circle at 50% 35%,
+          rgba(223, 255, 63, 0.16),
+          transparent 45%
+        ),
+        var(--black);
     }
 
-    .cta h2 {
-      margin-bottom: 16px;
-      font-size: clamp(2.8rem, 7vw, 5.5rem);
-      line-height: 1;
-      letter-spacing: -0.05em;
+    .final-cta h2 {
+      margin-bottom: 18px;
+      font-size: clamp(3rem, 8vw, 6rem);
+      line-height: 0.92;
+      letter-spacing: -0.065em;
     }
 
-    .cta p {
-      max-width: 650px;
-      margin: 0 auto 28px;
+    .final-cta p {
+      max-width: 690px;
+      margin: 0 auto 30px;
       color: var(--gray);
       font-size: 1.1rem;
     }
 
-    .cta-buttons {
+    .final-cta-actions {
       display: flex;
       justify-content: center;
       flex-wrap: wrap;
@@ -312,63 +1072,151 @@
     }
 
     footer {
-      padding: 36px 0;
+      padding: 38px 0 96px;
       border-top: 1px solid var(--line);
-      color: #888;
+      color: var(--muted);
     }
 
     .footer-row {
       display: flex;
       justify-content: space-between;
+      align-items: center;
       gap: 20px;
       flex-wrap: wrap;
     }
 
-    .footer-row a:hover {
+    .footer-links {
+      display: flex;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a:hover {
       color: var(--accent);
     }
 
-    @media (max-width: 850px) {
-      .nav-links a:not(.button) {
+    @media (max-width: 980px) {
+      .desktop-nav {
         display: none;
       }
 
-      .grid-3,
-      .grid-4,
-      .service-area {
-        grid-template-columns: 1fr;
+      .mobile-menu-button {
+        display: grid;
       }
 
-      section {
-        padding: 72px 0;
+      .process-grid,
+      .benefits-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .service-area-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .section {
+        padding: 76px 0;
       }
 
       .hero {
         min-height: auto;
-        padding: 100px 0;
+        padding: 98px 0 105px;
+      }
+
+      .grid-2,
+      .grid-3,
+      .grid-4,
+      .comparison-grid,
+      .membership-grid,
+      .detail-grid,
+      .vehicle-size-grid,
+      .add-on-grid,
+      .information-grid,
+      .time-savings-grid,
+      .important-list {
+        grid-template-columns: 1fr;
+      }
+
+      .process-grid,
+      .benefits-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .membership-intro {
+        min-height: auto;
+      }
+
+      .member-special,
+      .guarantee {
+        padding: 30px 24px;
+      }
+
+      .mobile-membership-bar {
+        display: block;
+      }
+
+      footer {
+        padding-bottom: 110px;
       }
     }
 
     @media (max-width: 520px) {
-      .nav-links .button {
-        padding: 12px 16px;
-        font-size: 0.82rem;
+      :root {
+        --header-height: 68px;
       }
 
-      .hero-buttons,
-      .cta-buttons {
+      .container {
+        width: min(91%, var(--max-width));
+      }
+
+      .logo {
+        font-size: 1rem;
+      }
+
+      .hero h1 {
+        font-size: clamp(3.15rem, 17vw, 5rem);
+      }
+
+      .hero-actions,
+      .final-cta-actions {
         flex-direction: column;
       }
 
-      .hero-buttons .button,
-      .cta-buttons .button {
+      .hero-actions .button,
+      .final-cta-actions .button {
         width: 100%;
-        text-align: center;
       }
 
-      .county {
+      .card,
+      .membership-card,
+      .detail-card {
+        padding: 24px;
+      }
+
+      .county-row,
+      .membership-price-row,
+      .pricing-row {
+        align-items: flex-start;
+      }
+
+      .county-row {
         flex-direction: column;
         gap: 4px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
       }
     }
   </style>
@@ -377,482 +1225,1125 @@
 <body>
 
   <header>
-    <nav class="container">
-      <a href="#top" class="logo">
+    <nav class="container nav">
+
+      <a href="#top" class="logo" aria-label="Never Dirty home">
         NEVER<span>DIRTY</span>
       </a>
 
-      <div class="nav-links">
+      <div class="desktop-nav">
         <a href="#how-it-works">How It Works</a>
-        <a href="#benefits">Benefits</a>
+        <a href="#memberships">Memberships</a>
+        <a href="#details">Details</a>
         <a href="#service-area">Service Area</a>
+        <a href="#faq">FAQ</a>
+
+        <a href="#" class="button button-small membership-link">
+          Request Membership
+        </a>
+      </div>
+
+      <button
+        class="mobile-menu-button"
+        type="button"
+        aria-label="Open navigation menu"
+        aria-expanded="false"
+        aria-controls="mobile-navigation"
+      >
+        <span class="mobile-menu-icon" aria-hidden="true">
+          <span></span>
+          <span></span>
+          <span></span>
+        </span>
+      </button>
+
+    </nav>
+
+    <div class="mobile-nav" id="mobile-navigation">
+      <div class="mobile-nav-links">
+
+        <a href="#how-it-works">How It Works</a>
+        <a href="#memberships">Memberships</a>
+        <a href="#details">Details</a>
+        <a href="#service-area">Service Area</a>
+        <a href="#faq">FAQ</a>
 
         <a href="#" class="button membership-link">
           Request Membership
         </a>
+
       </div>
-    </nav>
+    </div>
   </header>
 
   <main id="top">
-
-    <section class="hero">
+        <section class="hero">
       <div class="container">
 
-        <span class="eyebrow">
-          Mobile vehicle maintenance membership
-        </span>
+        <div class="hero-content">
 
-        <h1>
-          Never<br>
-          Dirty.
-        </h1>
+          <span class="eyebrow">
+            Mobile vehicle cleaning membership
+          </span>
 
-        <p class="hero-text">
-          Join once, then forget about washing your vehicle.
-          We come directly to your home or workplace on a recurring
-          schedule and keep it consistently maintained.
-        </p>
+          <h1>
+            Never Wash<br>
+            Your Car Again.
+          </h1>
 
-        <div class="hero-buttons">
-
-          <a href="#" class="button membership-link">
-            Request Membership
-          </a>
-
-          <a href="#" class="button button-outline detail-link">
-            Request a Detail
-          </a>
-
-        </div>
-
-        <p class="service-note">
-          Primarily serving Saline County, Illinois, with service
-          available to reasonably located customers in Williamson
-          and Franklin Counties.
-        </p>
-
-      </div>
-    </section>
-
-    <section id="how-it-works">
-      <div class="container">
-
-        <div class="section-heading">
-          <span class="eyebrow">Simple by design</span>
-
-          <h2>
-            You join.<br>
-            We handle the rest.
-          </h2>
-
-          <p>
-            Never Dirty is built around one simple idea:
-            keeping your vehicle clean should not become another
-            chore on your list.
-          </p>
-        </div>
-
-        <div class="grid-3">
-
-          <article class="card">
-            <div class="step-number">1</div>
-
-            <h3>Start Clean</h3>
+          <div class="hero-copy">
 
             <p>
-              We begin with an initial full detail so your vehicle
-              starts at the proper maintenance standard.
+              Life is busy enough without spending your evenings or
+              weekends washing your vehicle.
             </p>
-          </article>
-
-          <article class="card">
-            <div class="step-number">2</div>
-
-            <h3>Choose Your Schedule</h3>
 
             <p>
-              Select weekly, every two weeks, or monthly service
-              based on your vehicle and lifestyle.
+              Never Dirty comes directly to your home or workplace on
+              a recurring schedule, keeping your vehicle consistently
+              clean while you focus on more important things.
             </p>
-          </article>
-
-          <article class="card">
-            <div class="step-number">3</div>
-
-            <h3>Stay Clean</h3>
-
-            <p>
-              We arrive on schedule, complete the service, and keep
-              your vehicle consistently maintained.
-            </p>
-          </article>
-
-        </div>
-      </div>
-    </section>
-
-    <section id="benefits">
-      <div class="container">
-
-        <div class="section-heading">
-          <span class="eyebrow">The membership advantage</span>
-
-          <h2>
-            Never wash your car again.
-          </h2>
-
-          <p>
-            A recurring service designed to remove vehicle cleaning
-            from your to-do list.
-          </p>
-        </div>
-
-        <div class="grid-4">
-
-          <article class="card">
-            <div class="benefit-icon">⌚</div>
-
-            <h3>No Remembering</h3>
-
-            <p>
-              Your recurring visits are already planned.
-            </p>
-          </article>
-
-          <article class="card">
-            <div class="benefit-icon">⌂</div>
-
-            <h3>We Come to You</h3>
-
-            <p>
-              Service is completed at an approved home or work location.
-            </p>
-          </article>
-
-          <article class="card">
-            <div class="benefit-icon">✓</div>
-
-            <h3>Consistent Care</h3>
-
-            <p>
-              Your vehicle is maintained before dirt becomes neglect.
-            </p>
-          </article>
-
-          <article class="card">
-            <div class="benefit-icon">✦</div>
-
-            <h3>Professional Products</h3>
-
-            <p>
-              Premium equipment, microfiber towels, and Adam's
-              complete detailing system.
-            </p>
-          </article>
-
-        </div>
-      </div>
-    </section>
-
-    <section id="service-area">
-      <div class="container service-area">
-
-        <div class="card">
-          <span class="eyebrow">Service area</span>
-
-          <h2>
-            Built in Southern Illinois.
-          </h2>
-
-          <p>
-            Never Dirty primarily serves customers throughout
-            Saline County. We may also accommodate customers in
-            nearby portions of Williamson and Franklin Counties
-            when the location fits our service routes.
-          </p>
-
-          <div class="county-list">
-
-            <div class="county">
-              <span>Saline County</span>
-              <strong>Primary Area</strong>
-            </div>
-
-            <div class="county">
-              <span>Williamson County</span>
-              <strong>By Location</strong>
-            </div>
-
-            <div class="county">
-              <span>Franklin County</span>
-              <strong>By Location</strong>
-            </div>
 
           </div>
+
+          <div class="hero-actions">
+
+            <a href="#" class="button membership-link">
+              Request Membership
+            </a>
+
+            <a href="#" class="button button-outline detail-link">
+              Request a Detail
+            </a>
+
+          </div>
+
+          <p class="hero-service-area">
+            Serving Saline County and select areas of Williamson and
+            Franklin Counties in Southern Illinois.
+          </p>
+
         </div>
 
-        <div class="card">
-          <span class="eyebrow">Not sure?</span>
+      </div>
+    </section>
+
+    <section class="section" id="how-it-works">
+      <div class="container">
+
+        <div class="section-heading">
+
+          <span class="eyebrow">
+            How It Works
+          </span>
+
+          <h2>
+            Simple from the start.
+          </h2>
+
+          <p>
+            Request your membership, receive a custom quote, choose
+            your schedule, and let us take vehicle cleaning off your
+            list.
+          </p>
+
+        </div>
+
+        <div class="process-grid">
+
+          <article class="card process-card">
+
+            <div class="process-number">
+              1
+            </div>
+
+            <h3>
+              Request Membership
+            </h3>
+
+            <p>
+              Tell us about your vehicle, preferred schedule, and usual
+              service location.
+            </p>
+
+          </article>
+
+          <article class="card process-card">
+
+            <div class="process-number">
+              2
+            </div>
+
+            <h3>
+              Receive Your Quote
+            </h3>
+
+            <p>
+              We review your information and send a customized service
+              recommendation and price.
+            </p>
+
+          </article>
+
+          <article class="card process-card">
+
+            <div class="process-number">
+              3
+            </div>
+
+            <h3>
+              Choose Your Schedule
+            </h3>
+
+            <p>
+              Select weekly, every two weeks, or monthly service based
+              on your vehicle and lifestyle.
+            </p>
+
+          </article>
+
+          <article class="card process-card">
+
+            <div class="process-number">
+              4
+            </div>
+
+            <h3>
+              Never Wash Again
+            </h3>
+
+            <p>
+              We arrive on schedule and keep your vehicle consistently
+              clean.
+            </p>
+
+          </article>
+
+        </div>
+
+      </div>
+    </section>
+
+    <section class="section section-dark">
+      <div class="container">
+
+        <div class="member-special">
+
+          <span class="eyebrow">
+            Member Special
+          </span>
+
+          <h2>
+            Members Save
+            <span class="accent-text">50%</span>
+          </h2>
+
+          <p>
+            New members receive
+            <strong>50% off the required Complete Refresh Detail</strong>
+            that establishes a clean baseline before recurring vehicle
+            cleaning begins.
+          </p>
+
+        </div>
+
+      </div>
+    </section>
+
+    <section class="section" id="why-membership">
+      <div class="container">
+
+        <div class="section-heading">
+
+          <span class="eyebrow">
+            Why Membership?
+          </span>
+
+          <h2>
+            Stay clean instead of starting over.
+          </h2>
+
+          <p>
+            Traditional detailing restores your vehicle after dirt has
+            already built up. Never Dirty works differently.
+          </p>
+
+        </div>
+
+        <div class="comparison-grid">
+
+          <article class="card comparison-card">
+
+            <span class="comparison-label">
+              Traditional Detailing
+            </span>
+
+            <h3>
+              Reacts to buildup.
+            </h3>
+
+            <p>
+              Waiting until your vehicle becomes heavily soiled means
+              more time, more labor, and another expensive restoration.
+            </p>
+
+          </article>
+
+          <article class="card comparison-card featured">
+
+            <span class="comparison-label">
+              Never Dirty Membership
+            </span>
+
+            <h3>
+              Prevents buildup.
+            </h3>
+
+            <p>
+              Recurring vehicle cleaning keeps everyday dirt, road
+              grime, and clutter from building into another full detail.
+            </p>
+
+          </article>
+
+        </div>
+
+        <div class="comparison-summary">
 
           <h3>
-            Ask about your location.
+            Keep it clean year-round.
           </h3>
 
           <p>
-            Customers near our normal routes may qualify even if
-            they are outside the primary service area.
+            Instead of repeatedly paying to restore your vehicle, we
+            help you maintain a consistently clean vehicle throughout
+            the year.
           </p>
+
         </div>
 
       </div>
     </section>
 
-    <section id="join" class="cta">
+    <section class="section section-glow" id="memberships">
       <div class="container">
 
-        <span class="eyebrow">
-          Get started
-        </span>
+        <div class="section-heading">
 
-        <h2>
-          Stop washing.<br>
-          Start staying clean.
-        </h2>
+          <span class="eyebrow">
+            Memberships
+          </span>
 
-        <p>
-          Request a recurring membership or ask for a one-time
-          detail quote. Choose an option and complete the information
-          included in the email.
-        </p>
+          <h2>
+            Choose the schedule that fits your life.
+          </h2>
 
-        <div class="cta-buttons">
+          <p>
+            Every membership begins with a required Complete Refresh
+            Detail. Once that clean baseline is established, we maintain
+            your vehicle on the schedule you choose.
+          </p>
 
-          <a href="#" class="button membership-link">
-            Request Membership
-          </a>
+        </div>
 
-          <a href="#" class="button button-outline detail-link">
-            Request a Detail
-          </a>
+        <div class="membership-grid">
+
+          <article class="card membership-card">
+
+            <h3>
+              Essential
+            </h3>
+
+            <p class="membership-intro">
+              Everything needed to keep an already clean vehicle
+              consistently maintained.
+            </p>
+
+            <div class="membership-prices">
+
+              <div class="membership-price-row">
+                <span>Weekly</span>
+                <strong>$20</strong>
+              </div>
+
+              <div class="membership-price-row">
+                <span>Every Two Weeks</span>
+                <strong>$25</strong>
+              </div>
+
+              <div class="membership-price-row">
+                <span>Monthly</span>
+                <strong>$30</strong>
+              </div>
+
+            </div>
+
+            <div class="additional-vehicle-discount">
+              Each additional vehicle receives
+              <strong>25% off</strong> when the same service is completed
+              during the same visit at the same location. Larger vehicles
+              or vehicles requiring substantially more labor may be
+              quoted separately.
+            </div>
+
+            <div class="membership-time">
+              Typical service time: 45–60 minutes
+            </div>
+
+            <ul class="check-list">
+
+              <li>
+                Gentle hand wash using premium microfiber wash media
+              </li>
+
+              <li>
+                Wheel faces cleaned
+              </li>
+
+              <li>
+                Tire dressing
+              </li>
+
+              <li>
+                Interior and exterior glass cleaned
+              </li>
+
+              <li>
+                Light interior vacuum
+              </li>
+
+              <li>
+                Dashboard wiped and protected
+              </li>
+
+              <li>
+                Center console wiped
+              </li>
+
+              <li>
+                High-touch interior surfaces cleaned
+              </li>
+
+              <li>
+                Light undercarriage rinse when conditions allow
+              </li>
+
+              <li>
+                Final quality inspection
+              </li>
+
+            </ul>
+
+            <a href="#" class="button button-full membership-link">
+              Request Essential Membership
+            </a>
+
+          </article>
+
+          <article class="card membership-card featured">
+
+            <span class="membership-badge">
+              Most Popular
+            </span>
+
+            <h3>
+              Deluxe
+            </h3>
+
+            <p class="membership-intro">
+              A more complete maintenance visit for drivers who want
+              their vehicle looking its best all the time.
+            </p>
+
+            <div class="membership-prices">
+
+              <div class="membership-price-row">
+                <span>Weekly</span>
+                <strong>$35</strong>
+              </div>
+
+              <div class="membership-price-row">
+                <span>Every Two Weeks</span>
+                <strong>$40</strong>
+              </div>
+
+              <div class="membership-price-row">
+                <span>Monthly</span>
+                <strong>$45</strong>
+              </div>
+
+            </div>
+
+            <div class="additional-vehicle-discount">
+              Each additional vehicle receives
+              <strong>25% off</strong> when the same service is completed
+              during the same visit at the same location. Larger vehicles
+              or vehicles requiring substantially more labor may be
+              quoted separately.
+            </div>
+
+            <div class="membership-time">
+              Typical service time: 75–90 minutes
+            </div>
+
+            <ul class="check-list">
+
+              <li>
+                Everything included in Essential
+              </li>
+
+              <li>
+                More thorough interior vacuum
+              </li>
+
+              <li>
+                Floor mats removed and cleaned
+              </li>
+
+              <li>
+                Door jambs cleaned
+              </li>
+
+              <li>
+                Door panels cleaned
+              </li>
+
+              <li>
+                Cup holders cleaned
+              </li>
+
+              <li>
+                Air vents cleaned
+              </li>
+
+              <li>
+                Interior UV protectant
+              </li>
+
+              <li>
+                More thorough wheel cleaning
+              </li>
+
+              <li>
+                Bug treatment
+              </li>
+
+              <li>
+                Spray ceramic protection
+              </li>
+
+              <li>
+                More thorough undercarriage rinse when conditions allow
+              </li>
+
+            </ul>
+
+            <a href="#" class="button button-full membership-link">
+              Request Deluxe Membership
+            </a>
+
+          </article>
+
+        </div>
+
+      </div>
+    </section>
+        <section class="section section-dark" id="membership-benefits">
+      <div class="container">
+
+        <div class="section-heading centered">
+
+          <span class="eyebrow">
+            Membership Benefits
+          </span>
+
+          <h2>
+            More than a clean vehicle.
+          </h2>
+
+          <p>
+            A Never Dirty membership is designed to save time, simplify
+            your routine, and keep your vehicle looking consistently
+            clean year-round.
+          </p>
+
+        </div>
+
+        <div class="benefits-grid">
+
+          <article class="card benefit-card">
+
+            <div class="benefit-icon">🏠</div>
+
+            <h3>
+              We Come To You
+            </h3>
+
+            <p>
+              Service is performed at your home or workplace so you
+              never have to sit at a car wash again.
+            </p>
+
+          </article>
+
+          <article class="card benefit-card">
+
+            <div class="benefit-icon">📅</div>
+
+            <h3>
+              Priority Scheduling
+            </h3>
+
+            <p>
+              Membership customers receive priority scheduling before
+              one-time appointments are filled.
+            </p>
+
+          </article>
+
+          <article class="card benefit-card">
+
+            <div class="benefit-icon">📱</div>
+
+            <h3>
+              Reminder Texts
+            </h3>
+
+            <p>
+              We'll send a reminder before each scheduled visit so you
+              always know when we're coming.
+            </p>
+
+          </article>
+
+          <article class="card benefit-card">
+
+            <div class="benefit-icon">💲</div>
+
+            <h3>
+              Consistent Pricing
+            </h3>
+
+            <p>
+              No surprise pricing or changing packages. Your recurring
+              service remains predictable.
+            </p>
+
+          </article>
+
+          <article class="card benefit-card">
+
+            <div class="benefit-icon">✔</div>
+
+            <h3>
+              Month-to-Month
+            </h3>
+
+            <p>
+              No long-term contracts. Stay because you love the service,
+              not because you're locked into it.
+            </p>
+
+          </article>
+
+          <article class="card benefit-card">
+
+            <div class="benefit-icon">⭐</div>
+
+            <h3>
+              50% Off Refresh Detail
+            </h3>
+
+            <p>
+              Every new member receives 50% off the required Complete
+              Refresh Detail that starts your membership.
+            </p>
+
+          </article>
 
         </div>
 
       </div>
     </section>
 
-  </main>
+    <section class="section">
+      <div class="container">
 
-  <footer>
-    <div class="container footer-row">
+        <div class="section-heading centered">
 
-      <span>
-        © 2026 Never Dirty
-      </span>
+          <span class="eyebrow">
+            Buy Back Your Time
+          </span>
 
-      <a href="mailto:goneverdirty@gmail.com">
-        goneverdirty@gmail.com
-      </a>
+          <h2>
+            Your weekends weren't made for washing cars.
+          </h2>
 
-    </div>
-  </footer>
+          <p>
+            Depending on your schedule, a Never Dirty membership can
+            save dozens of hours every year that would otherwise be
+            spent washing, drying, vacuuming, and cleaning your
+            vehicle.
+          </p>
 
-  <script>
-    const businessEmail = "goneverdirty@gmail.com";
+        </div>
 
-    const membershipSubject =
-      "Never Dirty Membership Request";
+        <div class="time-savings-grid">
 
-    const membershipBody = `If interested in joining Never Dirty.
+          <article class="card time-savings-card">
 
-Please complete the information below and send this request to us.
+            <strong>
+              75+
+            </strong>
 
-After reviewing your vehicle, requested services, location, and service frequency, we'll send you a customized quote outlining the recommended services and pricing. You'll be able to review, sign, and return it before anything is scheduled.
+            <span>
+              Hours saved each year with weekly service.
+            </span>
 
-CONTACT INFORMATION
+          </article>
 
-Name:
+          <article class="card time-savings-card">
 
-Phone number:
+            <strong>
+              40+
+            </strong>
 
-Email address:
+            <span>
+              Hours saved each year with bi-weekly service.
+            </span>
 
-Service address:
+          </article>
 
-Best time to contact me:
+          <article class="card time-savings-card">
 
+            <strong>
+              20+
+            </strong>
 
-MEMBERSHIP PREFERENCE
+            <span>
+              Hours saved each year with monthly service.
+            </span>
 
-Requested schedule:
-Weekly / Every 2 Weeks / Monthly
+          </article>
 
-Number of vehicles:
+        </div>
 
-Usual service location:
-Home / Work
+      </div>
+    </section>
 
+    <section class="section section-glow" id="details">
+      <div class="container">
 
-VEHICLE 1
+        <div class="section-heading">
 
-Year:
+          <span class="eyebrow">
+            One-Time Service
+          </span>
 
-Make:
+          <h2>
+            Maintenance Wash
+          </h2>
 
-Model:
+          <p>
+            Need a professional maintenance cleaning without joining a
+            membership? No problem.
+          </p>
 
-Color:
+        </div>
 
+        <article class="card service-price-card">
 
-VEHICLE 2 — IF APPLICABLE
+          <h3>
+            One-Time Maintenance Wash
+          </h3>
 
-Year:
+          <div class="service-price">
+            $45
+          </div>
 
-Make:
+          <p>
+            Includes an exterior hand wash, wheel face cleaning, tire
+            dressing, interior and exterior glass cleaning, light
+            interior vacuum, dashboard wipe-down, center console wipe,
+            and a quick final inspection.
+          </p>
 
-Model:
+        </article>
 
-Color:
+      </div>
+    </section>
 
+    <section class="section section-dark">
 
-SERVICE LOCATION
+      <div class="container">
 
-Is there adequate room for us to safely complete the service?
-Yes / No / Not sure
+        <div class="section-heading">
 
-Service surface:
-Paved driveway / Gravel driveway / Firm, non-muddy grass
+          <span class="eyebrow">
+            Detailing
+          </span>
 
-Will the vehicle be available and accessible at the service location?
-Yes / No / Not sure
+          <h2>
+            Refresh Detail
+          </h2>
 
+          <p>
+            Ideal for vehicles that need more than a maintenance wash
+            but don't require a complete restoration.
+          </p>
 
-ADDITIONAL INFORMATION
+        </div>
 
-Is there anything else we should know about your vehicle, location, or requested service?
+        <div class="detail-grid">
 
+          <article class="card detail-card">
 
+            <h3>
+              Refresh Detail
+            </h3>
 
-SUGGESTIONS OR FEEDBACK
+            <p class="detail-subtitle">
+              Interior • Exterior • Complete
+            </p>
 
-We're always looking for ways to make the Never Dirty experience easier and more useful.
+            <div class="detail-time">
+              Typical service time: 2–4 hours
+            </div>
 
-If there's anything you'd like us to improve, add, or handle differently, please share your thoughts below. Our goal is to take vehicle care off your plate so you can spend more time on the things that matter most.
+            <div class="pricing-table">
 
-Suggestions or feedback:
-`;
+              <div class="pricing-size">
 
-    const detailSubject =
-      "Never Dirty Detail Quote Request";
+                <h4>Small</h4>
 
-    const detailBody = `If you would like to request a quote for a one-time detail.
+                <div class="pricing-row">
+                  <span>Interior</span>
+                  <strong>$50</strong>
+                </div>
 
-Please complete the information below and send this request to us.
+                <div class="pricing-row">
+                  <span>Exterior</span>
+                  <strong>$40</strong>
+                </div>
 
-After reviewing your vehicle, requested services, location, and current vehicle condition, we'll send you a customized quote outlining the recommended services and pricing. You'll be able to review, sign, and return it before anything is scheduled.
+                <div class="pricing-row">
+                  <span>Complete</span>
+                  <strong>$80</strong>
+                </div>
 
-CONTACT INFORMATION
+              </div>
 
-Name:
+              <div class="pricing-size">
 
-Phone number:
+                <h4>Medium</h4>
 
-Email address:
+                <div class="pricing-row">
+                  <span>Interior</span>
+                  <strong>$60</strong>
+                </div>
 
-Service address:
+                <div class="pricing-row">
+                  <span>Exterior</span>
+                  <strong>$50</strong>
+                </div>
 
-Best time to contact me:
+                <div class="pricing-row">
+                  <span>Complete</span>
+                  <strong>$100</strong>
+                </div>
 
+              </div>
 
-VEHICLE INFORMATION
+              <div class="pricing-size">
 
-Year:
+                <h4>Large</h4>
 
-Make:
+                <div class="pricing-row">
+                  <span>Interior</span>
+                  <strong>$70</strong>
+                </div>
 
-Model:
+                <div class="pricing-row">
+                  <span>Exterior</span>
+                  <strong>$60</strong>
+                </div>
 
-Color:
+                <div class="pricing-row">
+                  <span>Complete</span>
+                  <strong>$120</strong>
+                </div>
 
+              </div>
 
-SERVICE REQUESTED
+            </div>
 
-Requested service:
-Exterior / Interior / Complete detail
+          </article>
+                    <article class="card detail-card featured">
 
-Preferred date or timeframe:
+            <h3>
+              Signature Detail
+            </h3>
 
+            <p class="detail-subtitle">
+              Interior • Exterior • Complete
+            </p>
 
-VEHICLE CONDITION
+            <div class="detail-time">
+              Typical service time: 4–8+ hours
+            </div>
 
-Overall condition:
-Lightly dirty / Average / Heavily soiled
+            <div class="pricing-table">
 
-Pet hair:
-Yes / No
+              <div class="pricing-size">
 
-Smoke or strong odors:
-Yes / No
+                <h4>Small</h4>
 
-Stains or spills:
-Yes / No
+                <div class="pricing-row">
+                  <span>Interior</span>
+                  <strong>$90</strong>
+                </div>
 
-Excessive mud or road grime:
-Yes / No
+                <div class="pricing-row">
+                  <span>Exterior</span>
+                  <strong>$70</strong>
+                </div>
 
-Please describe anything that may require extra time or attention:
+                <div class="pricing-row">
+                  <span>Complete</span>
+                  <strong>$150</strong>
+                </div>
 
+              </div>
 
+              <div class="pricing-size">
 
-SERVICE LOCATION
+                <h4>Medium</h4>
 
-Is there adequate room for us to safely complete the service?
-Yes / No / Not sure
+                <div class="pricing-row">
+                  <span>Interior</span>
+                  <strong>$110</strong>
+                </div>
 
-Service surface:
-Paved driveway / Gravel driveway / Firm, non-muddy grass
+                <div class="pricing-row">
+                  <span>Exterior</span>
+                  <strong>$80</strong>
+                </div>
 
-Will the vehicle be available and accessible at the service location?
-Yes / No / Not sure
+                <div class="pricing-row">
+                  <span>Complete</span>
+                  <strong>$170</strong>
+                </div>
 
+              </div>
 
-ADDITIONAL INFORMATION
+              <div class="pricing-size">
 
-Is there anything else we should know about your vehicle, location, or requested service?
+                <h4>Large</h4>
 
+                <div class="pricing-row">
+                  <span>Interior</span>
+                  <strong>$130</strong>
+                </div>
 
+                <div class="pricing-row">
+                  <span>Exterior</span>
+                  <strong>$90</strong>
+                </div>
 
-SUGGESTIONS OR FEEDBACK
+                <div class="pricing-row">
+                  <span>Complete</span>
+                  <strong>$190</strong>
+                </div>
 
-We're always looking for ways to make the Never Dirty experience easier and more useful.
+              </div>
 
-If there's anything you'd like us to improve, add, or handle differently, please share your thoughts below. Our goal is to take vehicle care off your plate so you can spend more time on the things that matter most.
+            </div>
 
-Suggestions or feedback:
-`;
+          </article>
 
-    const membershipMailto =
-      `mailto:${businessEmail}` +
-      `?subject=${encodeURIComponent(membershipSubject)}` +
-      `&body=${encodeURIComponent(membershipBody)}`;
+        </div>
 
-    const detailMailto =
-      `mailto:${businessEmail}` +
-      `?subject=${encodeURIComponent(detailSubject)}` +
-      `&body=${encodeURIComponent(detailBody)}`;
+      </div>
 
-    document
-      .querySelectorAll(".membership-link")
-      .forEach((link) => {
-        link.href = membershipMailto;
-      });
+    </section>
 
-    document
-      .querySelectorAll(".detail-link")
-      .forEach((link) => {
-        link.href = detailMailto;
-      });
-  </script>
+    <section class="section">
 
-</body>
-</html>
+      <div class="container">
+
+        <div class="section-heading">
+
+          <span class="eyebrow">
+            Vehicle Size Guide
+          </span>
+
+          <h2>
+            Find your vehicle.
+          </h2>
+
+          <p>
+            Pricing is based on vehicle size. If you're unsure which
+            category your vehicle falls into, contact us and we'll help.
+          </p>
+
+        </div>
+
+        <div class="vehicle-size-grid">
+
+          <article class="card vehicle-size-card">
+
+            <h3>
+              Small
+            </h3>
+
+            <ul class="bullet-list">
+
+              <li>Coupe</li>
+              <li>Sedan</li>
+              <li>Hatchback</li>
+
+            </ul>
+
+          </article>
+
+          <article class="card vehicle-size-card">
+
+            <h3>
+              Medium
+            </h3>
+
+            <ul class="bullet-list">
+
+              <li>Crossover</li>
+              <li>Small SUV</li>
+              <li>Half-ton Crew Cab Pickup</li>
+
+            </ul>
+
+          </article>
+
+          <article class="card vehicle-size-card">
+
+            <h3>
+              Large
+            </h3>
+
+            <ul class="bullet-list">
+
+              <li>Full-Size SUV</li>
+              <li>Long-Bed Pickup</li>
+              <li>Van</li>
+
+            </ul>
+
+          </article>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <section class="section section-dark">
+
+      <div class="container">
+
+        <div class="section-heading">
+
+          <span class="eyebrow">
+            Additional Services
+          </span>
+
+          <h2>
+            Extra services available upon request.
+          </h2>
+
+        </div>
+
+        <div class="add-on-grid">
+
+          <article class="card add-on-card">
+
+            <h3>
+              Add-On Services
+            </h3>
+
+            <ul class="bullet-list">
+
+              <li>Pet hair removal</li>
+              <li>Excessive interior debris removal</li>
+              <li>Engine bay cleaning</li>
+              <li>Headlight restoration</li>
+              <li>Spray ceramic protection</li>
+              <li>Seat shampooing</li>
+              <li>Carpet extraction</li>
+              <li>Odor treatment</li>
+
+            </ul>
+
+          </article>
+
+          <article class="card add-on-card">
+
+            <h3>
+              By Quote
+            </h3>
+
+            <p>
+              Every vehicle is different. Heavily neglected interiors,
+              excessive pet hair, severe staining, biohazards, sap,
+              oxidation, and other specialty work will be quoted
+              individually before work begins.
+            </p>
+
+          </article>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <section class="section">
+
+      <div class="container">
+
+        <div class="section-heading">
+
+          <span class="eyebrow">
+            Important Information
+          </span>
+
+          <h2>
+            Before your appointment.
+          </h2>
+
+        </div>
+
+        <article class="card important-card">
+
+          <ul class="important-list">
+
+            <li>Payment is due before service begins.</li>
+
+            <li>Membership service is by appointment only.</li>
+
+            <li>A Complete Refresh Detail is required before beginning membership.</li>
+
+            <li>Weather may require appointments to be rescheduled.</li>
+
+            <li>Please remove valuables before service.</li>
+
+            <li>Vehicles with excessive mud or hazardous materials may require additional charges.</li>
+
+            <li>We bring our own water and professional equipment.</li>
+
+            <li>Photos may be taken before and after service for quality assurance and marketing unless requested otherwise.</li>
+
+          </ul>
+
+        </article>
+
+      </div>
+
+    </section>
